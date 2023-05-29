@@ -1,10 +1,5 @@
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import java.awt.Frame;
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,7 +22,6 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     public void createLoginWindow() {
         //loginWindow.setVisibility(true);
         //loginWindow.createLoginWindow();
-        
         
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);

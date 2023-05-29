@@ -1,8 +1,5 @@
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.awt.*;
+import javax.swing.*;
 
 // Constuctor method for the windows
 public class WindowConstructor extends JFrame {
