@@ -14,18 +14,22 @@ public class WindowConstructor extends JFrame {
     public WindowConstructor() {
         setTitle("Nutrition Up"); // Sets the title of the window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit out of application
-        setResizable(true); // prevent frame from being resized
+        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setResizable(true); // prevent window from being resized
         setSize(1100, 680); // sets the x-dimensions, and y-dimension of the window
         setLocationRelativeTo(null); // Centers the window
         setLayout(null); // Set layout manager to null for custom component placement
         //setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setUndecorated(false);
+        
+        //setVisible(true); // If you put this before creating the label, button, and textField variable,
+        // all the labels, buttons, and TextFields from the LoginWindow won't pop up unless you resize the window
 
         label = new JLabel();
         button = new JButton();
         textField = new JTextField(10);
 
-        setVisible(true); // Make window visible
+        setVisible(true); // Make window visible // I think we should make the window visible in their respective classes
     }
 
     public void setLabel(JLabel label) {
@@ -51,4 +55,11 @@ public class WindowConstructor extends JFrame {
     public JTextField getTextField() {
         return textField;
     }
+
+    /*
+    // Still don't know how to set the windows to be visible or not visible when pressing a login, creating account or back button
+    public void setVisibility(boolean visible){
+        this.setVisible(visible);
+    }
+    */
 }

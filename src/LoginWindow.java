@@ -21,12 +21,16 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     private JButton loginButton = new JButton("Login Button");
     private JTextField inputUsernameTextField = new JTextField(10);
     public JButton signUpButton = new JButton("Sign up");
-
+    
+    //LoginWindow loginWindow = new LoginWindow();
+    
     // Don't know how to get the Diaglog to pop up in the login window
     // public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
     
     public void createLoginWindow() {
-
+        //loginWindow.setVisibility(true);
+        //loginWindow.createLoginWindow();
+        
         loginButton.addActionListener(this);
         
         // Set the positions and sizes of the label, button, and TextField
@@ -56,5 +60,9 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         clicks++;
         clickLabel.setText("# of clicks:  " + clicks);
+        SignUpWindow signUpWindow = new SignUpWindow();
+        signUpWindow.createSignUpWindow();
+        //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
+        signUpWindow.setVisible(true);
     }
 }
