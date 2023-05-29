@@ -29,8 +29,10 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         //loginWindow.setVisibility(true);
         //loginWindow.createLoginWindow();
         
+        
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);
+    
         // Set the positions and sizes of the label, button, and TextField
         applicationNameText.setBounds(490, 55, 200, 30);
         loginButton.setBounds(455, 315, 150, 50);
@@ -57,7 +59,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton){
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
-            foodDiaryWindow.createSignUpWindow();
+            foodDiaryWindow.createFoodDiaryWindow();
             //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
             foodDiaryWindow.setVisible(true);
         }
