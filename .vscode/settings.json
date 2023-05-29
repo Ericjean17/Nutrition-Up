@@ -4,14 +4,8 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "/home/alex/jsoup-1.16.1.jar",
-<<<<<<< HEAD
-        "c:\\Users\\orion\\Downloads\\jsoup-1.16.1.jar"
-=======
-<<<<<<< HEAD
-        "c:\\Users\\ericj\\Downloads\\jsoup-1.16.1.jar"
-=======
-        "c:\\Users\\samcd\\Downloads\\jsoup-1.16.1.jar"
->>>>>>> c457a532bb3a9c1859287b8f66ffa77303597c32
->>>>>>> e0a66e7d94df950f6649e312dbe4acd3f13df50a
+        "c:\\Users\\orion\\Downloads\\jsoup-1.16.1.jar",
+        "c:\\Users\\samcd\\Downloads\\jsoup-1.16.1.jar",
+        "c:\\Users\\Nickm\\Downloads\\jsoup-1.16.1.jar"
     ]
 }
