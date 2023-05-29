@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 class WebScraperTesting {
     public static void main(String[] args){
         try {
-            Document doc = Jsoup.connect("https://en.wikipedia.org/").get();
+            Document doc = Jsoup.connect("https://www.calorieking.com/us/en/foods/search?keywords=big+mac").get();
 
             String title = doc.title();
             System.out.println("Title: " + title);
