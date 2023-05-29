@@ -21,8 +21,10 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     private JButton loginButton = new JButton("Login Button");
     private JTextField inputUsernameTextField = new JTextField(10);
     public JButton signUpButton = new JButton("Sign up");
-    private Frame loginWindow;
-    public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
+
+    // Don't know how to get the Diaglog to pop up in the login window
+    // public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
+    
     public void createLoginWindow() {
 
         loginButton.addActionListener(this);
@@ -36,7 +38,8 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         noAccountText.setBounds(475,555,200,30);
         clickLabel.setBounds(200, 100, 100, 30); // Delete later
         signUpButton.setBounds(480, 590, 100, 30);
-        invalidInputDialogBox.setBounds(500,500,100,30);
+        //invalidInputDialogBox.setBounds(500,500,100,30);
+        
         // Add the components to the window
         add(applicationNameText);
         add(loginButton);
@@ -46,7 +49,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         add(loginText);
         add(noAccountText);
         add(signUpButton);
-        add(invalidInputDialogBox);
+        //add(invalidInputDialogBox);
     }
 
     @Override
