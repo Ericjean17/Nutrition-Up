@@ -3,6 +3,7 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "/home/alex/jsoup-1.16.1.jar"
+        "/home/alex/jsoup-1.16.1.jar",
+        "c:\\Users\\ericj\\Downloads\\jsoup-1.16.1.jar"
     ]
 }
