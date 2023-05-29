@@ -15,8 +15,10 @@ public class WindowConstructor extends JFrame {
         setTitle("Nutrition Up"); // Sets the title of the window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit out of application
         setResizable(true); // prevent frame from being resized
-        setSize(1000, 600); // sets the x-dimensions, and y-dimension of the window
+        //setSize(1000, 700); // sets the x-dimensions, and y-dimension of the window
         setLayout(null); // Set layout manager to null for custom component placement
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        setUndecorated(false);
 
         label = new JLabel();
         button = new JButton();
