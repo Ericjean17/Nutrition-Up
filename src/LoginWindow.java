@@ -58,16 +58,18 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton){
+            dispose();
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
             foodDiaryWindow.createFoodDiaryWindow();
             //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            foodDiaryWindow.setVisible(true);
+            //foodDiaryWindow.setVisible(true);
         }
         else if (e.getSource() == signUpButton){
+            dispose();
             SignUpWindow signUpWindow = new SignUpWindow();
             signUpWindow.createSignUpWindow();
             //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            signUpWindow.setVisible(true);
+            //signUpWindow.setVisible(true);
         }
     }
 }

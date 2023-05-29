@@ -76,10 +76,11 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         // * Since both of these buttons lead to the same window, we need to add code to save the data
         // when the createAccount buttons is pressed and not save any data when the back button is pressed
         if (e.getSource() == createUserAccount || e.getSource() == backButton){
+            dispose();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.createLoginWindow();
             //signUpWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            loginWindow.setVisible(true);
+            //loginWindow.setVisible(true);
         }
     }
 }

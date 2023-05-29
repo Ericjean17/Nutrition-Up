@@ -21,6 +21,8 @@ public class WindowConstructor extends JFrame {
         setLayout(null); // Set layout manager to null for custom component placement
         //setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setUndecorated(false);
+        ImageIcon logo = new ImageIcon("");
+        setIconImage(logo.getImage());
         
         //setVisible(true); // If you put this before creating the label, button, and textField variable,
         // all the labels, buttons, and TextFields from the LoginWindow won't pop up unless you resize the window
