@@ -79,8 +79,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
             dispose();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.createLoginWindow();
-            //signUpWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            //loginWindow.setVisible(true);
         }
     }
 }

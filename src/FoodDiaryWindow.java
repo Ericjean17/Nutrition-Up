@@ -89,8 +89,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             dispose();
             GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
             goalTrackerWindow.createGoalTrackerWindow();
-            //FoodDiaryWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            //goalTrackerWindow.setVisible(true);
         }
         else if (e.getSource() == nextDayButton){
             // Idk what to do here yet

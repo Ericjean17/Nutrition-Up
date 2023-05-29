@@ -61,15 +61,12 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             dispose();
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
             foodDiaryWindow.createFoodDiaryWindow();
-            //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            //foodDiaryWindow.setVisible(true);
+            dispose();
         }
         else if (e.getSource() == signUpButton){
             dispose();
             SignUpWindow signUpWindow = new SignUpWindow();
             signUpWindow.createSignUpWindow();
-            //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            //signUpWindow.setVisible(true);
         }
     }
 }
