@@ -51,6 +51,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         createUserAccount.setBounds(550,580,125,30);
         
         createUserAccount.addActionListener(this);
+        backButton.addActionListener(this);
 
         // Add the components to the window
         add(applicationNameText);
@@ -71,10 +72,15 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent createUserAccount) {
-        
+    public void actionPerformed(ActionEvent e) {
+        // * Since both of these buttons lead to the same window, we need to add code to save the data
+        // when the createAccount buttons is pressed and not save any data when the back button is pressed
+        if (e.getSource() == createUserAccount || e.getSource() == backButton){
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.createLoginWindow();
+            //signUpWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
+            loginWindow.setVisible(true);
+        }
     }
-
-    // Is the button functionality built into these windows or the controller?
 }
 
