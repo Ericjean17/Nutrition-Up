@@ -29,9 +29,9 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         usernameText.setBounds(470,205,150,50);
         inputUsernameTextField.setBounds(435, 265, 230, 30);
         loginText.setBounds(505, 100, 100, 30);
-        noAccountText.setBounds(480,600,200,30);
+        noAccountText.setBounds(475,570,200,30);
         clickLabel.setBounds(200, 100, 100, 30); // Delete later
-
+        signUpButton.setBounds(480, 610, 100, 30);
 
         // Add the components to the window
         add(applicationNameText);
@@ -41,6 +41,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         add(usernameText);
         add(loginText);
         add(noAccountText);
+        add(signUpButton);
     }
 
     @Override
