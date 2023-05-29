@@ -4,10 +4,11 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Frame;
 
-public class SignUpWindow extends WindowConstructor {
+public class SignUpWindow extends WindowConstructor implements ActionListener{
     
     // Idk if the TextFields should be public or private. We need to somehow know how the controller
     // will gather the data using the TextField and button variables 
@@ -49,6 +50,8 @@ public class SignUpWindow extends WindowConstructor {
         backButton.setBounds(430,580,80,30);
         createUserAccount.setBounds(550,580,125,30);
         
+        createUserAccount.addActionListener(this);
+
         // Add the components to the window
         add(applicationNameText);
         add(createAccountText);
@@ -65,6 +68,11 @@ public class SignUpWindow extends WindowConstructor {
         add(backButton);
         add(createUserAccount);
         //add(invalidInputAlert);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent createUserAccount) {
+        
     }
 
     // Is the button functionality built into these windows or the controller?
