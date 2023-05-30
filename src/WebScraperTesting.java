@@ -9,7 +9,7 @@ class WebScraperTesting {
 
         String start = "https://www.calorieking.com";
         String mid = "/us/en/foods/search?keywords=";
-        String keyword = "big mac"; // will be made based on user input
+        String keyword = "big+mac"; // will be made based on user input
         String url = start + mid + keyword;
 
         Document doc = Jsoup.connect(url).get();
