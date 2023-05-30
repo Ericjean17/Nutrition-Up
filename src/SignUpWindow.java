@@ -69,11 +69,37 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     }
 
     @Override
+    // Btw, cannot have multiple actionPerformed action event methods.
     public void actionPerformed(ActionEvent e) {
         // * Since both of these buttons lead to the same window, we need to add code to save the data
         // when the createAccount buttons is pressed and not save any data when the back button is pressed
-        if (e.getSource() == createUserAccount || e.getSource() == backButton){
+        // IGNORE THIS STATEMENT
+        
+        // Idk how this works tbh
+        if (e.getSource() == backButton){
             dispose();
+            createUsernameTextField.setText("");
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.createLoginWindow();
+        }
+
+        // Also have the condition that the user has to input all 5 of these componenets, else a pop-up comes up (dialog box)
+        // This also records the values, as you can see in the terminal
+        else if (e.getSource() == createUserAccount){
+            String createdUsername = createUsernameTextField.getText();
+            String inputtedGender = inputGenderTextField.getText(); // Maybe use a dropdown menu instead (so it only has m and f as an option)
+            int inputtedAge = Integer.parseInt(inputAgeTextField.getText());
+            int inputtedWeight = Integer.parseInt(inputAgeTextField.getText());
+            int inputtedHeight = Integer.parseInt(inputAgeTextField.getText());
+            
+            System.out.println("username: " + createdUsername);
+            System.out.println("gender: " + inputtedGender);
+            System.out.println("age: " + inputtedAge);
+            System.out.println("weight: " + inputtedWeight);
+            System.out.println("height: " + inputtedHeight);
+            
+            dispose();
+            createUsernameTextField.setText("");
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.createLoginWindow();
         }
