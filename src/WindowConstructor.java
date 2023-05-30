@@ -1,5 +1,5 @@
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 // Constuctor method for the windows
 public class WindowConstructor extends JFrame {
@@ -10,15 +10,15 @@ public class WindowConstructor extends JFrame {
 
     public WindowConstructor() {
         setTitle("Nutrition Up"); // Sets the title of the window
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit out of application
-        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setResizable(true); // prevent window from being resized
-        setSize(1100, 680); // sets the x-dimensions, and y-dimension of the window
-        setLocationRelativeTo(null); // Centers the window
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Exits out of application
+        setResizable(true); // Prevents the window from being resized
+        setSize(1100, 680); // Sets the x-dimensions, and y-dimensions of all of the windows
+        setLocationRelativeTo(null); // Centers all of the windows
         setLayout(null); // Set layout manager to null for custom component placement
-        //setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        setUndecorated(false);
-        ImageIcon logo = new ImageIcon("NutritionUpLogo.png");
+        //setExtendedState(JFrame.MAXIMIZED_BOTH); This automatically sets the window to full screen, however we don't want that (alex has a chromebook)
+        setUndecorated(false); // Adds the functionality of not closing the windowing without alt+f4 (we don't want that)
+        
+        ImageIcon logo = new ImageIcon("NutritionUpLogo.png"); // Changes the image at the top left of the window from the java cup logo to our logo
         setIconImage(logo.getImage());
 
         //setVisible(true); // If you put this before creating the label, button, and textField variable,
@@ -28,9 +28,10 @@ public class WindowConstructor extends JFrame {
         button = new JButton();
         textField = new JTextField(10);
 
-        setVisible(true); // Make window visible // I think we should make the window visible in their respective classes
+        setVisible(true); // Makes all the windows INITIALLY visible (can use dispose() to close them)
     }
 
+    // Don't know if we need this.
     public void setLabel(JLabel label) {
         this.label = label;
     }
@@ -54,11 +55,4 @@ public class WindowConstructor extends JFrame {
     public JTextField getTextField() {
         return textField;
     }
-
-    /*
-    // Still don't know how to set the windows to be visible or not visible when pressing a login, creating account or back button
-    public void setVisibility(boolean visible){
-        this.setVisible(visible);
-    }
-    */
 }

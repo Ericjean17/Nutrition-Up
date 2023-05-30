@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginWindow extends WindowConstructor implements ActionListener {
-    // Create the label, button, and TextField, and assign it to a variable
-
+    
+    // Create the labels, buttons, and TextFields, and assign it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!");
     private JLabel loginText = new JLabel("Login");
     private JLabel noAccountText = new JLabel("Don't have an account?");
@@ -13,20 +13,17 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     private JButton loginButton = new JButton("Login Button");
     private JTextField inputUsernameTextField = new JTextField(10);
     public JButton signUpButton = new JButton("Sign up");
-    
-    //LoginWindow loginWindow = new LoginWindow();
-    
+        
     // Don't know how to get the Diaglog to pop up in the login window
     // public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
     
     public void createLoginWindow() {
-        //loginWindow.setVisibility(true);
-        //loginWindow.createLoginWindow();
         
+        // Initializes the action events for the buttons
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);
     
-        // Set the positions and sizes of the label, button, and TextField
+        // Set the positions and sizes of the labels, buttons, and TextFields
         applicationNameText.setBounds(490, 55, 200, 30);
         loginButton.setBounds(455, 315, 150, 50);
         usernameText.setBounds(470,205,150,50);

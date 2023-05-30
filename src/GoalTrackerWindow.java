@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
 public class GoalTrackerWindow extends WindowConstructor implements ActionListener {
@@ -23,7 +22,7 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
 
     public void createGoalTrackerWindow() {
 
-        // Initialize action events for the buttons
+        // Initializes the action events for the buttons
         returnToFoodDiaryButton.addActionListener(this);
         
         // Set the positions and sizes of the label, button, and TextField

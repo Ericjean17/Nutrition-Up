@@ -29,8 +29,8 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     //private JDialog invalidInputAlert = new JTextField(signUpWindow, "Not a valid input");
     
     public void createSignUpWindow() {
-        // Window is 1100x680
-        // Set the positions and sizes of the label, button, and TextField
+        
+        // Set the positions and sizes of the labels, buttons, and TextFields
         applicationNameText.setBounds(490, 55, 200, 30);
         createAccountText.setBounds(480, 70, 150, 30);
         enterGenderText.setBounds(150,250,150,30);
@@ -46,6 +46,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         backButton.setBounds(430,580,80,30);
         createUserAccount.setBounds(550,580,125,30);
         
+        // Initializes the action events for the buttons
         createUserAccount.addActionListener(this);
         backButton.addActionListener(this);
 

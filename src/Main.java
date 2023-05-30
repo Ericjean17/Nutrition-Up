@@ -3,6 +3,5 @@ public class Main {
         // Creates the window
         LoginWindow loginWindow = new LoginWindow();
         loginWindow.createLoginWindow();
-
     }
 }
