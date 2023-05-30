@@ -30,15 +30,25 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private JPanel diaryPanel;
 
     private WebScraperTesting webScraper;
-    
+
+    //private boolean nextDay = true;
+
     public void createFoodDiaryWindow() {
-        // Create the diary panel
+
+        /* Not working
+        // Make the button still invisible if it was previously invisible
+        if (nextDay == false) {
+            enterCalorieGoalButton.setVisible(false);
+        }
+        */
+
         diaryScrollPane = new JScrollPane();
         setPreferredSize(new Dimension(200,450));
         
         //Initializing the WebScraper tool for the user inputted food
         webScraper = new WebScraperTesting();
 
+        // Create the diary panel
         /*
         diaryPanel = new JPanel();
         diaryPanel.setLayout(new BoxLayout(diaryPanel, 450)); // Need to change the dimensions
@@ -112,8 +122,12 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
              // Hides the enter button from the user on click, so they can't mess it up.
              // We can make it appear after pressing the nextDayButton
              // We need an if statement before this happens to make sure they inputted an integer in the TextField
-            enterCalorieGoalButton.setVisible(false);
 
+             // Also, whenever we press the progress bar button, it becomes visible again. Need to somehow make it still invisible
+             // Until the user pressed the next day button.
+            enterCalorieGoalButton.setVisible(false);
+            //nextDay = false;
+            
             // Resets the text inside the TextField, so the user doesn't have to manually delete what they typed previously
             // More professional
             enterCalorieInputTextField.setText("");
@@ -132,7 +146,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         else if (e.getSource() == nextDayButton){
             // Idk what to do here yet
             enterCalorieGoalButton.setVisible(true);
-            
+            //nextDay = true;
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
 
