@@ -1,12 +1,8 @@
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Frame;
+
 
 public class SignUpWindow extends WindowConstructor implements ActionListener{
     
@@ -33,8 +29,8 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     //private JDialog invalidInputAlert = new JTextField(signUpWindow, "Not a valid input");
     
     public void createSignUpWindow() {
-        // Window is 1100x680
-        // Set the positions and sizes of the label, button, and TextField
+        
+        // Set the positions and sizes of the labels, buttons, and TextFields
         applicationNameText.setBounds(490, 55, 200, 30);
         createAccountText.setBounds(480, 70, 150, 30);
         enterGenderText.setBounds(150,250,150,30);
@@ -50,6 +46,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         backButton.setBounds(430,580,80,30);
         createUserAccount.setBounds(550,580,125,30);
         
+        // Initializes the action events for the buttons
         createUserAccount.addActionListener(this);
         backButton.addActionListener(this);
 
@@ -72,14 +69,39 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     }
 
     @Override
+    // Btw, cannot have multiple actionPerformed action event methods.
     public void actionPerformed(ActionEvent e) {
         // * Since both of these buttons lead to the same window, we need to add code to save the data
         // when the createAccount buttons is pressed and not save any data when the back button is pressed
-        if (e.getSource() == createUserAccount || e.getSource() == backButton){
+        // IGNORE THIS STATEMENT
+        
+        // Idk how this works tbh
+        if (e.getSource() == backButton){
+            dispose();
+            createUsernameTextField.setText("");
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.createLoginWindow();
-            //signUpWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            loginWindow.setVisible(true);
+        }
+
+        // Also have the condition that the user has to input all 5 of these componenets, else a pop-up comes up (dialog box)
+        // This also records the values, as you can see in the terminal
+        else if (e.getSource() == createUserAccount){
+            String createdUsername = createUsernameTextField.getText();
+            String inputtedGender = inputGenderTextField.getText(); // Maybe use a dropdown menu instead (so it only has m and f as an option)
+            int inputtedAge = Integer.parseInt(inputAgeTextField.getText());
+            int inputtedWeight = Integer.parseInt(inputAgeTextField.getText());
+            int inputtedHeight = Integer.parseInt(inputAgeTextField.getText());
+            
+            System.out.println("username: " + createdUsername);
+            System.out.println("gender: " + inputtedGender);
+            System.out.println("age: " + inputtedAge);
+            System.out.println("weight: " + inputtedWeight);
+            System.out.println("height: " + inputtedHeight);
+            
+            dispose();
+            createUsernameTextField.setText("");
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.createLoginWindow();
         }
     }
 }

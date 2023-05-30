@@ -1,16 +1,8 @@
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Frame;
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class FoodDiaryWindow extends WindowConstructor implements ActionListener {
     
@@ -32,12 +24,37 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public JButton nextDayButton = new JButton("Next day");
     public JScrollPane diaryScrollPane;
 
+    // We need a panel to make it so the user can scroll down with the ScrollPane
+    private JPanel diaryPanel;
+
     public void createFoodDiaryWindow() {
         // Create the diary panel
         diaryScrollPane = new JScrollPane();
         setPreferredSize(new Dimension(200,450));
+        
+        /*
+        diaryPanel = new JPanel();
+        diaryPanel.setLayout(new BoxLayout(diaryPanel, 450)); // Need to change the dimensions
+        
+        // Something we can do in the controller (refer to the UML diagram)
+        ArrayList<String> foodItems = new ArrayList<String>();
+        foodItems.add("Food item #1");
+        foodItems.add("Food item #2");
+        foodItems.add("Food item #3");
+        
 
-        // Initialize action events for the buttons
+        // Add each food item as a separate component to the foodPanel
+        for(String foodItem: foodItems){
+            JLabel userFoodLabel = new JLabel(foodItem);
+            foodPanel.add(foodLabel);
+        }
+
+        // Create the scrollPane and set the preferred size of the foodPanel
+        diaryScrollPane = new JScrollPane(foodPanel);
+        diaryScroll.setPreferredSize(new Dimension(400, 300)); // Can adjust the size as needed
+        */
+
+        // Initializes the action events for the buttons
         enterCalorieGoalButton.addActionListener(this);
         enterFoodNameButton.addActionListener(this);
         goalProgressButton.addActionListener(this);
@@ -74,6 +91,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(goalProgressButton);
         add(nextDayButton);
         add(diaryScrollPane, BorderLayout.EAST);
+        // add(scrollPanel);
     }
 
     // Creates a new window or gathers data when the buttons are clicked
@@ -86,10 +104,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             // I assume we get the method from the controller to contain or add the data (String)
         }
         else if (e.getSource() == goalProgressButton){
+            dispose();
             GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
             goalTrackerWindow.createGoalTrackerWindow();
-            //FoodDiaryWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            goalTrackerWindow.setVisible(true);
         }
         else if (e.getSource() == nextDayButton){
             // Idk what to do here yet

@@ -1,17 +1,12 @@
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import java.awt.Frame;
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginWindow extends WindowConstructor implements ActionListener {
-    // Create the label, button, and TextField, and assign it to a variable
-
+    
+    // Create the labels, buttons, and TextFields, and assign it to a variable
+    private String username;
     private JLabel applicationNameText = new JLabel("Nutrition Up!");
     private JLabel loginText = new JLabel("Login");
     private JLabel noAccountText = new JLabel("Don't have an account?");
@@ -19,21 +14,20 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     private JButton loginButton = new JButton("Login Button");
     private JTextField inputUsernameTextField = new JTextField(10);
     public JButton signUpButton = new JButton("Sign up");
-    
-    //LoginWindow loginWindow = new LoginWindow();
-    
+        
     // Don't know how to get the Diaglog to pop up in the login window
     // public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
     
     public void createLoginWindow() {
-        //loginWindow.setVisibility(true);
-        //loginWindow.createLoginWindow();
         
-        
+        // Initializes the action events for the buttons
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);
+
+        // Initializes the action events for the TextFields
+        inputUsernameTextField.addActionListener(this);
     
-        // Set the positions and sizes of the label, button, and TextField
+        // Set the positions and sizes of the labels, buttons, and TextFields
         applicationNameText.setBounds(490, 55, 200, 30);
         loginButton.setBounds(455, 315, 150, 50);
         usernameText.setBounds(470,205,150,50);
@@ -54,20 +48,23 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         //add(invalidInputDialogBox);
     }
 
-    // When pressing the buttons, it creates a new window
+    // When pressing the buttons, it creates a new window, and does other stuff like getting data from textfields
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton){
+            String inputtedUsername = inputUsernameTextField.getText();
+            // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
+            
+            System.out.println("Username inputted is : " + username);
+            dispose();
+            inputUsernameTextField.setText(""); // Clears the text field after saving the values??
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
             foodDiaryWindow.createFoodDiaryWindow();
-            //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            foodDiaryWindow.setVisible(true);
         }
         else if (e.getSource() == signUpButton){
+            dispose();
             SignUpWindow signUpWindow = new SignUpWindow();
             signUpWindow.createSignUpWindow();
-            //loginWindow.setVisible(false); // Maybe make the loginWindow dissapear here? Idk how tho
-            signUpWindow.setVisible(true);
         }
     }
 }
