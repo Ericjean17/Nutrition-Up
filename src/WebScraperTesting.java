@@ -28,7 +28,20 @@ class WebScraperTesting {
 
         String fullUrl = start + trueUrl;
         System.out.println(fullUrl);
+        System.out.println();
 
-        
+        Document doc2 = Jsoup.connect(fullUrl).get();
+        Element element2 = doc2.select("h2").first();
+        System.out.println(element2.text()); // calories
+        System.out.println();
+
+        Elements elements2 = doc2.getElementsByTag("td");
+        int j = 0;
+        for(Element element: elements2){
+            if(j == 0 || j == 3){
+                System.out.println(element.text());
+            }
+            j++;
+        }
     }
 }
