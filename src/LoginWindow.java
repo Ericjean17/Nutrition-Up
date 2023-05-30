@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class LoginWindow extends WindowConstructor implements ActionListener {
     
     // Create the labels, buttons, and TextFields, and assign it to a variable
-    private String username;
     private JLabel applicationNameText = new JLabel("Nutrition Up!");
     private JLabel loginText = new JLabel("Login");
     private JLabel noAccountText = new JLabel("Don't have an account?");
@@ -53,9 +52,9 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton){
             String inputtedUsername = inputUsernameTextField.getText();
-            // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
             
-            System.out.println("Username inputted is : " + username);
+            // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
+            System.out.println("Username inputted is : " + inputtedUsername);
             dispose();
             inputUsernameTextField.setText(""); // Clears the text field after saving the values??
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();

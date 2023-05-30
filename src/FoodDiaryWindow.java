@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.text.View;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -27,11 +29,16 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     // We need a panel to make it so the user can scroll down with the ScrollPane
     private JPanel diaryPanel;
 
+    private WebScraperTesting webScraper;
+    
     public void createFoodDiaryWindow() {
         // Create the diary panel
         diaryScrollPane = new JScrollPane();
         setPreferredSize(new Dimension(200,450));
         
+        //Initializing the WebScraper tool for the user inputted food
+        webScraper = new WebScraperTesting();
+
         /*
         diaryPanel = new JPanel();
         diaryPanel.setLayout(new BoxLayout(diaryPanel, 450)); // Need to change the dimensions
@@ -99,9 +106,23 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == enterCalorieGoalButton){
             // I assume we get the method from the controller to contain or add the data (String)
+            int userCalories = Integer.parseInt(enterCalorieInputTextField.getText());
+            System.out.println("User wants to eat " + userCalories + "g of calories today");
+
+             // Hides the enter button from the user on click, so they can't mess it up.
+             // We can make it appear after pressing the nextDayButton
+             // We need an if statement before this happens to make sure they inputted an integer in the TextField
+            enterCalorieGoalButton.setVisible(false);
+
+            // Resets the text inside the TextField, so the user doesn't have to manually delete what they typed previously
+            // More professional
+            enterCalorieInputTextField.setText("");
         }
         else if (e.getSource() == enterFoodNameButton){
             // I assume we get the method from the controller to contain or add the data (String)
+            String food = inputFoodNameTextField.getText();
+            System.out.println("User ate this " + food);
+            inputFoodNameTextField.setText("");
         }
         else if (e.getSource() == goalProgressButton){
             dispose();
@@ -110,9 +131,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         }
         else if (e.getSource() == nextDayButton){
             // Idk what to do here yet
+            enterCalorieGoalButton.setVisible(true);
+            
+            enterCalorieInputTextField.setText("");
+            inputFoodNameTextField.setText("");
+
+            // Maybe here we reset the diary??
         }
     }
-
     // Is the button functionality built into these windows or the controller?
 }
 

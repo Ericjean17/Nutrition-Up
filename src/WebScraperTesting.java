@@ -1,16 +1,15 @@
 import java.io.IOException;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-//import org.jsoup.*; (maybe imports all of jsoup classes)
+
 class WebScraperTesting {
     public static void main(String[] args) throws IOException{
 
         String start = "https://www.calorieking.com";
         String mid = "/us/en/foods/search?keywords=";
-        String keyword = "apple"; // will be made based on user input
+        String keyword = "big mac"; // will be made based on user input
         String url = start + mid + keyword;
 
         Document doc = Jsoup.connect(url).get();
@@ -32,7 +31,7 @@ class WebScraperTesting {
 
         Document doc2 = Jsoup.connect(fullUrl).get();
         Element element2 = doc2.select("h2").first();
-        System.out.println(element2.text()); // calories
+        System.out.println("The calories in a " + keyword + " is " + element2.text()); // calories
         System.out.println();
 
         Elements elements2 = doc2.getElementsByTag("td");

@@ -25,16 +25,18 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     public JButton backButton = new JButton("Back");
     public JButton createUserAccount = new JButton("Create Account");
 
+    String[] gender = {"Male", "Female"};
+    public JComboBox genderComboBox = new JComboBox(gender);
+
     // Don't know how to get the Dialog box in the signUpWindow
     //private JDialog invalidInputAlert = new JTextField(signUpWindow, "Not a valid input");
     
     public void createSignUpWindow() {
-        
         // Set the positions and sizes of the labels, buttons, and TextFields
         applicationNameText.setBounds(490, 55, 200, 30);
         createAccountText.setBounds(480, 70, 150, 30);
         enterGenderText.setBounds(150,250,150,30);
-        inputGenderTextField.setBounds(130,290,150,30);
+        //inputGenderTextField.setBounds(130,290,150,30);
         createUsernameText.setBounds(475,250,150,30);
         createUsernameTextField.setBounds(455,290,150,30);
         enterAgeText.setBounds(800,250,150,30);
@@ -46,10 +48,13 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         backButton.setBounds(430,580,80,30);
         createUserAccount.setBounds(550,580,125,30);
         
-        // Initializes the action events for the buttons
+        genderComboBox.setBounds(130,290,150,30);
+        
+        // Initializes the action events for the buttons & combobox
         createUserAccount.addActionListener(this);
         backButton.addActionListener(this);
-
+        genderComboBox.addActionListener(this);
+        
         // Add the components to the window
         add(applicationNameText);
         add(createAccountText);
@@ -66,6 +71,8 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         add(backButton);
         add(createUserAccount);
         //add(invalidInputAlert);
+
+        add(genderComboBox);
     }
 
     @Override
@@ -91,9 +98,11 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
             int inputtedAge = Integer.parseInt(inputAgeTextField.getText());
             int inputtedWeight = Integer.parseInt(inputAgeTextField.getText());
             int inputtedHeight = Integer.parseInt(inputAgeTextField.getText());
+            String selectedGender = (String) genderComboBox.getSelectedItem();
             
             System.out.println("username: " + createdUsername);
-            System.out.println("gender: " + inputtedGender);
+            //System.out.println("gender: " + inputtedGender);
+            System.out.println("gender: " + selectedGender);
             System.out.println("age: " + inputtedAge);
             System.out.println("weight: " + inputtedWeight);
             System.out.println("height: " + inputtedHeight);
@@ -102,6 +111,10 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
             createUsernameTextField.setText("");
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.createLoginWindow();
+        }
+
+        else if (e.getSource() == genderComboBox){
+            System.out.println(genderComboBox.getSelectedItem());
         }
     }
 }
