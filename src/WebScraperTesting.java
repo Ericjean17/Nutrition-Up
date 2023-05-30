@@ -26,6 +26,9 @@ class WebScraperTesting {
             i++;
         }
 
-        System.out.println(start + trueUrl);
+        String fullUrl = start + trueUrl;
+        System.out.println(fullUrl);
+
+        
     }
 }
