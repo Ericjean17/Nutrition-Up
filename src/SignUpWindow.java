@@ -28,7 +28,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     public JComboBox genderComboBox = new JComboBox(gender);
 
     // *Don't know how to get the Dialog box in the signUpWindow
-    //private JDialog invalidInputAlert = new JTextField(signUpWindow, "Not a valid input");
+    //private JOptionPane invalidInputAlert = new JOptionPane();
     
     public void createSignUpWindow() {
         
@@ -48,6 +48,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         backButton.setBounds(430,580,80,30);
         createUserAccount.setBounds(550,580,125,30);
         genderComboBox.setBounds(130,290,150,30);
+        //invalidInputAlert.setBounds(400,250,200,60);
         
         // Initializes the action events for the buttons & ComboBox
         createUserAccount.addActionListener(this);
@@ -71,6 +72,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         add(createUserAccount);
         //add(invalidInputAlert);
         add(genderComboBox);
+        //add(invalidInputAlert);
     }
 
     @Override
@@ -97,25 +99,45 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
             //int inputtedHeight = Integer.parseInt(inputAgeTextField.getText());
             //String selectedGender = (String) genderComboBox.getSelectedItem();
             
-            String createdUsername = getCreateUsernameTextField().getText();
-            String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
-            int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
-            int inputtedWeight = Integer.parseInt(getInputWeightTextField().getText());
-            int inputtedHeight = Integer.parseInt(getInputHeightTextField().getText());
+            //String createdUsername = getCreateUsernameTextField().getText();
+            //String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
+            //int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
+            //int inputtedWeight = Integer.parseInt(getInputWeightTextField().getText());
+            //int inputtedHeight = Integer.parseInt(getInputHeightTextField().getText());
+
+            // TESTING ERROR POP-UP
+            try{
+                int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
+                System.out.println("Valid age: " + inputtedAge);
+                String createdUsername = getCreateUsernameTextField().getText();
+                System.out.println("username: " + createdUsername);
+                String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
+                System.out.println("gender: " + selectedGender);
+
+                //int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
+                int inputtedWeight = Integer.parseInt(getInputWeightTextField().getText());
+                System.out.println("weight: " + inputtedWeight);
+
+                int inputtedHeight = Integer.parseInt(getInputHeightTextField().getText());
+                System.out.println("height: " + inputtedHeight);
+
+                // After user creates the account, deletes the sign up window, and creates the login window
+                dispose();
+                createUsernameTextField.setText("");
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.createLoginWindow();
+
+            } catch (NumberFormatException o){
+                JOptionPane.showMessageDialog(null, "Not a valid input");
+            }
             
             // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
-            System.out.println("username: " + createdUsername);
+            //System.out.println("username: " + createdUsername);
             //System.out.println("gender: " + inputtedGender);
-            System.out.println("gender: " + selectedGender);
-            System.out.println("age: " + inputtedAge);
-            System.out.println("weight: " + inputtedWeight);
-            System.out.println("height: " + inputtedHeight);
-            
-            // After user creates the account, deletes the sign up window, and creates the login window
-            dispose();
-            createUsernameTextField.setText("");
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.createLoginWindow();
+            //System.out.println("gender: " + selectedGender);
+            //System.out.println("age: " + inputtedAge);
+            //System.out.println("weight: " + inputtedWeight);
+            //System.out.println("height: " + inputtedHeight);
         }
 
         else if (e.getSource() == genderComboBox){
