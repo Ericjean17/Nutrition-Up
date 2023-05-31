@@ -11,7 +11,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     // Idk if the TextFields should be public or private. We need to somehow know how the controller
     // will gather the data using the TextField and button variables 
     
-    // Create the label, button, and TextField, and assign it to a variable
+    // Create the label, button, and TextField, ScrollPane and assigns it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!");
     private JLabel foodDiaryText = new JLabel("Food Diary");
     private JLabel enterCalorieGoalText = new JLabel("Enter your calorie goal for the day.");
@@ -29,7 +29,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     // We need a panel to make it so the user can scroll down with the ScrollPane
     private JPanel diaryPanel;
 
-    private WebScraperTesting webScraper;
+    //private WebScraperTesting webScraper;
 
     //private boolean nextDay = true;
 
@@ -46,7 +46,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         setPreferredSize(new Dimension(200,450));
         
         //Initializing the WebScraper tool for the user inputted food
-        webScraper = new WebScraperTesting();
+       // webScraper = new WebScraperTesting();
 
         // Create the diary panel
         /*

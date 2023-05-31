@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,6 +61,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
             foodDiaryWindow.createFoodDiaryWindow();
         }
+
         else if (e.getSource() == signUpButton){
             dispose();
             SignUpWindow signUpWindow = new SignUpWindow();
@@ -69,6 +69,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         }
     }
 
+    // Testing out how to return the username that the user inputted (NOT WORKING RN)
     public String getUsername(){
         return inputtedUsername;
     }
