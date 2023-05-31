@@ -87,15 +87,21 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         // Also include a condition that the user has to input all 5 of these componenets, else a pop-up comes up (dialog box)
         // This also records the values, as you can see in the terminal
         else if (e.getSource() == createUserAccount){
-            String createdUsername = createUsernameTextField.getText();
+            //String createdUsername = createUsernameTextField.getText();
             
             // Maybe use a dropdown menu instead (so it only has m and f as an option)
             //String inputtedGender = inputGenderTextField.getText(); 
             
-            int inputtedAge = Integer.parseInt(inputAgeTextField.getText());
-            int inputtedWeight = Integer.parseInt(inputAgeTextField.getText());
-            int inputtedHeight = Integer.parseInt(inputAgeTextField.getText());
-            String selectedGender = (String) genderComboBox.getSelectedItem();
+            //int inputtedAge = Integer.parseInt(inputAgeTextField.getText());
+            //int inputtedWeight = Integer.parseInt(inputAgeTextField.getText());
+            //int inputtedHeight = Integer.parseInt(inputAgeTextField.getText());
+            //String selectedGender = (String) genderComboBox.getSelectedItem();
+            
+            String createdUsername = getCreateUsernameTextField().getText();
+            String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
+            int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
+            int inputtedWeight = Integer.parseInt(getInputWeightTextField().getText());
+            int inputtedHeight = Integer.parseInt(getInputHeightTextField().getText());
             
             // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
             System.out.println("username: " + createdUsername);
@@ -115,6 +121,26 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         else if (e.getSource() == genderComboBox){
             System.out.println(genderComboBox.getSelectedItem());
         }
+    }
+
+    public JTextField getCreateUsernameTextField() {
+        return createUsernameTextField;
+    }
+    
+    public JTextField getInputAgeTextField() {
+        return inputAgeTextField;
+    }
+    
+    public JTextField getInputWeightTextField() {
+        return inputWeightTextField;
+    }
+    
+    public JTextField getInputHeightTextField() {
+        return inputHeightTextField;
+    }
+
+    public JComboBox getGenderInputComboBox(){
+        return genderComboBox;
     }
 }
 
