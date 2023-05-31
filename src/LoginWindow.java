@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,15 +14,15 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     public JButton signUpButton = new JButton("Sign up");
         
     // Don't know how to get the Diaglog to pop up in the login window
-    // public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
+    //public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
     
+    String inputtedUsername = "";
+
     public void createLoginWindow() {
         
-        // Initializes the action events for the buttons
+        // Initializes the action events for the buttons & TextFields
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);
-
-        // Initializes the action events for the TextFields
         inputUsernameTextField.addActionListener(this);
     
         // Set the positions and sizes of the labels, buttons, and TextFields
@@ -50,8 +49,10 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     // When pressing the buttons, it creates a new window, and does other stuff like getting data from textfields
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        // When the user presses the login button, gets the String from the TextField, deletes this window, and creates the food diary window
         if (e.getSource() == loginButton){
-            String inputtedUsername = inputUsernameTextField.getText();
+            inputtedUsername = inputUsernameTextField.getText();
             
             // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
             System.out.println("Username inputted is : " + inputtedUsername);
@@ -60,10 +61,16 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
             foodDiaryWindow.createFoodDiaryWindow();
         }
+
         else if (e.getSource() == signUpButton){
             dispose();
             SignUpWindow signUpWindow = new SignUpWindow();
             signUpWindow.createSignUpWindow();
         }
+    }
+
+    // Testing out how to return the username that the user inputted (NOT WORKING RN)
+    public String getUsername(){
+        return inputtedUsername;
     }
 }

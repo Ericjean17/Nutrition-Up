@@ -1,11 +1,10 @@
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class GoalTrackerWindow extends WindowConstructor implements ActionListener {
-    // Create the progress bar and assign it to a variable
-    // Create the label, button, and TextField, and assign it to a variable
+    
+    // Create the label, button, and TextField, and ProgressBar and assigns it to a variable
 
     private JLabel goalTrackerText = new JLabel("Goal Tracker");
     
@@ -88,13 +87,15 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
             }
             counter++;
         }
-        // Update the text of the progress bar after the loop completes
+
+        // Updates the text of the progress bar after the loop completes
         SwingUtilities.invokeLater(() -> {
             calorieProgressBar.setString("You reached your ____ goal! :)");
             proteinProgressBar.setString("You reached your ____ goal! :)");
             fatProgressBar.setString("You reached your ____ goal! :)");
         });
     }
+    
     // When pressing the buttons, it creates a new window
     @Override
     public void actionPerformed(ActionEvent e) {
