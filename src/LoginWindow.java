@@ -51,6 +51,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         // When the user presses the login button, gets the String from the TextField, deletes this window, and creates the food diary window
+        // Can use e.getActionCommand().equals("input username here");
         if (e.getSource() == loginButton){
             inputtedUsername = inputUsernameTextField.getText();
             
