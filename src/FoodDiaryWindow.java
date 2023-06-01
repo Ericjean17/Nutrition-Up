@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +27,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public JButton enterFoodNameButton = new JButton("Enter");
 
     // Displays what the user ate using a TextArea
-    private JTextArea diaryTextArea;
+    private JTextArea diaryTextArea = new JTextArea();
 
 
     // The text for displaying the current date and day of the week
@@ -47,7 +46,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
         // The code to get the day of the week today
         currentDay = LocalDate.now();
-        dayOfWeekText.setText(" - " + currentDate.getDayOfWeek().toString());
+        dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
         for (int i = 0; i < months; i++) {
             String formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
@@ -55,11 +54,11 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             currentDate = currentDate.plusMonths(1);
         }
 
-        diaryTextArea = new JTextArea(); 
         diaryTextArea.setEditable(false); // Makes it so the diary is uneditable by the user
         diaryTextArea.setLineWrap(true);
         diaryTextArea.setWrapStyleWord(true);
-        diaryScrollPane.setViewportView(diaryTextArea); // Set the JTextArea as the view of the scroll pane
+        diaryScrollPane = new JScrollPane(diaryTextArea); // Set the JTextArea as the view of the scroll pane
+        //diaryScrollPane.setViewportView(diaryTextArea);
         
         /*
         // Something we can do in the controller (refer to the UML diagram)
@@ -143,6 +142,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             String food = inputFoodNameTextField.getText();
             System.out.println("User ate this " + food);
             diaryTextArea.append(food + "\n");
+            diaryTextArea.append("----------------------------------------------------------------------\n");
             inputFoodNameTextField.setText("");
             
         }
@@ -161,7 +161,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
             // Display the next day of the week
             currentDay = currentDay.plusDays(1);
-            dayOfWeekText.setText(" - " + currentDate.getDayOfWeek().toString());
+            dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
             enterCalorieGoalButton.setVisible(true);
             //nextDay = true;
