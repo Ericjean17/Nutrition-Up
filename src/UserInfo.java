@@ -6,6 +6,8 @@ public class UserInfo {
     private int age;
     private String gender;
     private int goal;
+    private int weight;
+    private int height;
     private Scanner scanner;
 
     public UserInfo() {
@@ -41,6 +43,8 @@ public class UserInfo {
                     age = Integer.parseInt(fields[1]);
                     gender = fields[2];
                     goal = Integer.parseInt(fields[3]);
+                    weight = Integer.parseInt(fields[4]);
+                    height = Integer.parseInt(fields[5]);
                     break;
                 }
             }
@@ -68,17 +72,32 @@ public class UserInfo {
             }
         }
     }
+    public void askWeight() {
+        System.out.print("Please enter your Weight: ");
+        weight = scanner.nextInt();
+        scanner.nextLine();
+    }
+    public void askHeight() {
+        System.out.print("Please enter your Height: ");
+        height = scanner.nextInt();
+        scanner.nextLine();
+    }
     public void askGoal() {
         System.out.print("Please enter your goal: ");
         goal = scanner.nextInt();
         scanner.nextLine();
     }
 
+
+
     public void displayInformation() {
         System.out.println("Username: " + username);
         System.out.println("Age: " + age);
         System.out.println("Gender: " + gender);
+        System.out.println("weight: " + weight);
+        System.out.println("height: " + height);
         System.out.println("Goal: " + goal);
+
     }
 
     public static void main(String[] args) {
@@ -104,10 +123,13 @@ public class UserInfo {
                     uniqueUsername = true;
                     userInfo.askAge();
                     userInfo.askGender();
+                    userInfo.askWeight();
+                    userInfo.askHeight();
                     userInfo.askGoal();
+
                     userInfo.displayInformation();
                     try (PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true))) {
-                        writer.println(userInfo.username.toLowerCase() + "/" + userInfo.age + "/" + userInfo.gender.toLowerCase() + "/" + userInfo.goal);
+                        writer.println(userInfo.username.toLowerCase() + "/" + userInfo.age + "/" + userInfo.gender.toLowerCase() + "/" + userInfo.goal + "/" + userInfo.weight + "/" + userInfo.height);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
