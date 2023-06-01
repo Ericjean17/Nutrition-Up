@@ -73,12 +73,12 @@ public class UserInfo {
         }
     }
     public void askWeight() {
-        System.out.print("Please enter your Weight: ");
+        System.out.print("Please enter your Weight in kg: ");
         weight = scanner.nextInt();
         scanner.nextLine();
     }
     public void askHeight() {
-        System.out.print("Please enter your Height: ");
+        System.out.print("Please enter your Height in cm: ");
         height = scanner.nextInt();
         scanner.nextLine();
     }
@@ -129,7 +129,7 @@ public class UserInfo {
 
                     userInfo.displayInformation();
                     try (PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true))) {
-                        writer.println(userInfo.username.toLowerCase() + "/" + userInfo.age + "/" + userInfo.gender.toLowerCase() + "/" + userInfo.goal + "/" + userInfo.weight + "/" + userInfo.height);
+                        writer.println(userInfo.username.toLowerCase() + "/" + userInfo.age + "/" + userInfo.gender.toLowerCase() + "/" + userInfo.weight + "/" + userInfo.height + "/" + userInfo.goal);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
