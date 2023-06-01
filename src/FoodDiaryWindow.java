@@ -4,9 +4,12 @@ import javax.swing.text.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.text.SimpleDateFormat;
 
 public class FoodDiaryWindow extends WindowConstructor implements ActionListener {
@@ -36,7 +39,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     //private boolean nextDay = true;
 
+    // The text for displaying the current date and day of the week
     public JLabel dateText = new JLabel("");
+    public JLabel dayOfWeekText = new JLabel("");
     
     public void createFoodDiaryWindow() {
 
@@ -45,6 +50,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         int months = 1;
         LocalDate currentDate = startDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        // The line of code to get the day of the week today
+        LocalDate today = LocalDate.now();
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
 
         for (int i = 0; i < months; i++) {
             String formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
@@ -171,6 +180,8 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             String formattedDate = currentDate.toString(); // Convert the updated date back to a string
             dateText.setText(formattedDate); // Set the updated date as the text of the label (dateText only takes a String)
 
+            // Display the next day of the week
+
             enterCalorieGoalButton.setVisible(true);
             //nextDay = true;
             enterCalorieInputTextField.setText("");
@@ -181,4 +192,3 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     }
     // Is the button functionality built into these windows or the controller?
 }
-

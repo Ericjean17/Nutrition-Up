@@ -122,6 +122,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 System.out.println("height: " + inputtedHeight);
 
                 // After user creates the account, deletes the sign up window, and creates the login window
+                JOptionPane.showMessageDialog(null, "Successfully created account");
                 dispose();
                 createUsernameTextField.setText("");
                 LoginWindow loginWindow = new LoginWindow();
