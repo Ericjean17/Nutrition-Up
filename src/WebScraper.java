@@ -4,12 +4,25 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-class WebScraperTesting {
+class WebScraper {
+     
+    // TO-DO: MAKE BASED ON USER INPUT
+    String keyword = "big+mac";
+    
+    public WebScraper(){
+
+    }
+    
+    public String getFoodSearchPageURL(String URL){
+        String foodSearchPageURL = "https://www.calorieking.com/us/en/foods/search?keywords=" + keyword;
+
+        return foodSearchPageURL;
+    }
+
+    public String get 
+    
     public static void main(String[] args) throws IOException{
 
-        String start = "https://www.calorieking.com";
-        String mid = "/us/en/foods/search?keywords=";
-        String keyword = "big+mac"; // will be made based on user input
         String url = start + mid + keyword;
 
         Document doc = Jsoup.connect(url).get();
