@@ -4,9 +4,12 @@ import javax.swing.text.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.text.SimpleDateFormat;
 
 public class FoodDiaryWindow extends WindowConstructor implements ActionListener {
@@ -36,7 +39,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     //private boolean nextDay = true;
 
+    // The text for displaying the current date and day of the week
     public JLabel dateText = new JLabel("");
+    public JLabel dayOfWeekText = new JLabel("");
     
     public void createFoodDiaryWindow() {
 
@@ -46,10 +51,17 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         LocalDate currentDate = startDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        // The line of code to get the day of the week today
+        LocalDate today = LocalDate.now();
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
+
         for (int i = 0; i < months; i++) {
             String formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
             dateText.setText(formattedDate);
             currentDate = currentDate.plusMonths(1);
+            String formattedDayOfWeek = dateFormat.format(java.sql.Date.valueOf(dayOfWeek));
+
+            dayOfWeekText.setText((DayOfWeek) dayOfWeek);
         }
 
         /* Not working
@@ -105,6 +117,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         inputFoodNameTextField.setBounds(140,280,150,30);
         enterFoodNameButton.setBounds(300, 280, 80, 30);
         dateText.setBounds(75,50,120,30);
+        dayOfWeekText.setBounds(100,50,100,30);
         
         // Idk how the scroll panel will work yet (how to put each food onto the lines)
         diaryScrollPane.setBounds(600,120,300,400);
@@ -128,6 +141,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(diaryScrollPane, BorderLayout.EAST);
         // add(scrollPanel);
         add(dateText);
+        add(dayOfWeekText);
     }
 
     // Creates a new window or gathers data when the buttons are clicked
@@ -170,6 +184,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             currentDate = currentDate.plusDays(1); // Increment the current date by 1 day when the next day button is pressed
             String formattedDate = currentDate.toString(); // Convert the updated date back to a string
             dateText.setText(formattedDate); // Set the updated date as the text of the label (dateText only takes a String)
+
+
+            System.out.println("- " + dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault()));
+            // Display the next day of the week
 
             enterCalorieGoalButton.setVisible(true);
             //nextDay = true;
