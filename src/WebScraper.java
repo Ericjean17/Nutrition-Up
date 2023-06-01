@@ -15,7 +15,7 @@ class WebScraper {
         this.foodDataPageURL = null;
     }
 
-    public void getFoodDataPageURL() throws IOException{
+    public void setFoodDataPageURL() throws IOException{
         String foodSearchPageURL = "https://www.calorieking.com/us/en/foods/search?keywords=" + keyword;
         
         Document doc = Jsoup.connect(foodSearchPageURL).get(); // TO-DO: RENAME VARIABLES
