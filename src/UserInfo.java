@@ -5,6 +5,7 @@ public class UserInfo {
     private String username;
     private int age;
     private String gender;
+    private int goal;
     private Scanner scanner;
 
     public UserInfo() {
@@ -39,6 +40,7 @@ public class UserInfo {
                 if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
                     age = Integer.parseInt(fields[1]);
                     gender = fields[2];
+                    goal = Integer.parseInt(fields[3]);
                     break;
                 }
             }
@@ -66,11 +68,17 @@ public class UserInfo {
             }
         }
     }
+    public void askGoal() {
+        System.out.print("Please enter your goal: ");
+        goal = scanner.nextInt();
+        scanner.nextLine();
+    }
 
     public void displayInformation() {
         System.out.println("Username: " + username);
         System.out.println("Age: " + age);
         System.out.println("Gender: " + gender);
+        System.out.println("Goal: " + goal);
     }
 
     public static void main(String[] args) {
@@ -96,9 +104,10 @@ public class UserInfo {
                     uniqueUsername = true;
                     userInfo.askAge();
                     userInfo.askGender();
+                    userInfo.askGoal();
                     userInfo.displayInformation();
                     try (PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true))) {
-                        writer.println(userInfo.username.toLowerCase() + "/" + userInfo.age + "/" + userInfo.gender.toLowerCase());
+                        writer.println(userInfo.username.toLowerCase() + "/" + userInfo.age + "/" + userInfo.gender.toLowerCase() + "/" + userInfo.goal);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
