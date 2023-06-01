@@ -4,14 +4,17 @@ import javax.swing.text.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 
 public class FoodDiaryWindow extends WindowConstructor implements ActionListener {
     
     // Idk if the TextFields should be public or private. We need to somehow know how the controller
     // will gather the data using the TextField and button variables 
     
-    // Create the label, button, and TextField, and assign it to a variable
+    // Create the label, button, and TextField, ScrollPane and assigns it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!");
     private JLabel foodDiaryText = new JLabel("Food Diary");
     private JLabel enterCalorieGoalText = new JLabel("Enter your calorie goal for the day.");
@@ -29,11 +32,25 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     // We need a panel to make it so the user can scroll down with the ScrollPane
     private JPanel diaryPanel;
 
-    private WebScraperTesting webScraper;
+    //private WebScraperTesting webScraper;
 
     //private boolean nextDay = true;
 
+    public JLabel dateText = new JLabel("");
+    
     public void createFoodDiaryWindow() {
+
+        // The logic to print the date on this window
+        LocalDate startDate = LocalDate.of(2023, Month.MAY, 31);
+        int months = 1;
+        LocalDate currentDate = startDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (int i = 0; i < months; i++) {
+            String formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
+            dateText.setText(formattedDate);
+            currentDate = currentDate.plusMonths(1);
+        }
 
         /* Not working
         // Make the button still invisible if it was previously invisible
@@ -46,7 +63,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         setPreferredSize(new Dimension(200,450));
         
         //Initializing the WebScraper tool for the user inputted food
-        webScraper = new WebScraperTesting();
+       // webScraper = new WebScraperTesting();
 
         // Create the diary panel
         /*
@@ -87,6 +104,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         addFoodText.setBounds(180, 250, 150, 30);
         inputFoodNameTextField.setBounds(140,280,150,30);
         enterFoodNameButton.setBounds(300, 280, 80, 30);
+        dateText.setBounds(75,50,120,30);
         
         // Idk how the scroll panel will work yet (how to put each food onto the lines)
         diaryScrollPane.setBounds(600,120,300,400);
@@ -109,6 +127,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(nextDayButton);
         add(diaryScrollPane, BorderLayout.EAST);
         // add(scrollPanel);
+        add(dateText);
     }
 
     // Creates a new window or gathers data when the buttons are clicked
@@ -143,8 +162,15 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
             goalTrackerWindow.createGoalTrackerWindow();
         }
+
+        // Idk what to do here yet
         else if (e.getSource() == nextDayButton){
-            // Idk what to do here yet
+
+            LocalDate currentDate = LocalDate.parse(dateText.getText()); // Parse the current date from the label text
+            currentDate = currentDate.plusDays(1); // Increment the current date by 1 day when the next day button is pressed
+            String formattedDate = currentDate.toString(); // Convert the updated date back to a string
+            dateText.setText(formattedDate); // Set the updated date as the text of the label (dateText only takes a String)
+
             enterCalorieGoalButton.setVisible(true);
             //nextDay = true;
             enterCalorieInputTextField.setText("");
