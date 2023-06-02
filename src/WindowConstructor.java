@@ -21,6 +21,9 @@ public class WindowConstructor extends JFrame {
         ImageIcon logo = new ImageIcon("NutritionUpLogo.png"); 
         setIconImage(logo.getImage());
 
+        // Changes the backgrund of the windows
+        setContentPane(new JLabel(new ImageIcon(("NutritionUpBackground.png"))));
+        
         // If you put this before creating the label, button, and textField variable,
         // all the labels, buttons, and TextFields from the LoginWindow won't pop up unless you resize the window
         //setVisible(true); 

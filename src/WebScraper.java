@@ -7,42 +7,34 @@ import org.jsoup.select.Elements;
 class WebScraper {
      
     // TO-DO: MAKE BASED ON USER INPUT
-    String keyword = "big+mac";
+    public static String keyword = "";
+    public static String foodDataPageURL = "";
     
     public WebScraper(){
 
     }
-    
-    public String getFoodSearchPageURL(String URL){
+
+    public static void setFoodDataPageURL() throws IOException{
         String foodSearchPageURL = "https://www.calorieking.com/us/en/foods/search?keywords=" + keyword;
-
-        return foodSearchPageURL;
-    }
-
-    public String get 
-    
-    public static void main(String[] args) throws IOException{
-
-        String url = start + mid + keyword;
-
-        Document doc = Jsoup.connect(url).get();
-        Elements elements = doc.select("a");
         
-        String trueUrl = "";
+        Document doc = Jsoup.connect(foodSearchPageURL).get(); // TO-DO: RENAME VARIABLES
+        Elements elements = doc.select("a"); // TO-DO: RENAME VARIABLES
+        
+        String foodDataPageURL = "";
+
         int i = 0;
         for(Element element: elements){
             if(i == 11){
-                trueUrl = element.attr("href");
-                System.out.println(trueUrl);
+                foodDataPageURL = "https://www.calorieking.com" + element.attr("href");
+                System.out.println(foodDataPageURL); // TO-DO: REMOVE (ONLY FOR TESTING)
+                WebScraper.foodDataPageURL = foodDataPageURL;
             }
             i++;
         }
+    }
 
-        String fullUrl = start + trueUrl;
-        System.out.println(fullUrl);
-        System.out.println();
-
-        Document doc2 = Jsoup.connect(fullUrl).get();
+    public static void getNutritionData() throws IOException{
+        Document doc2 = Jsoup.connect(foodDataPageURL).get();
         Element element2 = doc2.select("h2").first();
         System.out.println("The calories in a " + keyword + " is " + element2.text()); // calories
         System.out.println();
