@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class LoginWindow extends WindowConstructor implements ActionListener {
     
@@ -55,7 +56,15 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         if (e.getSource() == loginButton){
             //inputtedUsername = inputUsernameTextField.getText();
             String inputtedUsername = getInputUsernameTextField().getText();
-            
+
+            try { 
+                UserInfo.username = inputtedUsername;
+                UserInfo.storeUsername();
+            }
+            catch(IOException e5) {
+                e5.printStackTrace();
+            }
+
             // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
             System.out.println("Username inputted is : " + inputtedUsername);
             dispose();
