@@ -5,6 +5,8 @@ public class Main {
         loginWindow.createLoginWindow();
         //System.out.println(loginWindow.getUsername());
         Validate validate = new Validate();
-        validate.validateString("1234");
+        validate.validateUsername("Samuel");
+        validate.validateGender("m");
+        validate.validateAge("17");
     }
 }
