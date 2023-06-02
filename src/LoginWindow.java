@@ -18,7 +18,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     //public JDialog invalidInputDialogBox = new JDialog(loginWindow, "It is not a username");
     
     String inputtedUsername = "";
-
+    
     public void createLoginWindow() {
         
         // Initializes the action events for the buttons & TextFields
@@ -34,8 +34,10 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         loginText.setBounds(505, 100, 100, 30);
         noAccountText.setBounds(475,555,200,30);
         signUpButton.setBounds(480, 590, 100, 30);
-        //invalidInputDialogBox.setBounds(500,500,100,30);
-        
+    
+        // The font and size of each label
+        header1(applicationNameText);
+
         // Add the components to the window
         add(applicationNameText);
         add(loginButton);
