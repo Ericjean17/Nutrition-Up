@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.text.SimpleDateFormat;
 
@@ -144,6 +145,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             diaryTextArea.append(food + "\n");
             diaryTextArea.append("----------------------------------------------------------------------\n");
             inputFoodNameTextField.setText("");
+
+            try {
+                WebScraper.keyword = food;
+                WebScraper.setFoodDataPageURL();
+                WebScraper.getNutritionData();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             
         }
         else if (e.getSource() == goalProgressButton){

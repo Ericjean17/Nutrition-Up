@@ -7,15 +7,15 @@ import org.jsoup.select.Elements;
 class WebScraper {
      
     // TO-DO: MAKE BASED ON USER INPUT
-    public String keyword = "";
-    public String foodDataPageURL = "";
+    public static String keyword = "";
+    public static String foodDataPageURL = "";
     
     public WebScraper(){
         this.keyword = null;
         this.foodDataPageURL = null;
     }
 
-    public void setFoodDataPageURL() throws IOException{
+    public static void setFoodDataPageURL() throws IOException{
         String foodSearchPageURL = "https://www.calorieking.com/us/en/foods/search?keywords=" + keyword;
         
         Document doc = Jsoup.connect(foodSearchPageURL).get(); // TO-DO: RENAME VARIABLES
@@ -28,13 +28,13 @@ class WebScraper {
             if(i == 11){
                 foodDataPageURL = "https://www.calorieking.com" + element.attr("href");
                 System.out.println(foodDataPageURL); // TO-DO: REMOVE (ONLY FOR TESTING)
-                this.foodDataPageURL = foodDataPageURL;
+                WebScraper.foodDataPageURL = foodDataPageURL;
             }
             i++;
         }
     }
 
-    public void getNutritionData() throws IOException{
+    public static void getNutritionData() throws IOException{
         Document doc2 = Jsoup.connect(foodDataPageURL).get();
         Element element2 = doc2.select("h2").first();
         System.out.println("The calories in a " + keyword + " is " + element2.text()); // calories
