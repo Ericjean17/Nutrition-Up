@@ -147,6 +147,11 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 JOptionPane.showMessageDialog(null, "Enter your food!");
 
             }
+            /*
+            else if(the keyword cannot fetch the food){
+                JOptionPane.showMessageDialog(null, "This is not a valid food!");
+            }
+            */
             else{
                 try {
                     WebScraper.keyword = food;
@@ -168,7 +173,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             goalTrackerWindow.createGoalTrackerWindow();
         }
 
-        // Idk what to do here yet
         else if (e.getSource() == nextDayButton){
             LocalDate currentDate = LocalDate.parse(dateText.getText()); // Parse the current date from the label text
             currentDate = currentDate.plusDays(1); // Increment the current date by 1 day when the next day button is pressed
@@ -180,12 +184,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
             enterCalorieGoalButton.setVisible(true);
-            //nextDay = true;
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
             diaryTextArea.setText("");
-            // Maybe here we reset the diary??
         }
     }
-    // Is the button functionality built into these windows or the controller?
 }
