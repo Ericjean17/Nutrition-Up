@@ -99,8 +99,6 @@ public class UserInfo {
         scanner.nextLine();
     }
 
-
-
     public static void displayInformation() {
         System.out.println("Username: " + username);
         System.out.println("Age: " + age);
@@ -151,7 +149,6 @@ public class UserInfo {
         } else {
             System.out.println("Invalid choice. Please choose either 'login' or 'signup'.");
         }
-
         scanner.close();
     }
 }

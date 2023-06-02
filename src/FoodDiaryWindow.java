@@ -21,7 +21,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public JButton goalProgressButton = new JButton("See goal progress");
     public JButton nextDayButton = new JButton("Next day");
 
-    // We need a panel to make it so the user can scroll down with the ScrollPane
+    // We need a ScrollPane to make it so the user can scroll down with the ScrollPane
     private JScrollPane diaryScrollPane = new JScrollPane();
 
     public JTextField inputFoodNameTextField = new JTextField(20);
@@ -38,13 +38,13 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     public void createFoodDiaryWindow() {
 
-        // The logic to print the date on this window
+        // Displays the layout to print the date on this window
         startDate = LocalDate.now();
         int months = 1;
         LocalDate currentDate = startDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        // The code to get the day of the week today
+        // Gets the day of the week today
         currentDay = LocalDate.now();
         dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
@@ -58,7 +58,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         diaryTextArea.setLineWrap(true);
         diaryTextArea.setWrapStyleWord(true);
         diaryScrollPane = new JScrollPane(diaryTextArea); // Set the JTextArea as the view of the scroll pane
-        //diaryScrollPane.setViewportView(diaryTextArea);
         
         /*
         // Something we can do in the controller (refer to the UML diagram)
@@ -93,13 +92,11 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         enterFoodNameButton.setBounds(300, 380, 80, 30);
         dateText.setBounds(50,25,120,30);
         dayOfWeekText.setBounds(130,25,150,30);
-
         diaryScrollPane.setBounds(700,120,300,400);
-        
         goalProgressButton.setBounds(440,570,180,30);
         nextDayButton.setBounds(930,580,130,30);
         
-        // The font and size of each label
+        // The font and size of each label and button
         header1(applicationNameText);
         header3(foodDiaryText);
         header3(enterCalorieGoalText);
@@ -142,7 +139,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
              // Also, whenever we press the progress bar button, it becomes visible again. Need to somehow make it still invisible
              // Until the user pressed the next day button.
             enterCalorieGoalButton.setVisible(false);
-            //nextDay = false;
             
             // Resets the text inside the TextField, so the user doesn't have to manually delete what they typed previously
             // More professional
@@ -154,7 +150,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
             if (food.equals("")){
                 JOptionPane.showMessageDialog(null, "Enter your food!");
-
             }
             /*
             else if(the keyword cannot fetch the food){
@@ -182,6 +177,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             goalTrackerWindow.createGoalTrackerWindow();
         }
 
+        // When the next day button is pressed, changes the date and day
         else if (e.getSource() == nextDayButton){
             LocalDate currentDate = LocalDate.parse(dateText.getText()); // Parse the current date from the label text
             currentDate = currentDate.plusDays(1); // Increment the current date by 1 day when the next day button is pressed

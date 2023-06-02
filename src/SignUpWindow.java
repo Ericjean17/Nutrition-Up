@@ -49,7 +49,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         backButton.addActionListener(this);
         genderComboBox.addActionListener(this);
 
-        // The font and size of each label
+        // The font and size of each label and button
         header1(applicationNameText);
         header2(createAccountText);
         header5(backButton);
@@ -66,7 +66,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         add(createUsernameText);
         add(createUsernameTextField);
         add(enterGenderText);
-        //add(inputGenderTextField);
         add(enterAgeText);
         add(inputAgeTextField);
         add(enterWeightText);
@@ -75,15 +74,12 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         add(inputHeightTextField);
         add(backButton);
         add(createUserAccount);
-        //add(invalidInputAlert);
         add(genderComboBox);
-        //add(invalidInputAlert);
     }
 
     @Override
     // *Cannot have multiple actionPerformed action event methods.
     public void actionPerformed(ActionEvent e) {     
-        // Does this look correct?
         if (e.getSource() == backButton){
             dispose();
             createUsernameTextField.setText("");
@@ -94,32 +90,18 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         // Also include a condition that the user has to input all 5 of these componenets, else a pop-up comes up (dialog box)
         // This also records the values, as you can see in the terminal
         else if (e.getSource() == createUserAccount){
-            //String createdUsername = createUsernameTextField.getText();
-            
-            // Maybe use a dropdown menu instead (so it only has m and f as an option)
-            //String inputtedGender = inputGenderTextField.getText(); 
-            
-            //int inputtedAge = Integer.parseInt(inputAgeTextField.getText());
-            //int inputtedWeight = Integer.parseInt(inputAgeTextField.getText());
-            //int inputtedHeight = Integer.parseInt(inputAgeTextField.getText());
-            //String selectedGender = (String) genderComboBox.getSelectedItem();
-            
-            //String createdUsername = getCreateUsernameTextField().getText();
-            //String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
-            //int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
-            //int inputtedWeight = Integer.parseInt(getInputWeightTextField().getText());
-            //int inputtedHeight = Integer.parseInt(getInputHeightTextField().getText());
-
             // TESTING ERROR POP-UP
             try{
+                // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
                 int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
                 System.out.println("Valid age: " + inputtedAge);
+                
                 String createdUsername = getCreateUsernameTextField().getText();
                 System.out.println("username: " + createdUsername);
+                
                 String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
                 System.out.println("gender: " + selectedGender);
 
-                //int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
                 int inputtedWeight = Integer.parseInt(getInputWeightTextField().getText());
                 System.out.println("weight: " + inputtedWeight);
 
@@ -136,16 +118,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
             } catch (NumberFormatException o){
                 JOptionPane.showMessageDialog(null, "Not a valid input");
             }
-            
-            // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
-            //System.out.println("username: " + createdUsername);
-            //System.out.println("gender: " + inputtedGender);
-            //System.out.println("gender: " + selectedGender);
-            //System.out.println("age: " + inputtedAge);
-            //System.out.println("weight: " + inputtedWeight);
-            //System.out.println("height: " + inputtedHeight);
         }
-
         else if (e.getSource() == genderComboBox){
             System.out.println(genderComboBox.getSelectedItem());
         }

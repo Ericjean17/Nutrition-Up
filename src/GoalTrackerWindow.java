@@ -4,8 +4,7 @@ import javax.swing.*;
 
 public class GoalTrackerWindow extends WindowConstructor implements ActionListener {
     
-    // Create the label, button, and TextField, and ProgressBar and assigns it to a variable
-
+    // Creates the label, button, and TextField, and ProgressBar and assigns it to a variable
     private JLabel goalTrackerText = new JLabel("Goal Tracker");
     
     private JLabel calorieGoalTrackerText = new JLabel("You have consumed x calories of you goal of y calories");
@@ -20,7 +19,6 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
     public JButton returnToFoodDiaryButton = new JButton("Return to Food Diary");
 
     public void createGoalTrackerWindow() {
-
         // Initializes the action events for the buttons
         returnToFoodDiaryButton.addActionListener(this);
         
@@ -37,6 +35,7 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
         header4(proteinGoalTrackerText);
         header4(fatGoalTrackerText);
         header5(returnToFoodDiaryButton);
+        
         // Add the components to the window
         add(goalTrackerText);
         add(calorieGoalTrackerText);
@@ -73,7 +72,7 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
         });
     }
 
-    // Method to simulate the progress of the bar
+    // Method to simulate the progress of the bar (input user calories, protein, and fat later)
     public void fill() {
         int counter = 0;
         while (counter <= 100) {
@@ -102,7 +101,7 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
         });
     }
     
-    // When pressing the buttons, it creates a new window
+    // When pressing the button, it goes back to the food diary
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnToFoodDiaryButton){
