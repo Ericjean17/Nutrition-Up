@@ -1,3 +1,5 @@
+import java.awt.Font;
+
 import javax.swing.*;
 
 // Constuctor method for the windows
@@ -34,6 +36,12 @@ public class WindowConstructor extends JFrame {
 
         setVisible(true); // Makes all the windows INITIALLY visible (can use dispose() to close them)
     }
+
+    public void header1(JLabel label){
+        label.setFont(new Font("Arial", Font.BOLD,20));
+    }
+
+    
 
     // Get and setter methods for the labels, buttons, and TextFields.
     // Don't know if we need this.
