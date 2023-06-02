@@ -17,7 +17,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public JLabel recommendedCalorieGoalText = new JLabel("Recommended goal:");
     public JTextField enterCalorieInputTextField = new JTextField(10);
     public JButton enterCalorieGoalButton = new JButton("Enter");
-    //private JDialog invalidInputAlert = new JTextField(foodDiaryWindow, "Not a valid input");
     private JLabel addFoodText = new JLabel("Add a food to your diary");
     public JButton goalProgressButton = new JButton("See goal progress");
     public JButton nextDayButton = new JButton("Next day");
@@ -30,7 +29,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     // Displays what the user ate using a TextArea
     private JTextArea diaryTextArea = new JTextArea();
-
 
     // The text for displaying the current date and day of the week
     public JLabel dateText = new JLabel("");
