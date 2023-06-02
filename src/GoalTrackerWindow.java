@@ -25,12 +25,18 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
         returnToFoodDiaryButton.addActionListener(this);
         
         // Set the positions and sizes of the label, button, and TextField
-        goalTrackerText.setBounds(500,60,150,30);
-        calorieGoalTrackerText.setBounds(125, 120, 400, 30);
-        proteinGoalTrackerText.setBounds(125,230,400, 30);
-        fatGoalTrackerText.setBounds(125,320,400,30);
-        returnToFoodDiaryButton.setBounds(405,580,240,30);
+        goalTrackerText.setBounds(400,60,400,50);
+        calorieGoalTrackerText.setBounds(310, 185, 500, 30);
+        proteinGoalTrackerText.setBounds(310,285,700, 30);
+        fatGoalTrackerText.setBounds(310,385,700,30);
+        returnToFoodDiaryButton.setBounds(405,580,190,30);
         
+        // The font and size of each label
+        header1(goalTrackerText);
+        header4(calorieGoalTrackerText);
+        header4(proteinGoalTrackerText);
+        header4(fatGoalTrackerText);
+        header5(returnToFoodDiaryButton);
         // Add the components to the window
         add(goalTrackerText);
         add(calorieGoalTrackerText);
@@ -53,9 +59,9 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
             fatProgressBar.setStringPainted(true);
 
             // Set the position and size of the progress bar
-            calorieProgressBar.setBounds(125, 150, 420, 30);
-            proteinProgressBar.setBounds(125, 260, 420, 30);
-            fatProgressBar.setBounds(125, 350, 420, 30);
+            calorieProgressBar.setBounds(300, 215, 420, 30);
+            proteinProgressBar.setBounds(300, 325, 420, 30);
+            fatProgressBar.setBounds(300, 415, 420, 30);
 
             // Add the progress bar to the window
             add(calorieProgressBar);

@@ -82,23 +82,34 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         nextDayButton.addActionListener(this);
         
         // Set the positions and sizes of the label, button, and TextField (1100x680)
-        applicationNameText.setBounds(490, 55, 200, 30);
-        foodDiaryText.setBounds(490, 80, 100, 30);
-        enterCalorieGoalText.setBounds(155, 110, 200, 30);
-        recommendedCalorieGoalText.setBounds(180, 135, 150, 30);
-        enterCalorieInputTextField.setBounds(140, 165, 150, 30);
-        enterCalorieGoalButton.setBounds(300,165, 80, 30);
-        addFoodText.setBounds(180, 250, 150, 30);
-        inputFoodNameTextField.setBounds(140,280,150,30);
-        enterFoodNameButton.setBounds(300, 280, 80, 30);
-        dateText.setBounds(75,50,120,30);
-        dayOfWeekText.setBounds(135,50,100,30);
+        applicationNameText.setBounds(400, 55, 400, 55);
+        foodDiaryText.setBounds(800, 80, 200, 30);
+        enterCalorieGoalText.setBounds(155, 210, 350, 30);
+        recommendedCalorieGoalText.setBounds(180, 235, 250, 30);
+        enterCalorieInputTextField.setBounds(140, 265, 150, 30);
+        enterCalorieGoalButton.setBounds(300,265, 80, 30);
+        addFoodText.setBounds(180, 350, 250, 30);
+        inputFoodNameTextField.setBounds(140,380,150,30);
+        enterFoodNameButton.setBounds(300, 380, 80, 30);
+        dateText.setBounds(50,25,120,30);
+        dayOfWeekText.setBounds(130,25,150,30);
 
-        diaryScrollPane.setBounds(600,120,300,400);
+        diaryScrollPane.setBounds(700,120,300,400);
         
-        goalProgressButton.setBounds(440,570,150,30);
-        nextDayButton.setBounds(960,580,100,30);
+        goalProgressButton.setBounds(440,570,180,30);
+        nextDayButton.setBounds(930,580,130,30);
         
+        // The font and size of each label
+        header1(applicationNameText);
+        header3(foodDiaryText);
+        header3(enterCalorieGoalText);
+        header4(recommendedCalorieGoalText);
+        header3(addFoodText);
+        header4(dateText);
+        header4(dayOfWeekText);
+        header5(goalProgressButton);
+        header5(nextDayButton);
+
         // Add the components to the window
         add(applicationNameText);
         add(foodDiaryText);

@@ -48,12 +48,16 @@ public class WindowConstructor extends JFrame {
     public void header3(JLabel label){
         label.setFont(new Font("Helvetica", Font.BOLD,20));
     }
-
-    public void header4(JButton button){
-        button.setFont(new Font("Helvetica", Font.BOLD,15));
+    
+    public void header4(JLabel label){
+        label.setFont(new Font("Helvetica", Font.BOLD,17));
     }
 
     public void header5(JButton button){
+        button.setFont(new Font("Helvetica", Font.BOLD,15));
+    }
+
+    public void header6(JButton button){
         button.setFont(new Font("Helvetica", Font.BOLD,13));
     }
 

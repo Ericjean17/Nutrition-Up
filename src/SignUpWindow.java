@@ -13,12 +13,12 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     private JLabel createAccountText = new JLabel("Create an account");
     private JLabel createUsernameText = new JLabel("Enter a username");
     public JTextField createUsernameTextField = new JTextField(10);
-    private JLabel enterGenderText = new JLabel("Enter your gender (m/f)");
+    private JLabel enterGenderText = new JLabel("Enter your gender");
     private JLabel enterAgeText = new JLabel("Enter your age");
     public JTextField inputAgeTextField = new JTextField(10);
     private JLabel enterWeightText = new JLabel("Enter your weight");
     public JTextField inputWeightTextField = new JTextField(10);
-    private JLabel enterHeightText = new JLabel("Enter your height in metres");
+    private JLabel enterHeightText = new JLabel("Enter your height");
     public JTextField inputHeightTextField = new JTextField(10);
     public JButton backButton = new JButton("Back");
     public JButton createUserAccount = new JButton("Create Account");
@@ -29,10 +29,9 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     public void createSignUpWindow() {
         
         // Set the positions and sizes of the labels, buttons, and TextFields, and ComboBox in this wind
-        applicationNameText.setBounds(490, 55, 200, 30);
-        createAccountText.setBounds(480, 70, 150, 30);
-        enterGenderText.setBounds(150,250,150,30);
-        //inputGenderTextField.setBounds(130,290,150,30);
+        applicationNameText.setBounds(390, 55, 350, 60);
+        createAccountText.setBounds(420, 130, 350, 45);
+        enterGenderText.setBounds(135,250,150,30);
         createUsernameText.setBounds(475,250,150,30);
         createUsernameTextField.setBounds(455,290,150,30);
         enterAgeText.setBounds(800,250,150,30);
@@ -41,15 +40,25 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         inputWeightTextField.setBounds(200,390, 150, 30);
         enterHeightText.setBounds(720,350,200,30);
         inputHeightTextField.setBounds(730,390,150,30);
-        backButton.setBounds(430,580,80,30);
-        createUserAccount.setBounds(550,580,125,30);
+        backButton.setBounds(430,580,75,30);
+        createUserAccount.setBounds(550,580,150,30);
         genderComboBox.setBounds(130,290,150,30);
-        //invalidInputAlert.setBounds(400,250,200,60);
         
         // Initializes the action events for the buttons & ComboBox
         createUserAccount.addActionListener(this);
         backButton.addActionListener(this);
         genderComboBox.addActionListener(this);
+
+        // The font and size of each label
+        header1(applicationNameText);
+        header2(createAccountText);
+        header5(backButton);
+        header5(createUserAccount);
+        header4(enterGenderText);
+        header4(createUsernameText);
+        header4(enterAgeText);
+        header4(enterWeightText);
+        header4(enterHeightText);
         
         // Add the components to the window
         add(applicationNameText);

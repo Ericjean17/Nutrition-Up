@@ -28,7 +28,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     
         // Set the positions and sizes of the labels, buttons, and TextFields
         applicationNameText.setBounds(390, 55, 350, 60);
-        loginButton.setBounds(485, 315, 100, 50);
+        loginButton.setBounds(485, 315, 100, 40);
         usernameText.setBounds(450,205,200,50);
         inputUsernameTextField.setBounds(435, 265, 230, 30);
         loginText.setBounds(495, 130, 150, 45);
@@ -40,8 +40,8 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         header2(loginText);
         header3(usernameText);
         header3(noAccountText);
-        header4(loginButton);
-        header4(signUpButton);
+        header5(loginButton);
+        header5(signUpButton);
 
         // Add the components to the window
         add(applicationNameText);
@@ -62,7 +62,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         if (e.getSource() == loginButton){
             //inputtedUsername = inputUsernameTextField.getText();
             String inputtedUsername = getInputUsernameTextField().getText();
-            
+
             try { 
                 UserInfo.username = inputtedUsername;
                 UserInfo.storeUsername();
