@@ -24,6 +24,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     // We need a panel to make it so the user can scroll down with the ScrollPane
     private JScrollPane diaryScrollPane = new JScrollPane();
+
     public JTextField inputFoodNameTextField = new JTextField(20);
     public JButton enterFoodNameButton = new JButton("Enter");
 
@@ -141,19 +142,25 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         else if (e.getSource() == enterFoodNameButton){
             // I assume we get the method from the controller to contain or add the data (String)
             String food = inputFoodNameTextField.getText();
-            System.out.println("User ate this " + food);
-            diaryTextArea.append(food + "\n");
-            diaryTextArea.append("----------------------------------------------------------------------\n");
-            inputFoodNameTextField.setText("");
 
-            try {
-                WebScraper.keyword = food;
-                WebScraper.setFoodDataPageURL();
-                WebScraper.getNutritionData();
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            if (food.equals("")){
+                JOptionPane.showMessageDialog(null, "Enter your food!");
+
             }
-            
+            else{
+                try {
+                    WebScraper.keyword = food;
+                    WebScraper.setFoodDataPageURL();
+                    WebScraper.getNutritionData();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                System.out.println("User ate this " + food);
+                diaryTextArea.append(food + "\n");
+                diaryTextArea.append("----------------------------------------------------------------------\n");
+                inputFoodNameTextField.setText("");
+            }            
         }
         else if (e.getSource() == goalProgressButton){
             dispose();
@@ -176,7 +183,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             //nextDay = true;
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
-
+            diaryTextArea.setText("");
             // Maybe here we reset the diary??
         }
     }
