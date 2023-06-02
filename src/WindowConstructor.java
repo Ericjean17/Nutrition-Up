@@ -1,3 +1,5 @@
+import java.awt.Font;
+
 import javax.swing.*;
 
 // Constuctor method for the windows
@@ -33,6 +35,26 @@ public class WindowConstructor extends JFrame {
         textField = new JTextField(10);
 
         setVisible(true); // Makes all the windows INITIALLY visible (can use dispose() to close them)
+    }
+
+    public void header1(JLabel label){
+        label.setFont(new Font("Helvetica", Font.BOLD,50));
+    }
+
+    public void header2(JLabel label){
+        label.setFont(new Font("Helvetica", Font.BOLD,30));
+    }
+
+    public void header3(JLabel label){
+        label.setFont(new Font("Helvetica", Font.BOLD,20));
+    }
+
+    public void header4(JButton button){
+        button.setFont(new Font("Helvetica", Font.BOLD,15));
+    }
+
+    public void header5(JButton button){
+        button.setFont(new Font("Helvetica", Font.BOLD,13));
     }
 
     // Get and setter methods for the labels, buttons, and TextFields.

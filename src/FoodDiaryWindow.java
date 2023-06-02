@@ -17,19 +17,18 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public JLabel recommendedCalorieGoalText = new JLabel("Recommended goal:");
     public JTextField enterCalorieInputTextField = new JTextField(10);
     public JButton enterCalorieGoalButton = new JButton("Enter");
-    //private JDialog invalidInputAlert = new JTextField(foodDiaryWindow, "Not a valid input");
     private JLabel addFoodText = new JLabel("Add a food to your diary");
     public JButton goalProgressButton = new JButton("See goal progress");
     public JButton nextDayButton = new JButton("Next day");
 
     // We need a panel to make it so the user can scroll down with the ScrollPane
     private JScrollPane diaryScrollPane = new JScrollPane();
+
     public JTextField inputFoodNameTextField = new JTextField(20);
     public JButton enterFoodNameButton = new JButton("Enter");
 
     // Displays what the user ate using a TextArea
     private JTextArea diaryTextArea = new JTextArea();
-
 
     // The text for displaying the current date and day of the week
     public JLabel dateText = new JLabel("");
@@ -141,19 +140,30 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         else if (e.getSource() == enterFoodNameButton){
             // I assume we get the method from the controller to contain or add the data (String)
             String food = inputFoodNameTextField.getText();
-            System.out.println("User ate this " + food);
-            diaryTextArea.append(food + "\n");
-            diaryTextArea.append("----------------------------------------------------------------------\n");
-            inputFoodNameTextField.setText("");
 
-            try {
-                WebScraper.keyword = food;
-                WebScraper.setFoodDataPageURL();
-                WebScraper.getNutritionData();
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            if (food.equals("")){
+                JOptionPane.showMessageDialog(null, "Enter your food!");
+
             }
-            
+            /*
+            else if(the keyword cannot fetch the food){
+                JOptionPane.showMessageDialog(null, "This is not a valid food!");
+            }
+            */
+            else{
+                try {
+                    WebScraper.keyword = food;
+                    WebScraper.setFoodDataPageURL();
+                    WebScraper.getNutritionData();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                System.out.println("User ate this " + food);
+                diaryTextArea.append(food + "\n");
+                diaryTextArea.append("----------------------------------------------------------------------\n");
+                inputFoodNameTextField.setText("");
+            }            
         }
         else if (e.getSource() == goalProgressButton){
             dispose();
@@ -161,7 +171,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             goalTrackerWindow.createGoalTrackerWindow();
         }
 
-        // Idk what to do here yet
         else if (e.getSource() == nextDayButton){
             LocalDate currentDate = LocalDate.parse(dateText.getText()); // Parse the current date from the label text
             currentDate = currentDate.plusDays(1); // Increment the current date by 1 day when the next day button is pressed
@@ -173,12 +182,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
             enterCalorieGoalButton.setVisible(true);
-            //nextDay = true;
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
-
-            // Maybe here we reset the diary??
+            diaryTextArea.setText("");
         }
     }
-    // Is the button functionality built into these windows or the controller?
 }

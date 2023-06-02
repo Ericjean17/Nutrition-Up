@@ -2,24 +2,35 @@ import java.io.*;
 import java.util.Scanner;
 
 public class UserInfo {
-    private String username;
-    private int age;
-    private String gender;
-    private int goal;
-    private int weight;
-    private int height;
-    private Scanner scanner;
+    public static String username;
+    private static int age;
+    private static String gender;
+    private static int goal;
+    private static int weight;
+    private static int height;
+    private static Scanner scanner;
 
     public UserInfo() {
         scanner = new Scanner(System.in);
     }
 
-    public void askUsername() {
+    public static void askUsername() {
         System.out.print("Please enter your username: ");
         username = scanner.nextLine();
     }
-
-    private boolean isUsernameExists(String username) {
+    
+    public static void storeUsername() throws IOException{
+        try { 
+            PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true));
+            writer.println(UserInfo.username.toLowerCase());
+            writer.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+            }
+        }
+        
+    private static boolean isUsernameExists(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -34,7 +45,7 @@ public class UserInfo {
         return false;
     }
 
-    private void retrieveUserInfo(String username) {
+    private static void retrieveUserInfo(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -53,13 +64,13 @@ public class UserInfo {
         }
     }
 
-    public void askAge() {
+    public static void askAge() {
         System.out.print("Please enter your age: ");
         age = scanner.nextInt();
         scanner.nextLine(); // Consume newline character
     }
 
-    public void askGender() {
+    public static void askGender() {
         boolean validGender = false;
         while (!validGender) {
             System.out.print("Please enter your gender (male/female): ");
@@ -72,17 +83,17 @@ public class UserInfo {
             }
         }
     }
-    public void askWeight() {
+    public static void askWeight() {
         System.out.print("Please enter your Weight in kg: ");
         weight = scanner.nextInt();
         scanner.nextLine();
     }
-    public void askHeight() {
+    public static void askHeight() {
         System.out.print("Please enter your Height in cm: ");
         height = scanner.nextInt();
         scanner.nextLine();
     }
-    public void askGoal() {
+    public static void askGoal() {
         System.out.print("Please enter your goal: ");
         goal = scanner.nextInt();
         scanner.nextLine();
@@ -90,7 +101,7 @@ public class UserInfo {
 
 
 
-    public void displayInformation() {
+    public static void displayInformation() {
         System.out.println("Username: " + username);
         System.out.println("Age: " + age);
         System.out.println("Gender: " + gender);
@@ -108,28 +119,28 @@ public class UserInfo {
         String choice = scanner.nextLine().toLowerCase();
 
         if (choice.equals("login")) {
-            userInfo.askUsername();
-            if (userInfo.isUsernameExists(userInfo.username)) {
-                userInfo.retrieveUserInfo(userInfo.username);
-                userInfo.displayInformation();
+            UserInfo.askUsername();
+            if (UserInfo.isUsernameExists(UserInfo.username)) {
+                UserInfo.retrieveUserInfo(UserInfo.username);
+                UserInfo.displayInformation();
             } else {
                 System.out.println("Username does not exist. Please sign up.");
             }
         } else if (choice.equals("signup")) {
             boolean uniqueUsername = false;
             while (!uniqueUsername) {
-                userInfo.askUsername();
-                if (!userInfo.isUsernameExists(userInfo.username)) {
+                UserInfo.askUsername();
+                if (!UserInfo.isUsernameExists(UserInfo.username)) {
                     uniqueUsername = true;
-                    userInfo.askAge();
-                    userInfo.askGender();
-                    userInfo.askWeight();
-                    userInfo.askHeight();
-                    userInfo.askGoal();
+                    UserInfo.askAge();
+                    UserInfo.askGender();
+                    UserInfo.askWeight();
+                    UserInfo.askHeight();
+                    UserInfo.askGoal();
 
-                    userInfo.displayInformation();
+                    UserInfo.displayInformation();
                     try (PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true))) {
-                        writer.println(userInfo.username.toLowerCase() + "/" + userInfo.age + "/" + userInfo.gender.toLowerCase() + "/" + userInfo.weight + "/" + userInfo.height + "/" + userInfo.goal);
+                        writer.println(UserInfo.username.toLowerCase() + "/" + UserInfo.age + "/" + UserInfo.gender.toLowerCase() + "/" + UserInfo.weight + "/" + UserInfo.height + "/" + UserInfo.goal);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

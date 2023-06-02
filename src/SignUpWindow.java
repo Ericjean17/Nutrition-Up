@@ -14,7 +14,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     private JLabel createUsernameText = new JLabel("Enter a username");
     public JTextField createUsernameTextField = new JTextField(10);
     private JLabel enterGenderText = new JLabel("Enter your gender (m/f)");
-    //public JTextField inputGenderTextField = new JTextField(10);
     private JLabel enterAgeText = new JLabel("Enter your age");
     public JTextField inputAgeTextField = new JTextField(10);
     private JLabel enterWeightText = new JLabel("Enter your weight");
@@ -26,9 +25,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
 
     String[] gender = {"Male", "Female"};
     public JComboBox genderComboBox = new JComboBox(gender);
-
-    // *Don't know how to get the Dialog box in the signUpWindow
-    //private JOptionPane invalidInputAlert = new JOptionPane();
     
     public void createSignUpWindow() {
         
