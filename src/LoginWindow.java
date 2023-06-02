@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class LoginWindow extends WindowConstructor implements ActionListener {
     
@@ -9,7 +10,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     private JLabel loginText = new JLabel("Login");
     private JLabel noAccountText = new JLabel("Don't have an account?");
     private JLabel usernameText = new JLabel("Enter your username");
-    private JButton loginButton = new JButton("Login Button");
+    private JButton loginButton = new JButton("Login!");
     private JTextField inputUsernameTextField = new JTextField(10);
     public JButton signUpButton = new JButton("Sign up");
         
@@ -26,16 +27,21 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         inputUsernameTextField.addActionListener(this);
     
         // Set the positions and sizes of the labels, buttons, and TextFields
-        applicationNameText.setBounds(490, 55, 200, 30);
-        loginButton.setBounds(455, 315, 150, 50);
-        usernameText.setBounds(470,205,150,50);
+        applicationNameText.setBounds(390, 55, 350, 60);
+        loginButton.setBounds(485, 315, 100, 50);
+        usernameText.setBounds(450,205,200,50);
         inputUsernameTextField.setBounds(435, 265, 230, 30);
-        loginText.setBounds(505, 100, 100, 30);
-        noAccountText.setBounds(475,555,200,30);
-        signUpButton.setBounds(480, 590, 100, 30);
+        loginText.setBounds(495, 130, 150, 45);
+        noAccountText.setBounds(430,500,250,30);
+        signUpButton.setBounds(480, 540, 100, 30);
     
         // The font and size of each label
         header1(applicationNameText);
+        header2(loginText);
+        header3(usernameText);
+        header3(noAccountText);
+        header4(loginButton);
+        header4(signUpButton);
 
         // Add the components to the window
         add(applicationNameText);
@@ -45,7 +51,6 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         add(loginText);
         add(noAccountText);
         add(signUpButton);
-        //add(invalidInputDialogBox);
     }
 
     // When pressing the buttons, it creates a new window, and does other stuff like getting data from textfields
@@ -58,6 +63,14 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             //inputtedUsername = inputUsernameTextField.getText();
             String inputtedUsername = getInputUsernameTextField().getText();
             
+            try { 
+                UserInfo.username = inputtedUsername;
+                UserInfo.storeUsername();
+            }
+            catch(IOException e5) {
+                e5.printStackTrace();
+            }
+
             // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
             System.out.println("Username inputted is : " + inputtedUsername);
             dispose();
