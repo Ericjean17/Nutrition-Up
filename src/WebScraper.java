@@ -11,8 +11,7 @@ class WebScraper {
     public static String foodDataPageURL = "";
     
     public WebScraper(){
-        this.keyword = null;
-        this.foodDataPageURL = null;
+
     }
 
     public static void setFoodDataPageURL() throws IOException{
