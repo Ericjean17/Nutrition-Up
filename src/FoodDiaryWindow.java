@@ -158,9 +158,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             */
             else{
                 try {
-                    WebScraper.keyword = food;
-                    WebScraper.setFoodDataPageURL();
-                    WebScraper.getNutritionData();
+                    WebScraper2.keyword = food;
+                    WebScraper2.setFoodDataPageURL();
+                    WebScraper2.getNutritionData();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
