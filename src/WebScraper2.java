@@ -28,7 +28,7 @@ class WebScraper2 {
     public static void getNutritionData() throws IOException{
         System.out.println(foodDataPageURL);
 
-        Document doc2 = Jsoup.connect("foodDataPageURL").get(); // gonna have to find different website, or fetch all data
+        Document doc2 = Jsoup.connect(foodDataPageURL).get(); // gonna have to find different website, or fetch all data
         // Element element2 = doc2.select("h2").first();
         // System.out.println("The calories in a " + keyword + " is " + element2.text()); // calories
         // System.out.println();

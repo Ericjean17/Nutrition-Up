@@ -158,17 +158,25 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             */
             else{
                 try {
-                    WebScraper2.keyword = food;
-                    WebScraper2.setFoodDataPageURL();
-                    WebScraper2.getNutritionData();
+                    WebScraper.food = food;
+                    WebScraper.addKeywordDelimiters();
+                    WebScraper.setFoodDataPageURL();
+                    WebScraper.getCalorieData();
+                    WebScraper.getFatData();
+                    WebScraper.getProteinData();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
 
-                System.out.println("User ate this " + food);
-                diaryTextArea.append(food + "\n");
-                diaryTextArea.append("----------------------------------------------------------------------\n");
-                inputFoodNameTextField.setText("");
+                if(WebScraper.validInput == true){
+                    System.out.println("User ate this " + food);
+                    diaryTextArea.append(food + "\n");
+                    diaryTextArea.append("----------------------------------------------------------------------\n");
+                    inputFoodNameTextField.setText("");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Invalid food name");
+                }
             }            
         }
         else if (e.getSource() == goalProgressButton){
