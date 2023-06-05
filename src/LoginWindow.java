@@ -22,6 +22,11 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);
         inputUsernameTextField.addActionListener(this);
+
+        // Center buttons and textfields
+        loginButton.setHorizontalAlignment(SwingConstants.CENTER);
+        signUpButton.setHorizontalAlignment(SwingConstants.CENTER);
+        inputUsernameTextField.setHorizontalAlignment(SwingConstants.CENTER);
     
         // Set the positions and sizes of the labels, buttons, and TextFields
         applicationNameText.setBounds(375, 55, 350, 60); // (1100 - 350)/2 to center it
