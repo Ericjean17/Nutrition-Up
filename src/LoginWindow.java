@@ -6,10 +6,10 @@ import java.io.IOException;
 public class LoginWindow extends WindowConstructor implements ActionListener {
     
     // Create the labels, buttons, and TextFields, and assign it to a variable
-    private JLabel applicationNameText = new JLabel("Nutrition Up!");
-    private JLabel loginText = new JLabel("Login");
-    private JLabel noAccountText = new JLabel("Don't have an account?");
-    private JLabel usernameText = new JLabel("Enter your username");
+    private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
+    private JLabel loginText = new JLabel("Login", SwingConstants.CENTER);
+    private JLabel noAccountText = new JLabel("Don't have an account?", SwingConstants.CENTER);
+    private JLabel usernameText = new JLabel("Enter your username", SwingConstants.CENTER);
     private JButton loginButton = new JButton("Login!");
     private JTextField inputUsernameTextField = new JTextField(10);
     public JButton signUpButton = new JButton("Sign up");
@@ -24,13 +24,13 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         inputUsernameTextField.addActionListener(this);
     
         // Set the positions and sizes of the labels, buttons, and TextFields
-        applicationNameText.setBounds(390, 55, 350, 60);
-        loginButton.setBounds(485, 315, 100, 40);
+        applicationNameText.setBounds(375, 55, 350, 60); // (1100 - 350)/2 to center it
+        loginButton.setBounds(500, 315, 100, 40);
         usernameText.setBounds(450,205,200,50);
         inputUsernameTextField.setBounds(435, 265, 230, 30);
-        loginText.setBounds(495, 130, 150, 45);
-        noAccountText.setBounds(430,500,250,30);
-        signUpButton.setBounds(480, 540, 100, 30);
+        loginText.setBounds(475, 130, 150, 45);
+        noAccountText.setBounds(425,500,250,30);
+        signUpButton.setBounds(500, 540, 100, 30);
     
         // The font and size of each label and button
         header1(applicationNameText);
@@ -76,7 +76,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         }
 
         else if (e.getSource() == signUpButton){
-            dispose();
+            setVisible(false);
             SignUpWindow signUpWindow = new SignUpWindow();
             signUpWindow.createSignUpWindow();
         }
