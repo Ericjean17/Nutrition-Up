@@ -57,7 +57,40 @@ public class UserInfo {
         }
     }
 
+    public static void askAge() {
+        System.out.print("Please enter your age: ");
+        age = scanner.nextInt();
+        scanner.nextLine(); // Consume newline character
+    }
 
+    public static void askGender() {
+        boolean validGender = false;
+        while (!validGender) {
+            System.out.print("Please enter your gender (male/female): ");
+            gender = scanner.nextLine().toLowerCase();
+
+            if (gender.equals("male") || gender.equals("female")) {
+                validGender = true;
+            } else {
+                System.out.println("Please enter either 'male' or 'female'.");
+            }
+        }
+    }
+    public static void askWeight() {
+        System.out.print("Please enter your Weight in kg: ");
+        weight = scanner.nextInt();
+        scanner.nextLine();
+    }
+    public static void askHeight() {
+        System.out.print("Please enter your Height in cm: ");
+        height = scanner.nextInt();
+        scanner.nextLine();
+    }
+    public static void askGoal() {
+        System.out.print("Please enter your goal: ");
+        goal = scanner.nextInt();
+        scanner.nextLine();
+    }
 
     public static void displayInformation() {
         System.out.println("Username: " + username);
@@ -71,4 +104,43 @@ public class UserInfo {
 
 
 
+<<<<<<< HEAD
     }
+=======
+        if (choice.equals("login")) {
+            UserInfo.askUsername();
+            if (UserInfo.isUsernameExists(UserInfo.username)) {
+                UserInfo.retrieveUserInfo(UserInfo.username);
+                UserInfo.displayInformation();
+            } else {
+                System.out.println("Username does not exist. Please sign up.");
+            }
+        } else if (choice.equals("signup")) {
+            boolean uniqueUsername = false;
+            while (!uniqueUsername) {
+                UserInfo.askUsername();
+                if (!UserInfo.isUsernameExists(UserInfo.username)) {
+                    uniqueUsername = true;
+                    UserInfo.askAge();
+                    UserInfo.askGender();
+                    UserInfo.askWeight();
+                    UserInfo.askHeight();
+                    UserInfo.askGoal();
+
+                    UserInfo.displayInformation();
+                    try (PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true))) {
+                        writer.println(UserInfo.username.toLowerCase() + "/" + UserInfo.age + "/" + UserInfo.gender.toLowerCase() + "/" + UserInfo.weight + "/" + UserInfo.height + "/" + UserInfo.goal);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("Username already exists. Please choose a different username.");
+                }
+            }
+        } else {
+            System.out.println("Invalid choice. Please choose either 'login' or 'signup'.");
+        }
+        scanner.close();
+    }
+}
+>>>>>>> b406e9181019db86abbdd3fa9938caaf861af975

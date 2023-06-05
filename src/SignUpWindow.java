@@ -49,7 +49,18 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         createUserAccount.addActionListener(this);
         backButton.addActionListener(this);
         genderComboBox.addActionListener(this);
-      
+
+        // The font and size of each label and button
+        header1(applicationNameText);
+        header2(createAccountText);
+        header5(backButton);
+        header5(createUserAccount);
+        header4(enterGenderText);
+        header4(createUsernameText);
+        header4(enterAgeText);
+        header4(enterWeightText);
+        header4(enterHeightText);
+        
         // Add the components to the window
         add(applicationNameText);
         add(createAccountText);
@@ -122,7 +133,8 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-        } else if (e.getSource() == genderComboBox) {
+        }
+        else if (e.getSource() == genderComboBox){
             System.out.println(genderComboBox.getSelectedItem());
         }
     }
