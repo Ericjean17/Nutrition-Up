@@ -1,4 +1,6 @@
 import javax.swing.*;
+
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,7 +13,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     // will gather the data using the TextField and button variables 
     
     // Create the label, button, and TextField, ScrollPane and assigns it to a variable
-    private JLabel applicationNameText = new JLabel("Nutrition Up!");
+    private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
     private JLabel foodDiaryText = new JLabel("Food Diary");
     private JLabel enterCalorieGoalText = new JLabel("Enter your calorie goal for the day.");
     public JLabel recommendedCalorieGoalText = new JLabel("Recommended goal:");
@@ -29,6 +31,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     // Displays what the user ate using a TextArea
     private JTextArea diaryTextArea = new JTextArea();
+    Font font = new Font("Hervetica", Font.BOLD, 16);
 
     // The text for displaying the current date and day of the week
     public JLabel dateText = new JLabel("");
@@ -36,6 +39,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private LocalDate startDate;
     public JLabel dayOfWeekText = new JLabel("");
 
+    private int count = 0;
     public void createFoodDiaryWindow() {
 
         // Displays the layout to print the date on this window
@@ -57,7 +61,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         diaryTextArea.setEditable(false); // Makes it so the diary is uneditable by the user
         diaryTextArea.setLineWrap(true);
         diaryTextArea.setWrapStyleWord(true);
+        diaryTextArea.setFont(font);
         diaryScrollPane = new JScrollPane(diaryTextArea); // Set the JTextArea as the view of the scroll pane
+        diaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Makes the scroll bar always appear
         
         /*
         // Something we can do in the controller (refer to the UML diagram)
@@ -74,6 +80,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         }
         */
 
+        // Center buttons and textfields
+        goalProgressButton.setHorizontalAlignment(SwingConstants.CENTER);
+
         // Initializes the action events for the buttons
         enterCalorieGoalButton.addActionListener(this);
         enterFoodNameButton.addActionListener(this);
@@ -81,20 +90,20 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         nextDayButton.addActionListener(this);
         
         // Set the positions and sizes of the label, button, and TextField (1100x680)
-        applicationNameText.setBounds(400, 55, 400, 55);
-        foodDiaryText.setBounds(800, 80, 200, 30);
-        enterCalorieGoalText.setBounds(155, 210, 350, 30);
-        recommendedCalorieGoalText.setBounds(180, 235, 250, 30);
-        enterCalorieInputTextField.setBounds(140, 265, 150, 30);
-        enterCalorieGoalButton.setBounds(300,265, 80, 30);
+        applicationNameText.setBounds(375, 55, 350, 60);
+        foodDiaryText.setBounds(800, 110, 200, 30);
+        enterCalorieGoalText.setBounds(150, 180, 350, 30);
+        recommendedCalorieGoalText.setBounds(215, 210, 250, 30);
+        enterCalorieInputTextField.setBounds(185, 245, 150, 30);
+        enterCalorieGoalButton.setBounds(350,245, 80, 30);
         addFoodText.setBounds(180, 350, 250, 30);
-        inputFoodNameTextField.setBounds(140,380,150,30);
-        enterFoodNameButton.setBounds(300, 380, 80, 30);
+        inputFoodNameTextField.setBounds(185,385,150,30);
+        enterFoodNameButton.setBounds(350, 385, 80, 30);
         dateText.setBounds(50,25,120,30);
         dayOfWeekText.setBounds(130,25,150,30);
-        diaryScrollPane.setBounds(700,120,300,400);
-        goalProgressButton.setBounds(440,570,180,30);
-        nextDayButton.setBounds(930,580,130,30);
+        diaryScrollPane.setBounds(700,150,300,400);
+        goalProgressButton.setBounds(460,580,180,30);
+        nextDayButton.setBounds(950,580,100,30);
         
         // The font and size of each label and button
         header1(applicationNameText);
@@ -171,7 +180,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 if(WebScraper.validInput == true){
                     System.out.println("User ate this " + food);
                     diaryTextArea.append(food + "\n");
-                    diaryTextArea.append("----------------------------------------------------------------------\n");
+                    diaryTextArea.append("--------------------------------------------------------\n");
                     inputFoodNameTextField.setText("");
                 }
                 else{

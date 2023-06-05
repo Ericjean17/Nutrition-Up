@@ -130,7 +130,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
             } catch (NumberFormatException o) {
                 JOptionPane.showMessageDialog(null, "Not a valid input");
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         }
