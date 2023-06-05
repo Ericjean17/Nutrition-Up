@@ -1,8 +1,7 @@
 import java.awt.Font;
-
 import javax.swing.*;
 
-// Constuctor method for the windows
+// Constuctor method for all of the windows
 public class WindowConstructor extends JFrame {
 
     private JLabel label;
@@ -23,12 +22,8 @@ public class WindowConstructor extends JFrame {
         ImageIcon logo = new ImageIcon("NutritionUpLogo.png"); 
         setIconImage(logo.getImage());
 
-        // Changes the backgrund of the windows
+        // Changes the backgrund of all of the windows
         setContentPane(new JLabel(new ImageIcon(("NutritionUpBackground.png"))));
-        
-        // If you put this before creating the label, button, and textField variable,
-        // all the labels, buttons, and TextFields from the LoginWindow won't pop up unless you resize the window
-        //setVisible(true); 
 
         label = new JLabel();
         button = new JButton();
@@ -38,10 +33,28 @@ public class WindowConstructor extends JFrame {
     }
 
     public void header1(JLabel label){
-        label.setFont(new Font("Arial", Font.BOLD,20));
+        label.setFont(new Font("Helvetica", Font.BOLD,50));
     }
 
+    public void header2(JLabel label){
+        label.setFont(new Font("Helvetica", Font.BOLD,30));
+    }
+
+    public void header3(JLabel label){
+        label.setFont(new Font("Helvetica", Font.BOLD,20));
+    }
     
+    public void header4(JLabel label){
+        label.setFont(new Font("Helvetica", Font.BOLD,17));
+    }
+
+    public void header5(JButton button){
+        button.setFont(new Font("Helvetica", Font.BOLD,15));
+    }
+
+    public void header6(JButton button){
+        button.setFont(new Font("Helvetica", Font.BOLD,13));
+    }
 
     // Get and setter methods for the labels, buttons, and TextFields.
     // Don't know if we need this.

@@ -17,12 +17,11 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public JLabel recommendedCalorieGoalText = new JLabel("Recommended goal:");
     public JTextField enterCalorieInputTextField = new JTextField(10);
     public JButton enterCalorieGoalButton = new JButton("Enter");
-    //private JDialog invalidInputAlert = new JTextField(foodDiaryWindow, "Not a valid input");
     private JLabel addFoodText = new JLabel("Add a food to your diary");
     public JButton goalProgressButton = new JButton("See goal progress");
     public JButton nextDayButton = new JButton("Next day");
 
-    // We need a panel to make it so the user can scroll down with the ScrollPane
+    // We need a ScrollPane to make it so the user can scroll down with the ScrollPane
     private JScrollPane diaryScrollPane = new JScrollPane();
 
     public JTextField inputFoodNameTextField = new JTextField(20);
@@ -30,7 +29,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     // Displays what the user ate using a TextArea
     private JTextArea diaryTextArea = new JTextArea();
-
 
     // The text for displaying the current date and day of the week
     public JLabel dateText = new JLabel("");
@@ -40,13 +38,13 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     public void createFoodDiaryWindow() {
 
-        // The logic to print the date on this window
+        // Displays the layout to print the date on this window
         startDate = LocalDate.now();
         int months = 1;
         LocalDate currentDate = startDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        // The code to get the day of the week today
+        // Gets the day of the week today
         currentDay = LocalDate.now();
         dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
@@ -60,7 +58,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         diaryTextArea.setLineWrap(true);
         diaryTextArea.setWrapStyleWord(true);
         diaryScrollPane = new JScrollPane(diaryTextArea); // Set the JTextArea as the view of the scroll pane
-        //diaryScrollPane.setViewportView(diaryTextArea);
         
         /*
         // Something we can do in the controller (refer to the UML diagram)
@@ -84,23 +81,32 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         nextDayButton.addActionListener(this);
         
         // Set the positions and sizes of the label, button, and TextField (1100x680)
-        applicationNameText.setBounds(490, 55, 200, 30);
-        foodDiaryText.setBounds(490, 80, 100, 30);
-        enterCalorieGoalText.setBounds(155, 110, 200, 30);
-        recommendedCalorieGoalText.setBounds(180, 135, 150, 30);
-        enterCalorieInputTextField.setBounds(140, 165, 150, 30);
-        enterCalorieGoalButton.setBounds(300,165, 80, 30);
-        addFoodText.setBounds(180, 250, 150, 30);
-        inputFoodNameTextField.setBounds(140,280,150,30);
-        enterFoodNameButton.setBounds(300, 280, 80, 30);
-        dateText.setBounds(75,50,120,30);
-        dayOfWeekText.setBounds(135,50,100,30);
+        applicationNameText.setBounds(400, 55, 400, 55);
+        foodDiaryText.setBounds(800, 80, 200, 30);
+        enterCalorieGoalText.setBounds(155, 210, 350, 30);
+        recommendedCalorieGoalText.setBounds(180, 235, 250, 30);
+        enterCalorieInputTextField.setBounds(140, 265, 150, 30);
+        enterCalorieGoalButton.setBounds(300,265, 80, 30);
+        addFoodText.setBounds(180, 350, 250, 30);
+        inputFoodNameTextField.setBounds(140,380,150,30);
+        enterFoodNameButton.setBounds(300, 380, 80, 30);
+        dateText.setBounds(50,25,120,30);
+        dayOfWeekText.setBounds(130,25,150,30);
+        diaryScrollPane.setBounds(700,120,300,400);
+        goalProgressButton.setBounds(440,570,180,30);
+        nextDayButton.setBounds(930,580,130,30);
+        
+        // The font and size of each label and button
+        header1(applicationNameText);
+        header3(foodDiaryText);
+        header3(enterCalorieGoalText);
+        header4(recommendedCalorieGoalText);
+        header3(addFoodText);
+        header4(dateText);
+        header4(dayOfWeekText);
+        header5(goalProgressButton);
+        header5(nextDayButton);
 
-        diaryScrollPane.setBounds(600,120,300,400);
-        
-        goalProgressButton.setBounds(440,570,150,30);
-        nextDayButton.setBounds(960,580,100,30);
-        
         // Add the components to the window
         add(applicationNameText);
         add(foodDiaryText);
@@ -133,7 +139,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
              // Also, whenever we press the progress bar button, it becomes visible again. Need to somehow make it still invisible
              // Until the user pressed the next day button.
             enterCalorieGoalButton.setVisible(false);
-            //nextDay = false;
             
             // Resets the text inside the TextField, so the user doesn't have to manually delete what they typed previously
             // More professional
@@ -145,7 +150,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
             if (food.equals("")){
                 JOptionPane.showMessageDialog(null, "Enter your food!");
-
             }
             /*
             else if(the keyword cannot fetch the food){
@@ -154,17 +158,25 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             */
             else{
                 try {
-                    WebScraper.keyword = food;
+                    WebScraper.food = food;
+                    WebScraper.addKeywordDelimiters();
                     WebScraper.setFoodDataPageURL();
-                    WebScraper.getNutritionData();
+                    WebScraper.getCalorieData();
+                    WebScraper.getFatData();
+                    WebScraper.getProteinData();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
 
-                System.out.println("User ate this " + food);
-                diaryTextArea.append(food + "\n");
-                diaryTextArea.append("----------------------------------------------------------------------\n");
-                inputFoodNameTextField.setText("");
+                if(WebScraper.validInput == true){
+                    System.out.println("User ate this " + food);
+                    diaryTextArea.append(food + "\n");
+                    diaryTextArea.append("----------------------------------------------------------------------\n");
+                    inputFoodNameTextField.setText("");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Invalid food name");
+                }
             }            
         }
         else if (e.getSource() == goalProgressButton){
@@ -173,6 +185,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             goalTrackerWindow.createGoalTrackerWindow();
         }
 
+        // When the next day button is pressed, changes the date and day
         else if (e.getSource() == nextDayButton){
             LocalDate currentDate = LocalDate.parse(dateText.getText()); // Parse the current date from the label text
             currentDate = currentDate.plusDays(1); // Increment the current date by 1 day when the next day button is pressed
