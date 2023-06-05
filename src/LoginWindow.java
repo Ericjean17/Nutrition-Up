@@ -57,15 +57,13 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         // When the user presses the login button, gets the String from the TextField, deletes this window, and creates the food diary window
         // Can use e.getActionCommand().equals("input username here");
         if (e.getSource() == loginButton){
-            String inputtedUsername = getInputUsernameTextField().getText();
+            String username = getInputUsernameTextField().getText();
 
-            try { 
-                UserInfo.username = inputtedUsername;
-                UserInfo.storeUsername();
-            }
-            catch(IOException e5) {
-                e5.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Invalid Username");
+            if (UserInfo.isUsernameExists(username)) {
+                // Username exists, perform login action
+                // Call the method to retrieve and display user information
+                UserInfo.retrieveUserInfo(username);
+                UserInfo.displayInformation();
             }
 
             // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
