@@ -29,6 +29,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public JTextField inputFoodNameTextField = new JTextField(20);
     public JButton enterFoodNameButton = new JButton("Enter");
 
+    
     // Displays what the user ate using a TextArea
     private JTextArea diaryTextArea = new JTextArea();
     Font font = new Font("Hervetica", Font.BOLD, 16);
