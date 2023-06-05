@@ -1,8 +1,16 @@
 public class Validate {
-    public boolean isString(String input){
+    public static String username;
+    public static String gender;
+    public static String age;
+    public static String weight;
+    public static String height;
+    public static String calorieGoal;
+    public static String foodName;
+    // method to check if input is a String that contains alphabetical letters
+    public static boolean isString(String input){
         return input != null && !input.isEmpty() && input.matches("^[a-zA-Z\\s]*$");
     }
-
+    // method to check if input is a String that contains numbers
     public boolean isInt(String input){
         return input!= null && !input.isEmpty() && input.matches("^-?\\d+$");
     }
@@ -11,17 +19,20 @@ public class Validate {
     // ie. validateUsername --> if the username is invalid, shouldn't be able to advance to next window
 
     // method to validate username
-    public void validateUsername(String inputtedUsername){
-        if(isString(inputtedUsername)){
-            if(inputtedUsername.length() <= 15){
-                System.out.println("Valid username: " + inputtedUsername);
+    public static boolean validateUsername(){
+        if(isString(username)){
+            if(username.length() <= 15){
+                System.out.println("Valid username: " + username);
+                return true;
             }
             else{
                 System.out.println("Invalid username. Username cannot exceed 15 characters");
+                return false;
             }
         }
         else {
             System.out.println("Invalid username. Please Try Again!");
+            return false;
         }
     }
     // method to validate gender

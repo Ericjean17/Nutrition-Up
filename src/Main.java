@@ -4,7 +4,8 @@ public class Main {
         LoginWindow loginWindow = new LoginWindow();
         loginWindow.createLoginWindow();
         //System.out.println(loginWindow.getUsername());
-        Validate validate = new Validate();
+        /*
+         * Validate validate = new Validate();
         validate.validateUsername("Samuel");
         validate.validateGender("m");
         validate.validateAge("17");
@@ -12,5 +13,7 @@ public class Main {
         validate.validateHeight("65");
         validate.validateCalorieGoal("3000");
         validate.validateFoodName("Big Mac");
+         */
+        
     }
 }

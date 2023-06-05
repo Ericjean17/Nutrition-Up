@@ -59,6 +59,17 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             //inputtedUsername = inputUsernameTextField.getText();
             String inputtedUsername = getInputUsernameTextField().getText();
 
+            Validate.username = inputtedUsername;
+            if (Validate.validateUsername() == true){
+                dispose();
+                FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
+                foodDiaryWindow.createFoodDiaryWindow();
+            }
+            else{
+                //display error message
+                JOptionPane.showMessageDialog(null, "Error");
+            }
+
             try { 
                 UserInfo.username = inputtedUsername;
                 UserInfo.storeUsername();
@@ -69,10 +80,8 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
 
             // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
             System.out.println("Username inputted is : " + inputtedUsername);
-            dispose();
             inputUsernameTextField.setText(""); // Clears the text field after saving the values??
-            FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
-            foodDiaryWindow.createFoodDiaryWindow();
+            
         }
 
         else if (e.getSource() == signUpButton){
