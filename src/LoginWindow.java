@@ -1,20 +1,18 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class LoginWindow extends WindowConstructor implements ActionListener {
     
-    // Create the labels, buttons, and TextFields, and assign it to a variable
+    // Create the labels, buttons, and TextFields, and assigns it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
     private JLabel loginText = new JLabel("Login", SwingConstants.CENTER);
     private JLabel noAccountText = new JLabel("Don't have an account?", SwingConstants.CENTER);
     private JLabel usernameText = new JLabel("Enter your username", SwingConstants.CENTER);
     private JButton loginButton = new JButton("Login!");
     private JTextField inputUsernameTextField = new JTextField(10);
-    public JButton signUpButton = new JButton("Sign up");
-    
-    String inputtedUsername = "";
+    private JButton signUpButton = new JButton("Sign up");
+    public String inputtedUsername = "";
     
     public void createLoginWindow() {
         
@@ -23,13 +21,13 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         signUpButton.addActionListener(this);
         inputUsernameTextField.addActionListener(this);
 
-        // Center buttons and textfields
+        // Center buttons and TextFields
         loginButton.setHorizontalAlignment(SwingConstants.CENTER);
         signUpButton.setHorizontalAlignment(SwingConstants.CENTER);
         inputUsernameTextField.setHorizontalAlignment(SwingConstants.CENTER);
     
-        // Set the positions and sizes of the labels, buttons, and TextFields
-        applicationNameText.setBounds(375, 55, 350, 60); // (1100 - 350)/2 to center it
+        // Sets the positions and sizes of the labels, buttons, and TextFields
+        applicationNameText.setBounds(375, 55, 350, 60); // (width of window - width of object)/2 to center it
         loginButton.setBounds(500, 315, 100, 40);
         usernameText.setBounds(450,205,200,50);
         inputUsernameTextField.setBounds(435, 265, 230, 30);
@@ -45,7 +43,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         header5(loginButton);
         header5(signUpButton);
 
-        // Add the components to the window
+        // Adds the components to the window
         add(applicationNameText);
         add(loginButton);
         add(inputUsernameTextField);
@@ -55,16 +53,16 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         add(signUpButton);
     }
 
-    // When pressing the buttons, it creates a new window, and does other stuff like getting data from textfields
+    // This method is to create any actions or events that occurs from user input
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // When the user presses the login button, gets the String from the TextField, deletes this window, and creates the food diary window
-        // Can use e.getActionCommand().equals("input username here");
+        // When the user presses the login button, it gets the String from the TextField and validates the username
         if (e.getSource() == loginButton){
             String inputtedUsername = getInputUsernameTextField().getText();
-
             Validate.username = inputtedUsername;
+
+            // If the username is in the library, deletes the current window and changes to the food diary window
             if (Validate.validateUsername() == true){
                 System.out.println("Username inputted is : " + inputtedUsername);
                 JOptionPane.showMessageDialog(null, "Hello! " + inputtedUsername);
@@ -74,12 +72,15 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
                 foodDiaryWindow.createFoodDiaryWindow();
             }
             else{
-                //display error message
+                // Displays an error message if the username is not validated or not in the user info csv file
                 JOptionPane.showMessageDialog(null, "Error");
-                inputUsernameTextField.setText(""); // Clears the text field after saving the values??
+
+                // Clears the text field after saving the values
+                inputUsernameTextField.setText("");
             }    
         }
 
+        // Creates a new sign up window if the user presses the sign up button
         else if (e.getSource() == signUpButton){
             setVisible(false);
             SignUpWindow signUpWindow = new SignUpWindow();
@@ -87,6 +88,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         }
     }
 
+    // Gets the input from the username TextField
     public JTextField getInputUsernameTextField(){
         return inputUsernameTextField;
     }

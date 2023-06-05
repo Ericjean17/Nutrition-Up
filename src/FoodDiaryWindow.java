@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,41 +8,31 @@ import java.text.SimpleDateFormat;
 
 public class FoodDiaryWindow extends WindowConstructor implements ActionListener {
     
-    // Idk if the TextFields should be public or private. We need to somehow know how the controller
-    // will gather the data using the TextField and button variables 
     
-    // Create the label, button, and TextField, ScrollPane and assigns it to a variable
+    // Create the labels, buttons, and TextFields, ScrollPanes and TextArea, and assigns it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
     private JLabel foodDiaryText = new JLabel("Food Diary");
     private JLabel enterCalorieGoalText = new JLabel("Enter your calorie goal for the day.");
-    public JLabel recommendedCalorieGoalText = new JLabel("Recommended goal:");
-    public JTextField enterCalorieInputTextField = new JTextField(10);
-    public JButton enterCalorieGoalButton = new JButton("Enter");
+    private JLabel recommendedCalorieGoalText = new JLabel("Recommended goal:");
+    private JTextField enterCalorieInputTextField = new JTextField(10);
+    private JButton enterCalorieGoalButton = new JButton("Enter");
     private JLabel addFoodText = new JLabel("Add a food to your diary");
-    public JButton goalProgressButton = new JButton("See goal progress");
-    public JButton nextDayButton = new JButton("Next day");
-
-    // We need a ScrollPane to make it so the user can scroll down with the ScrollPane
-    private JScrollPane diaryScrollPane = new JScrollPane();
-
-    public JTextField inputFoodNameTextField = new JTextField(20);
-    public JButton enterFoodNameButton = new JButton("Enter");
-
-    
-    // Displays what the user ate using a TextArea
+    private JButton goalProgressButton = new JButton("See goal progress");
+    private JButton nextDayButton = new JButton("Next day");
+    private JScrollPane diaryScrollPane;
+    private JTextField inputFoodNameTextField = new JTextField(20);
+    private JButton enterFoodNameButton = new JButton("Enter");
     private JTextArea diaryTextArea = new JTextArea();
-    Font font = new Font("Hervetica", Font.BOLD, 16);
-
-    // The text for displaying the current date and day of the week
-    public JLabel dateText = new JLabel("");
+    private JLabel dateText = new JLabel("");
     private LocalDate currentDay;
     private LocalDate startDate;
-    public JLabel dayOfWeekText = new JLabel("");
+    private JLabel dayOfWeekText = new JLabel("");
 
-    private int count = 0;
+    Font font = new Font("Hervetica", Font.BOLD, 16);
+
     public void createFoodDiaryWindow() {
 
-        // Displays the layout to print the date on this window
+        // The layout to print the date today on this window
         startDate = LocalDate.now();
         int months = 1;
         LocalDate currentDate = startDate;
@@ -53,18 +42,23 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         currentDay = LocalDate.now();
         dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
+        // Depending on the amount of days in each month, the month value goes up by 1 after 30/31 days
         for (int i = 0; i < months; i++) {
             String formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
             dateText.setText(formattedDate);
             currentDate = currentDate.plusMonths(1);
         }
 
-        diaryTextArea.setEditable(false); // Makes it so the diary is uneditable by the user
+        diaryTextArea.setEditable(false);
         diaryTextArea.setLineWrap(true);
         diaryTextArea.setWrapStyleWord(true);
         diaryTextArea.setFont(font);
-        diaryScrollPane = new JScrollPane(diaryTextArea); // Set the JTextArea as the view of the scroll pane
-        diaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Makes the scroll bar always appear
+
+        // Set the JTextArea as the view of the scroll pane
+        diaryScrollPane = new JScrollPane(diaryTextArea);
+
+        // Makes the scroll bar always appear
+        diaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
         
         /*
         // Something we can do in the controller (refer to the UML diagram)
@@ -81,7 +75,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         }
         */
 
-        // Center buttons and textfields
+        // Centers the button to the middle of the window
         goalProgressButton.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Initializes the action events for the buttons
@@ -90,7 +84,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         goalProgressButton.addActionListener(this);
         nextDayButton.addActionListener(this);
         
-        // Set the positions and sizes of the label, button, and TextField (1100x680)
+        // Sets the positions and sizes of the label, button, and TextField (1100x680)
         applicationNameText.setBounds(375, 55, 350, 60);
         foodDiaryText.setBounds(800, 110, 200, 30);
         enterCalorieGoalText.setBounds(150, 180, 350, 30);
@@ -117,7 +111,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         header5(goalProgressButton);
         header5(nextDayButton);
 
-        // Add the components to the window
+        // Adds the components to the window
         add(applicationNameText);
         add(foodDiaryText);
         add(enterCalorieGoalText);
@@ -134,38 +128,30 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(dayOfWeekText);
     }
 
-    // Creates a new window or gathers data when the buttons are clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == enterCalorieGoalButton){
-            // I assume we get the method from the controller to contain or add the data (String)
+
+            // Gets the text inside the calorie text field when the use presses the 'enter' button
             int userCalories = Integer.parseInt(enterCalorieInputTextField.getText());
             System.out.println("User wants to eat " + userCalories + "g of calories today");
 
-             // Hides the enter button from the user on click, so they can't mess it up.
-             // We can make it appear after pressing the nextDayButton
-             // We need an if statement before this happens to make sure they inputted an integer in the TextField
-
-             // Also, whenever we press the progress bar button, it becomes visible again. Need to somehow make it still invisible
+             // *Also, whenever we press the progress bar button, it becomes visible again. Need to somehow make it still invisible
              // Until the user pressed the next day button.
+             // Hides the 'enter' button so the user cannot change their calorie goal
             enterCalorieGoalButton.setVisible(false);
-            
-            // Resets the text inside the TextField, so the user doesn't have to manually delete what they typed previously
-            // More professional
             enterCalorieInputTextField.setText("");
         }
         else if (e.getSource() == enterFoodNameButton){
-            // I assume we get the method from the controller to contain or add the data (String)
+            // Gets the text from the food text field
             String food = inputFoodNameTextField.getText();
 
+            // If the user doesn't write anything down and presses the 'enter' button, an error message pops up
             if (food.equals("")){
                 JOptionPane.showMessageDialog(null, "Enter your food!");
             }
-            /*
-            else if(the keyword cannot fetch the food){
-                JOptionPane.showMessageDialog(null, "This is not a valid food!");
-            }
-            */
+
+            // If there is a String inside the text field, the webscraper fetches it and sees if the food is in their database
             else{
                 try {
                     WebScraper.food = food;
@@ -181,7 +167,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 if(WebScraper.validInput == true){
                     System.out.println("User ate this " + food);
                     diaryTextArea.append(food + "\n");
-                    diaryTextArea.append("--------------------------------------------------------\n");
+                    diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
                 }
                 else{
@@ -189,24 +175,36 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 }
             }            
         }
+
+        // Goes to the goal progress window
         else if (e.getSource() == goalProgressButton){
             dispose();
             GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
             goalTrackerWindow.createGoalTrackerWindow();
         }
 
-        // When the next day button is pressed, changes the date and day
+        // When the next day button is pressed, it changes the date and day
         else if (e.getSource() == nextDayButton){
-            LocalDate currentDate = LocalDate.parse(dateText.getText()); // Parse the current date from the label text
-            currentDate = currentDate.plusDays(1); // Increment the current date by 1 day when the next day button is pressed
-            String formattedDate = currentDate.toString(); // Convert the updated date back to a string
-            dateText.setText(formattedDate); // Set the updated date as the text of the label (dateText only takes a String)
+            
+            // Parses the current date from the label text
+            LocalDate currentDate = LocalDate.parse(dateText.getText());
 
-            // Display the next day of the week
+            // Increments the current date by 1 day when the next day button is pressed
+            currentDate = currentDate.plusDays(1); 
+
+             // Convert the updated date back to a string since labels only accept a String as text
+            String formattedDate = currentDate.toString();
+
+            // Set the updated date as the text of the label
+            dateText.setText(formattedDate); 
+
+            // Displays the next day of the week (increments it by 1)
             currentDay = currentDay.plusDays(1);
             dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
+            // The enter calorie goal button will reappear since it is the next day
             enterCalorieGoalButton.setVisible(true);
+            
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
             diaryTextArea.setText("");

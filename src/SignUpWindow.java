@@ -6,31 +6,27 @@ import java.io.IOException;
 
 public class SignUpWindow extends WindowConstructor implements ActionListener{
     
-    // Idk if the TextFields should be public or private.
-    // Should the controller gather the data using the TextField and button variables in this class?
-    
-    // Creates the labels, buttons, and TextFields, and ComboBox assign it to a variable
+    // Creates the labels, buttons, and TextFields, and ComboBox and assigns it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
     private JLabel createAccountText = new JLabel("Create an account", SwingConstants.CENTER);
     private JLabel createUsernameText = new JLabel("Enter a username", SwingConstants.CENTER);
-    public JTextField createUsernameTextField = new JTextField(10);
+    private JTextField createUsernameTextField = new JTextField(10);
     private JLabel enterGenderText = new JLabel("Enter your gender");
     private JLabel enterAgeText = new JLabel("Enter your age");
-    public JTextField inputAgeTextField = new JTextField(10);
+    private JTextField inputAgeTextField = new JTextField(10);
     private JLabel enterWeightText = new JLabel("Enter your weight");
-    public JTextField inputWeightTextField = new JTextField(10);
+    private JTextField inputWeightTextField = new JTextField(10);
     private JLabel enterHeightText = new JLabel("Enter your height");
-    public JTextField inputHeightTextField = new JTextField(10);
-    public JButton backButton = new JButton("Back");
-    public JButton createUserAccount = new JButton("Create Account");
-
+    private JTextField inputHeightTextField = new JTextField(10);
+    private JButton backButton = new JButton("Back");
+    private JButton createUserAccount = new JButton("Create Account");
     String[] gender = {"Male", "Female"};
     public JComboBox genderComboBox = new JComboBox(gender);
     
     public void createSignUpWindow() {
         
         // Set the positions and sizes of the labels, buttons, and TextFields, and ComboBox in this wind
-        applicationNameText.setBounds(375, 55, 350, 60); // (1100 - 350)/2 to center it
+        applicationNameText.setBounds(375, 55, 350, 60);
         createAccountText.setBounds(375, 130, 350, 45);
         enterGenderText.setBounds(135,250,150,30);
         createUsernameText.setBounds(475,250,150,30);
@@ -61,7 +57,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         header4(enterWeightText);
         header4(enterHeightText);
         
-        // Add the components to the window
+        // Adds the components to the window
         add(applicationNameText);
         add(createAccountText);
         add(createUsernameText);
@@ -78,8 +74,8 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         add(genderComboBox);
     }
 
+    // If the user hits the back button, deletes the current window and goes to the login window
     @Override
-    // *Cannot have multiple actionPerformed action event methods.
     public void actionPerformed(ActionEvent e) {     
         if (e.getSource() == backButton){
             dispose();
@@ -88,12 +84,12 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
             loginWindow.createLoginWindow();
         }
 
-        // Also include a condition that the user has to input all 5 of these componenets, else a pop-up comes up (dialog box)
-        // This also records the values, as you can see in the terminal
+        // If the user presses the create account button, they need to put in valid values to create an account.
+        // Then it goes back to the login window.
         else if (e.getSource() == createUserAccount){
-            // TESTING ERROR POP-UP
             try{
                 // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
+                // *DELETE PRINT STATEMENTS LATER
                 int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
                 System.out.println("Valid age: " + inputtedAge);
                 
@@ -109,30 +105,31 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 int inputtedHeight = Integer.parseInt(getInputHeightTextField().getText());
                 System.out.println("height: " + inputtedHeight);
 
-
                 UserInfo.username = createdUsername;
                 UserInfo.age = inputtedAge;
                 UserInfo.gender = selectedGender;
                 UserInfo.weight = inputtedWeight;
                 UserInfo.height = inputtedHeight;
-                UserInfo.goal = 0; // Set default goal to 0 for now
+                UserInfo.goal = 0; // Set default goal to 0 because we don't know user's calorie goal
     
                 UserInfo.displayInformation();
                 
-                UserInfo.storeUserInfo(); // Store the username in the file
+                UserInfo.storeUserInfo(); // Store the username in the csv file
     
                 JOptionPane.showMessageDialog(null, "Successfully created account");
                 dispose();
                 createUsernameTextField.setText("");
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.createLoginWindow();
-    
+                
             } catch (NumberFormatException o) {
                 JOptionPane.showMessageDialog(null, "Not a valid input");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
+
+        // Gets the item (man or female) in the drop down box
         else if (e.getSource() == genderComboBox){
             System.out.println(genderComboBox.getSelectedItem());
         }
