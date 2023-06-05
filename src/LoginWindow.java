@@ -72,13 +72,8 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
                 //display error message
                 JOptionPane.showMessageDialog(null, "Error");
                 inputUsernameTextField.setText(""); // Clears the text field after saving the values??
-            }
-
-            // Here we can use the controller (an if statement) to see if the username recorded is in (a file of user accounts?)
-            
-            
-            
-    }
+            }    
+        }
 
         else if (e.getSource() == signUpButton){
             dispose();
