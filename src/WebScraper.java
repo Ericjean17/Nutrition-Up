@@ -12,7 +12,9 @@ class WebScraper {
     public static String foodSearchPageURL;
     public static String foodDataPageURL;
     public static Boolean validInput;
-
+    // public static String foodDataPageURL;
+    // public static String foodDataPageURL;
+    // public static String foodDataPageURL;
 
     public WebScraper(){
         food = "";
