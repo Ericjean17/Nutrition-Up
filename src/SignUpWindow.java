@@ -87,7 +87,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         // If the user presses the create account button, they need to put in valid values to create an account.
         // Then it goes back to the login window.
         else if (e.getSource() == createUserAccount){
-<<<<<<< HEAD
             // TESTING ERROR POP-UP
             String createdUsername = getCreateUsernameTextField().getText();
             String createdAge = getInputAgeTextField().getText();
@@ -136,8 +135,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 createUsernameTextField.setText(""); // Clears the text field after saving the values??
             }
 
-=======
->>>>>>> e42f6a626aea0e74367d089c276725c49e0aeeee
             try{
                 // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
                 // *DELETE PRINT STATEMENTS LATER
@@ -164,22 +161,8 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     
                 UserInfo.displayInformation();
                 
-<<<<<<< HEAD
                 UserInfo.storeUserInfo(); // Store the username in the file
                 
-    
-=======
-                UserInfo.storeUserInfo(); // Store the username in the csv file
-    
-                JOptionPane.showMessageDialog(null, "Successfully created account");
-                dispose();
-                createUsernameTextField.setText("");
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.createLoginWindow();
-                
-            } catch (NumberFormatException o) {
-                JOptionPane.showMessageDialog(null, "Not a valid input");
->>>>>>> e42f6a626aea0e74367d089c276725c49e0aeeee
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
