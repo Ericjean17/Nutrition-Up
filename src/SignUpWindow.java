@@ -92,12 +92,58 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         // This also records the values, as you can see in the terminal
         else if (e.getSource() == createUserAccount){
             // TESTING ERROR POP-UP
+            String createdUsername = getCreateUsernameTextField().getText();
+            String createdAge = getInputAgeTextField().getText();
+            String createdWeight = getInputWeightTextField().getText();
+            String createdHeight = getInputHeightTextField().getText();
+
+            // only allow user to continue if the conditions are met
+            if (UserInfo.isUsernameExists(createdUsername) == false){
+                Validate.username = createdUsername;
+                Validate.age = createdAge;
+                Validate.weight = createdWeight;
+                Validate.height = createdHeight;
+                if (Validate.validateUsername() == true && Validate.validateAge() == true && Validate.validateWeight() == true && Validate.validateHeight() == true){
+                    JOptionPane.showMessageDialog(null, "Hello! " + createdUsername);
+                    createUsernameTextField.setText(""); // Clears the text field after saving the values??
+                    dispose();
+                    createUsernameTextField.setText("");
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.createLoginWindow();
+                    JOptionPane.showMessageDialog(null, "Successfully created account");
+                }
+                else if (Validate.validateUsername() == false){
+                    //display error message
+                    JOptionPane.showMessageDialog(null, "Error. Invalid Username, Enter a Letter (A-Z).");
+                    createUsernameTextField.setText(""); // Clears the text field after saving the values??
+                }
+                else if (Validate.validateAge() == false){
+                    //display error message
+                    JOptionPane.showMessageDialog(null, "Error. Invalid Age, Enter a Number (0-100).");
+                    inputAgeTextField.setText(""); // Clears the text field after saving the values??
+                }
+                else if (Validate.validateWeight() == false){
+                    //display error message
+                    JOptionPane.showMessageDialog(null, "Error. Invalid Weight, Enter a Number (2-500).");
+                    inputWeightTextField.setText(""); // Clears the text field after saving the values??
+                }
+                else if (Validate.validateHeight() == false){
+                    //display error message
+                    JOptionPane.showMessageDialog(null, "Error. Invalid Height, Enter a Number (1-215).");
+                    inputHeightTextField.setText(""); // Clears the text field after saving the values??
+                }
+            }
+            else{
+                //display error message
+                JOptionPane.showMessageDialog(null, "Error. Username Is Taken!");
+                createUsernameTextField.setText(""); // Clears the text field after saving the values??
+            }
+
             try{
                 // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
                 int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
                 System.out.println("Valid age: " + inputtedAge);
                 
-                String createdUsername = getCreateUsernameTextField().getText();
                 System.out.println("username: " + createdUsername);
                 
                 String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
@@ -120,15 +166,8 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 UserInfo.displayInformation();
                 
                 UserInfo.storeUserInfo(); // Store the username in the file
+                
     
-                JOptionPane.showMessageDialog(null, "Successfully created account");
-                dispose();
-                createUsernameTextField.setText("");
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.createLoginWindow();
-    
-            } catch (NumberFormatException o) {
-                JOptionPane.showMessageDialog(null, "Not a valid input");
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();

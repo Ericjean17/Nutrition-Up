@@ -59,8 +59,9 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         if (e.getSource() == loginButton){
             String inputtedUsername = getInputUsernameTextField().getText();
 
-            Validate.username = inputtedUsername;
-            if (Validate.validateUsername() == true){
+            // check if username already exists
+            // only allow user to continue if username exists
+            if (UserInfo.isUsernameExists(inputtedUsername) == true){
                 System.out.println("Username inputted is : " + inputtedUsername);
                 JOptionPane.showMessageDialog(null, "Hello! " + inputtedUsername);
                 inputUsernameTextField.setText(""); // Clears the text field after saving the values??
