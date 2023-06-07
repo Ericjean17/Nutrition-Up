@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) throws Exception {
-        // Creates the window
+        // Creates the login window
         LoginWindow loginWindow = new LoginWindow();
         loginWindow.createLoginWindow();
     }

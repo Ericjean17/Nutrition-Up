@@ -11,7 +11,7 @@ public class Validate {
         return input != null && !input.isEmpty() && input.matches("^[a-zA-Z\\s]*$");
     }
     // method to check if input is a String that contains numbers
-    public boolean isInt(String input){
+    public static boolean isInt(String input){
         return input!= null && !input.isEmpty() && input.matches("^-?\\d+$");
     }
 
@@ -35,55 +35,55 @@ public class Validate {
             return false;
         }
     }
-    // method to validate gender
-    public void validateGender(String inputtedGender){
-        if(inputtedGender.equals("m") || inputtedGender.equals("f")){
-            System.out.println("Valid Gender: " + inputtedGender);
-        }
-        else{
-            System.out.println("Invalid Gender! Please input 'm' or 'f'");
-        }
-    }
     // method to validate age
-    public void validateAge(String inputtedAge){
-        if (isInt(inputtedAge)){
-            if(Integer.parseInt(inputtedAge)>=0 && Integer.parseInt(inputtedAge)<=100){
-                System.out.println("Valid Age: " + inputtedAge);
+    public static boolean validateAge(){
+        if (isInt(age)){
+            if(Integer.parseInt(age)>=0 && Integer.parseInt(age)<=100){
+                System.out.println("Valid Age: " + age);
+                return true;
             }
             else{
                 System.out.println("Invalid Age! Please input an age from '0-100'");
+                return false;
             }
         }
         else{
             System.out.println("Invalid Age! Please Try Again.");
+            return false;
         }
     }
     // method to validate weight
-    public void validateWeight(String inputtedWeight){
-        if (isInt(inputtedWeight)){
-            if(Integer.parseInt(inputtedWeight)>=2 && Integer.parseInt(inputtedWeight)<=500){
-                System.out.println("Valid Weight: " + inputtedWeight);
+    public static boolean validateWeight(){
+        if (isInt(weight)){
+            if(Integer.parseInt(weight)>=2 && Integer.parseInt(weight)<=500){
+                System.out.println("Valid Weight: " + weight);
+                return true;
             }
             else{
                 System.out.println("Invalid Weight! Please input a weight from '2-500'");
+                return false;
             }
         }
         else{
             System.out.println("Invalid Weight! Please Try Again.");
+            return false;
         }
     }
     // method to validate height
-    public void validateHeight(String inputtedHeight){
-        if (isInt(inputtedHeight)){
-            if(Integer.parseInt(inputtedHeight)>=1 && Integer.parseInt(inputtedHeight)<=215){
-                System.out.println("Valid Height: " + inputtedHeight);
+    public static boolean validateHeight(){
+        if (isInt(height)){
+            if(Integer.parseInt(height)>=1 && Integer.parseInt(height)<=215){
+                System.out.println("Valid Height: " + height);
+                return true;
             }
             else{
                 System.out.println("Invalid Height! Please input a height from '1-215'");
+                return false;
             }
         }
         else{
             System.out.println("Invalid Height! Please Try Again.");
+            return false;
         }
     }
     // method to validate calorie goal

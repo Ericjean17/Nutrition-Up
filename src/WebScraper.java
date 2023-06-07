@@ -6,14 +6,17 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 class WebScraper {
-     
+    
     public static String food;
     public static String keyword;
     public static String foodSearchPageURL;
     public static String foodDataPageURL;
     public static Boolean validInput;
+    public static String foodCalories;
+    public static String foodFat;
+    public static String foodProtein;
 
-
+    // Constructor method to set initial values
     public WebScraper(){
         food = "";
         keyword = "";
@@ -22,8 +25,16 @@ class WebScraper {
         validInput = false;
     }
 
+    /**
+     * Replaces spaces in user input
+     * 
+     * MyFitnessPal search pages replace spaces with the characters "%20"
+     * This method formats the keyword as it is in the URL 
+     */
     public static void addKeywordDelimiters(){
         String temp = "";
+
+        // Loop through every character in the String, replaces spaces
         for(int i = 0; i < food.length(); i++){
             if(String.valueOf(food.charAt(i)).equals(" ")){
                 temp = temp + "%20";
@@ -32,9 +43,16 @@ class WebScraper {
                 temp = temp + String.valueOf(food.charAt(i));
             }
         }
+
         keyword = temp;
     }
 
+    /**
+     * Sets the 
+     * 
+     * 
+     * @throws IOException
+     */
     public static void setFoodDataPageURL() throws IOException{
         foodSearchPageURL = "https://www.myfitnesspal.com/nutrition-facts-calories/" + keyword;
         
@@ -62,7 +80,8 @@ class WebScraper {
         Document doc = Jsoup.connect(foodDataPageURL).get();
 
         Element element = doc.getElementsByAttributeValue("class", "MuiTypography-root MuiTypography-body1 css-ezyk0s").first();
-        System.out.println("Calories: " + element.text());
+        
+        foodCalories = element.text();
     }
 
     public static void getFatData() throws IOException{
@@ -72,7 +91,7 @@ class WebScraper {
 
         elements.remove(0);
 
-        System.out.println("Fat: " + elements.first().text());
+        foodFat = elements.first().text();
     }
 
     public static void getProteinData() throws IOException{
@@ -83,7 +102,7 @@ class WebScraper {
         elements.remove(0);
         elements.remove(0);
         
-        System.out.println("Protein: " + elements.first().text());
+        foodProtein = elements.first().text();
     }
 
     // TO-DO: ADD COMMENTS & RENAME VARIABLES
