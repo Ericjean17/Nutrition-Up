@@ -37,7 +37,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         inputWeightTextField.setBounds(232,405, 150, 30);
         enterHeightText.setBounds(675,365,200,30);
         inputHeightTextField.setBounds(670,405,150,30);
-        backButton.setBounds(30,30,70,30);
+        backButton.setBounds(30,30,75,30);
         createUserAccount.setBounds(475,580,150,30);
         genderComboBox.setBounds(130,290,150,30);
         
