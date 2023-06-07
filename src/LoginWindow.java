@@ -71,7 +71,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             }
             else{
                 // Displays an error message if the username is not validated or not in the user info csv file
-                JOptionPane.showMessageDialog(null, "Error");
+                JOptionPane.showMessageDialog(null, "Error. Please Input An Existing Username.");
 
                 // Clears the text field after saving the values
                 inputUsernameTextField.setText("");
