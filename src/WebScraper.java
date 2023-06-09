@@ -1,4 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -103,6 +108,20 @@ class WebScraper {
         elements.remove(0);
         
         foodProtein = elements.first().text();
+    }
+
+    public static void writeData() throws IOException{ // TO-DO: rename method
+    
+        // TO-DO: check if food already exists (make into separate method)
+
+        try { 
+            PrintWriter writer = new PrintWriter(new FileWriter("FooData.csv", true));
+            writer.println(food + "/" + foodCalories + "/" + foodFat + "/" + foodProtein);
+            writer.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // TO-DO: ADD COMMENTS & RENAME VARIABLES
