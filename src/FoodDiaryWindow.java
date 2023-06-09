@@ -128,6 +128,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(dayOfWeekText);
     }
 
+    
+    /** 
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == enterCalorieGoalButton){
@@ -138,12 +142,12 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             if (Validate.validateCalorieGoal()==true){
                 // Hides the 'enter' button so the user cannot change their calorie goal
                 enterCalorieGoalButton.setVisible(false);
-                enterCalorieInputTextField.setText(Validate.calorieGoal);
+                enterCalorieInputTextField.setText(Validate.calorieGoal); // Why do we need this?
             }
             // If the calorie goal is invalid, display an error message
             else{
-                JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (15000-10000).");
                 enterCalorieInputTextField.setText("");
+                JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (15000-10000).");
             }
 
             System.out.println("User wants to eat " + userCalories + "g of calories today");

@@ -92,6 +92,10 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
         fatProgressBar.setString("You reached your ____ goal! :)");
     }
     
+    
+    /** 
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         // User will go back to the food diary window after pressing the back button

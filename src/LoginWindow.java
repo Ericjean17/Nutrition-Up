@@ -53,6 +53,10 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         add(signUpButton);
     }
 
+    
+    /** 
+     * @param e
+     */
     // This method is to create any actions or events that occurs from user input
     @Override
     public void actionPerformed(ActionEvent e) {

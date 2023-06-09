@@ -12,6 +12,10 @@ public class UserInfo {
     public static BufferedReader reader;
     public static PrintWriter writer;
     
+    
+    /** 
+     * @throws IOException
+     */
     public static void storeUserInfo() throws IOException{
         try { 
             PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true));
@@ -38,6 +42,10 @@ public class UserInfo {
         return false;
     }
 
+    
+    /** 
+     * @param username
+     */
     public static void retrieveUserInfo(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
@@ -57,8 +65,6 @@ public class UserInfo {
         }
     }
 
- 
-
     public static void displayInformation() {
         System.out.println("Username: " + username);
         System.out.println("Age: " + age);
@@ -68,6 +74,4 @@ public class UserInfo {
         System.out.println("Goal: " + goal);
 
     }
-
-
 }
