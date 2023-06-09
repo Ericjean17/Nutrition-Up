@@ -169,6 +169,8 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     WebScraper.food = food;
                     WebScraper.addKeywordDelimiters();
                     WebScraper.setFoodDataPageURL();
+
+                    // consider moving these out of the try, or combining this try-catch with the if-else below?
                     WebScraper.getCalorieData();
                     WebScraper.getFatData();
                     WebScraper.getProteinData();

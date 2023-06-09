@@ -61,18 +61,20 @@ class WebScraper {
     public static void setFoodDataPageURL() throws IOException{
         foodSearchPageURL = "https://www.myfitnesspal.com/nutrition-facts-calories/" + keyword;
         
+        // If the try block fails (due to the inputted food not being found on the website),
+        // validInput will remain false, preventing the program from continuing
         try {
             validInput = false;
             
             Document doc2 = Jsoup.connect(foodSearchPageURL).get();
-            System.out.println(foodSearchPageURL); // remove when done
+            System.out.println(foodSearchPageURL); // TO-DO: remove when done
 
             Elements elements = doc2.getElementsByAttributeValue("class", "MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1k8z5lp");
             
             elements.remove(0);
 
             foodDataPageURL = "https://www.myfitnesspal.com" + elements.first().attr("href");        
-            System.out.println(foodDataPageURL); // remove when done
+            System.out.println(foodDataPageURL); // TO-DO: remove when done
             
             validInput = true;
         } 
@@ -81,6 +83,11 @@ class WebScraper {
         }        
     }
 
+    /**
+     * Scrapes the amount of calories in the food
+     * 
+     * @throws IOException
+     */
     public static void getCalorieData() throws IOException{
         Document doc = Jsoup.connect(foodDataPageURL).get();
 
@@ -89,6 +96,11 @@ class WebScraper {
         foodCalories = element.text();
     }
 
+    /**
+     * Scrapes the amount of fat in the food
+     * 
+     * @throws IOException
+     */
     public static void getFatData() throws IOException{
         Document doc = Jsoup.connect(foodDataPageURL).get();
 
@@ -99,6 +111,11 @@ class WebScraper {
         foodFat = elements.first().text();
     }
 
+    /**
+     * Scrapes the amount of protein in the food
+     * 
+     * @throws IOException
+     */
     public static void getProteinData() throws IOException{
         Document doc = Jsoup.connect(foodDataPageURL).get();
 
@@ -110,7 +127,7 @@ class WebScraper {
         foodProtein = elements.first().text();
     }
 
-    public static void writeData() throws IOException{ // TO-DO: rename method
+    public static void writeData() throws IOException{ // TO-DO: rename method, javadoc
     
         // TO-DO: check if food already exists (make into separate method)
 
