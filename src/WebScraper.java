@@ -48,9 +48,9 @@ class WebScraper {
     }
 
     /**
-     * Sets the 
+     * Scrapes the food data page URL
      * 
-     * 
+     * Scrapes the MyFitnessPal food search page, then finds the URL for the food data page
      * @throws IOException
      */
     public static void setFoodDataPageURL() throws IOException{
