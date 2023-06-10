@@ -76,8 +76,22 @@ public class UserInfo {
         System.out.println("Goal: " + goal);
 
     }
-<<<<<<< HEAD
-
+        public static void retrieveUsercalorie(String username) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split("/");
+                if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
+                    CalorieGoal = Double.parseDouble(fields[5]);
+                    
+                    
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void appendCaloriesToUserInfo(String username, double calories) {
         try {
             reader = new BufferedReader(new FileReader("UserInfo.csv"));
@@ -118,22 +132,5 @@ public class UserInfo {
             e.printStackTrace();
         }
     }
-     public static void retrieveUsercalorie(String username) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split("/");
-                if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
-                    CalorieGoal = Double.parseDouble(fields[5]);
-                    
-                    
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-=======
->>>>>>> b998c6f39b0a43e358a8dc5f227983d796e33607
+
 }
