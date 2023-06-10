@@ -176,8 +176,19 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
             // If there is a String inside the text field, the webscraper fetches it and sees if the food is in their database
             else{
-                try {
-                    WebScraper.food = food;
+                WebScraper.food = food;
+                Boolean test = false;
+                
+                for(String element: ReadCSV.readCol(0, "FoodData.csv", "/", 4)){
+                    System.out.print(element+food);
+                    if(food.equals(element)){
+                        test = true;
+                        WebScraper.validInput = true;
+                    }
+                }
+
+                if(test == false){
+                    try {
                     WebScraper.addKeywordDelimiters();
                     WebScraper.setFoodDataPageURL();
 
@@ -185,8 +196,11 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     WebScraper.getCalorieData();
                     WebScraper.getFatData();
                     WebScraper.getProteinData();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                    WebScraper.writeData();
+                    }
+                    catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
 
                 if(WebScraper.validInput == true){

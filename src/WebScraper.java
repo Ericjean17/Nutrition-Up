@@ -1,6 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -105,7 +108,7 @@ class WebScraper {
 
         elements.remove(0);
 
-        foodFat = elements.first().text();
+        foodFat = elements.first().text().replace("g", "");
     }
 
     /**
@@ -121,15 +124,19 @@ class WebScraper {
         elements.remove(0);
         elements.remove(0);
         
-        foodProtein = elements.first().text();
+        foodProtein = elements.first().text().replace("g", "");
     }
 
     public static void writeData() throws IOException{ // TO-DO: rename method, javadoc
-    
-        // TO-DO: check if food already exists (make into separate method)
+        for(String element: ReadCSV.readCol(0, "FoodData.csv", "/", 4)){
+            System.out.print(element+food);
+            if(food.equals(element)){
+                return;
+            }
+        }
 
         try { 
-            PrintWriter writer = new PrintWriter(new FileWriter("FooData.csv", true));
+            PrintWriter writer = new PrintWriter(new FileWriter("FoodData.csv", true));
             writer.println(food + "/" + foodCalories + "/" + foodFat + "/" + foodProtein);
             writer.close();
         }
