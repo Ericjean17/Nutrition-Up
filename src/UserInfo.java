@@ -11,6 +11,8 @@ public class UserInfo {
     public static Scanner scanner;
     public static BufferedReader reader;
     public static PrintWriter writer;
+    public static double CalorieGoal;
+    public static double ProteinGoal;
     
     
     /** 
@@ -74,4 +76,61 @@ public class UserInfo {
         System.out.println("Goal: " + goal);
 
     }
+        public static void retrieveUsercalorie(String username) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split("/");
+                if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
+                    CalorieGoal = Double.parseDouble(fields[5]);
+                    
+                    
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void appendCaloriesToUserInfo(String username, double calories) {
+        try {
+            reader = new BufferedReader(new FileReader("UserInfo.csv"));
+            StringBuilder fileContent = new StringBuilder();
+    
+            String line;
+            boolean usernameExists = false;
+    
+            // Read the file line by line
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split("/");
+    
+                // Check if the current line matches the username
+                if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
+                    // Append the calories to the line
+                    line += "/" + calories;
+                    usernameExists = true;
+                }
+    
+                // Append the line to the file content
+                fileContent.append(line).append(System.lineSeparator());
+            }
+    
+            reader.close();
+    
+            // If the username doesn't exist, add a new line with the username and calories
+            if (!usernameExists) {
+                fileContent.append(username).append("/").append(calories).append(System.lineSeparator());
+            }
+    
+            // Write the updated content back to the file
+            writer = new PrintWriter(new FileWriter("UserInfo.csv"));
+            writer.print(fileContent.toString());
+            writer.close();
+    
+            System.out.println("Calories appended to UserInfo.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

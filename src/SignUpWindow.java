@@ -160,6 +160,9 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     
                 UserInfo.displayInformation();
                 UserInfo.storeUserInfo(); // Store the username in the file
+                CalorieCalculator.RecCalorie();
+                FatCalculator.Recfat();
+                ProteinCalculator.RecProtein();
             }
             catch (Exception e1) {
             }
