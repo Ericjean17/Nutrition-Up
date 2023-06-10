@@ -26,8 +26,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private LocalDate currentDay;
     private LocalDate startDate;
     private JLabel dayOfWeekText = new JLabel("");
+    private JLabel dailyCalorieGoal = new JLabel("");
 
     Font font = new Font("Hervetica", Font.BOLD, 16);
+    boolean isCalorieGoalEntered = false;
 
     /** 
      * This method creates, positions, and adds Java Swing objects into the food diary window
@@ -87,6 +89,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         diaryScrollPane.setBounds(700,150,300,400);
         goalProgressButton.setBounds(460,580,180,30);
         nextDayButton.setBounds(950,580,100,30);
+        dailyCalorieGoal.setBounds(40, 590, 200, 30);
         
         // The font and size of each label and button
         header1(applicationNameText);
@@ -98,6 +101,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         header4(dayOfWeekText);
         header5(goalProgressButton);
         header5(nextDayButton);
+        header3(dailyCalorieGoal);
 
         // Adds the components to the window
         add(applicationNameText);
@@ -114,6 +118,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(diaryScrollPane);
         add(dateText);
         add(dayOfWeekText);
+        add(dailyCalorieGoal);
     }
 
     /** 
@@ -137,12 +142,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             if (Validate.validateCalorieGoal()==true){
                 // Hides the 'enter' button so the user cannot change their calorie goal
                 enterCalorieGoalButton.setVisible(false);
-                enterCalorieInputTextField.setText(Validate.calorieGoal); // Why do we need this?
+                enterCalorieInputTextField.setText(""); // Why do we need this?
+                isCalorieGoalEntered = true;
+                dailyCalorieGoal.setText("Calorie goal : " + userCalories + "g");
             }
             // If the calorie goal is invalid, display an error message
             else{
                 enterCalorieInputTextField.setText("");
-                JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (15000-10000).");
+                JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (1500-10000).");
             }
 
             System.out.println("User wants to eat " + userCalories + "g of calories today");
@@ -156,8 +163,13 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             String food = inputFoodNameTextField.getText();
             Validate.foodName = food;
 
+            if (isCalorieGoalEntered == false){
+                JOptionPane.showMessageDialog(null, "Enter your calorie goal first!");
+                inputFoodNameTextField.setText("");
+            }
+
             // If the user doesn't write anything down / does not enter a String and presses the 'enter' button, an error message pops up
-            if (Validate.validateFoodName()==false){
+            else if (Validate.validateFoodName() == false){
                 JOptionPane.showMessageDialog(null, "Error. Please Enter a Food Name (A-Z)");
                 inputFoodNameTextField.setText("");
             }
