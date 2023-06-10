@@ -233,6 +233,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
             diaryTextArea.setText("");
+            dailyCalorieGoal.setText("");
         }
     }
 }
