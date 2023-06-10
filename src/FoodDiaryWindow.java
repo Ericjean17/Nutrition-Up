@@ -180,7 +180,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 Boolean test = false;
                 
                 for(String element: ReadCSV.readCol(0, "FoodData.csv", "/", 4)){
-                    System.out.print(element+food);
                     if(food.equals(element)){
                         test = true;
                         WebScraper.validInput = true;
@@ -198,14 +197,16 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     WebScraper.getProteinData();
                     WebScraper.writeData();
                     }
-                    catch (IOException e1) {
-                        e1.printStackTrace();
+                    catch (Exception e2) {
+
                     }
                 }
 
                 if(WebScraper.validInput == true){
                     System.out.println("User ate this " + food);
                     diaryTextArea.append(food + "\n");
+                    // System.out.println(diaryTextArea.getText());
+                    // diaryTextArea.append("apple pie" + "\n");
                     diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
                 }
