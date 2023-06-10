@@ -172,8 +172,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     }
 
     /**
-     * 
-     * @return
+     * @return the user's username from the TextField
      */
     public JTextField getCreateUsernameTextField() {
         return createUsernameTextField;
@@ -201,7 +200,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     }
 
     /**
-     * @return the user's gender from the ComboBox items
+     * @return the user's gender from items inside the ComboBox drop down list
      */
     public JComboBox getGenderInputComboBox(){
         return genderComboBox;
