@@ -209,6 +209,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     // diaryTextArea.append("apple pie" + "\n");
                     diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
+                    WebScraper.validInput = false;
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Invalid food name");
