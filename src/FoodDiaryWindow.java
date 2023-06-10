@@ -21,12 +21,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private JScrollPane diaryScrollPane;
     private JTextField inputFoodNameTextField = new JTextField(20);
     private JButton enterFoodNameButton = new JButton("Enter");
-    private JTextArea diaryTextArea = new JTextArea();
+    public JTextArea diaryTextArea = new JTextArea(); // switched to public for testing
     private JLabel dateText = new JLabel("");
     private LocalDate currentDay;
     private LocalDate startDate;
     private JLabel dayOfWeekText = new JLabel("");
     private JLabel dailyCalorieGoal = new JLabel("");
+
+    public static String diaryText = "";
 
     Font font = new Font("Hervetica", Font.BOLD, 16);
     boolean isCalorieGoalEntered = false;
@@ -119,6 +121,8 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(dateText);
         add(dayOfWeekText);
         add(dailyCalorieGoal);
+
+        diaryTextArea.append(diaryText);
     }
 
     /** 
@@ -205,7 +209,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 if(WebScraper.validInput == true){
                     System.out.println("User ate this " + food);
                     diaryTextArea.append(food + "\n");
-                    // System.out.println(diaryTextArea.getText());
                     // diaryTextArea.append("apple pie" + "\n");
                     diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
@@ -219,9 +222,18 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
         // Goes to the goal progress window
         else if (e.getSource() == goalProgressButton){
-            dispose();
-            GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
-            goalTrackerWindow.createGoalTrackerWindow();
+            if (isCalorieGoalEntered == false){
+                JOptionPane.showMessageDialog(null, "Enter your calorie goal first!");
+                inputFoodNameTextField.setText("");
+            }
+            else{
+                diaryText = diaryTextArea.getText();
+
+                
+                dispose();
+                GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
+                goalTrackerWindow.createGoalTrackerWindow();
+            }
         }
 
         // When the next day button is pressed, it changes the date and day

@@ -14,6 +14,8 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
     public JProgressBar fatProgressBar;
     public JButton returnToFoodDiaryButton = new JButton("Return to Food Diary");
 
+    public String temp = FoodDiaryWindow.diaryText;
+
     /** 
      * This method creates, positions, and adds Java Swing objects into the goal tracker window
      * along with inheriting properties from the constructor class
@@ -106,9 +108,19 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
     public void actionPerformed(ActionEvent e) {
         // User will go back to the food diary window after pressing the back button
         if (e.getSource() == returnToFoodDiaryButton){
+
+
             dispose();
             FoodDiaryWindow foodDiaryWindow = new FoodDiaryWindow();
             foodDiaryWindow.createFoodDiaryWindow();
+
+            FoodDiaryWindow.diaryText = "abs";
+
+            // foodDiaryWindow.diaryTextArea.setText(foodDiaryWindow.diaryText);
+
+            // MAKE THE ENTER BUTTON GONE TOO
+            
+            // FoodDiaryWindow.diaryTextArea.set(FoodDiaryWindow.diaryText);
         }
     }
 }
