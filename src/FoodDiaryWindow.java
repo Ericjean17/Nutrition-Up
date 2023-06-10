@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 
 public class FoodDiaryWindow extends WindowConstructor implements ActionListener {
     
-    
     // Create the labels, buttons, and TextFields, ScrollPanes and TextArea, and assigns it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
     private JLabel foodDiaryText = new JLabel("Food Diary");
@@ -30,6 +29,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     Font font = new Font("Hervetica", Font.BOLD, 16);
 
+    /** 
+     * This method creates, positions, and adds Java Swing objects into the food diary window
+     * along with inheriting properties from the constructor class
+     */
     public void createFoodDiaryWindow() {
 
         // The layout to print the date today on this window
@@ -59,21 +62,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
         // Makes the scroll bar always appear
         diaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-        
-        /*
-        // Something we can do in the controller (refer to the UML diagram)
-        ArrayList<String> foodItems = new ArrayList<String>();
-        foodItems.add("Food item #1");
-        foodItems.add("Food item #2");
-        foodItems.add("Food item #3");
-        
-
-        // Add each food item as a separate component to the foodPanel
-        for(String foodItem: foodItems){
-            JLabel userFoodLabel = new JLabel(foodItem);
-            foodPanel.add(foodLabel);
-        }
-        */
 
         // Centers the button to the middle of the window
         goalProgressButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -128,9 +116,16 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(dayOfWeekText);
     }
 
-    
     /** 
-     * @param e
+     * @param e The event when a button is clicked occurs
+     * 
+     * This method finds and gets the event when a button is clicked. If the calorie button is clicked,
+     * then it will store the int value into DailyTotals.csv file and dissapears until the next day button is clicked.
+     * When the user enters a food and clicks the enter food button, it will pop up onto the diary and record the amount of
+     * protein, fat, and calories of the food and stores it into a csv file. The goal progress button will dispose the current window
+     * and create the goal progress window.
+     * 
+     * *The docstring is to long. will change later.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
