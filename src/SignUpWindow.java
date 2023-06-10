@@ -21,6 +21,10 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     String[] gender = {"Male", "Female"};
     public JComboBox genderComboBox = new JComboBox(gender);
     
+    /** 
+     * This method creates, positions, and adds Java Swing objects into the login window
+     * along with inheriting properties from the constructor class
+     */
     public void createSignUpWindow() {
         
         // Set the positions and sizes of the labels, buttons, and TextFields, and ComboBox in this wind
@@ -71,12 +75,14 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         add(createUserAccount);
         add(genderComboBox);
     }
-
     
     /** 
-     * @param e
+     * @param e The event when a button is clicked occurs
+     * 
+     * This method finds and gets the event when a button is clicked. It then disposes the current window
+     * and creates the login window again, and saves the data inside the TextFields
+     * and ComboBox depending on which button is clicked (so either the back or create account button)
      */
-    // If the user hits the back button, deletes the current window and goes to the login window
     @Override
     public void actionPerformed(ActionEvent e) {     
         if (e.getSource() == backButton){
@@ -165,22 +171,38 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     public JTextField getCreateUsernameTextField() {
         return createUsernameTextField;
     }
     
+    /**
+     * @return the user's age inside the TextField
+     */
     public JTextField getInputAgeTextField() {
         return inputAgeTextField;
     }
     
+    /**
+     * @return the user's weight inside the TextField
+     */
     public JTextField getInputWeightTextField() {
         return inputWeightTextField;
     }
     
+    /**
+     * @return the user's height inside the TextField
+     */
     public JTextField getInputHeightTextField() {
         return inputHeightTextField;
     }
 
+    /**
+     * @return the user's gender from the ComboBox items
+     */
     public JComboBox getGenderInputComboBox(){
         return genderComboBox;
     }

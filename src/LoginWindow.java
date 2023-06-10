@@ -58,10 +58,10 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     }
     
     /** 
-     * @param e The event when a certain action like a button is clicked occurs
+     * @param e The event when a button is clicked occurs
      * 
      * This method finds and gets the event when a button is clicked. It then disposes the current window
-     *  and creates a the food diary or sign up window depending on which button is clicked
+     * and creates a the food diary or sign up window depending on which button is clicked
      */
     @Override
     public void actionPerformed(ActionEvent e) {

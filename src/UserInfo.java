@@ -26,7 +26,7 @@ public class UserInfo {
             e.printStackTrace();
             }
         }
-        
+    
     public static boolean isUsernameExists(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
