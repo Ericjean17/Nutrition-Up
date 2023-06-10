@@ -11,6 +11,8 @@ public class UserInfo {
     public static Scanner scanner;
     public static BufferedReader reader;
     public static PrintWriter writer;
+    public static double CalorieGoal;
+    public static double ProteinGoal;
     
     public static void storeUserInfo() throws IOException{
         try { 
@@ -105,6 +107,22 @@ public class UserInfo {
             writer.close();
     
             System.out.println("Calories appended to UserInfo.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+     public static void retrieveUsercalorie(String username) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split("/");
+                if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
+                    CalorieGoal = Double.parseDouble(fields[5]);
+                    
+                    
+                    break;
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

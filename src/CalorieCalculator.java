@@ -1,6 +1,7 @@
 public class CalorieCalculator {
-    public static void main(String[] args) throws Exception {
-        String username = "orion";  // Replace with the desired username
+
+    public static void RecCalorie(){
+        String username = UserInfo.username;  // Replace with the desired username
         
         if (UserInfo.isUsernameExists(username)) {
             // Username exists, perform login action
@@ -14,6 +15,7 @@ public class CalorieCalculator {
             String genderM = UserInfo.gender;
             int ageM = UserInfo.age;
             double genderFactor = 0;
+            
             
             if (genderM.equals("female")){
                genderFactor =  genderFactor + 0.9;
@@ -51,12 +53,7 @@ public class CalorieCalculator {
             
             // Calculate the result
             double CalorieResult = weightKg * genderFactor * hoursPerDay * bodyFatPercentage;
-            System.out.println("weight:" + weightKg);
-            System.out.println("genderFactor:" + genderFactor);
-            System.out.println("hoursPerDay:" + hoursPerDay);
-            System.out.println("bodyfat:" + bodyFatPercentage);
-            System.out.println("Result: " + CalorieResult);
-            System.out.println("Result: " + genderM);
+    
             
             // Append the calories to the same line in the UserInfo.csv file
             UserInfo.appendCaloriesToUserInfo(username, CalorieResult);
