@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
 
 public class SignUpWindow extends WindowConstructor implements ActionListener{
     
@@ -23,6 +21,10 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     String[] gender = {"Male", "Female"};
     public JComboBox genderComboBox = new JComboBox(gender);
     
+    /** 
+     * This method creates, positions, and adds Java Swing objects into the sign up window
+     * along with inheriting properties from the constructor class
+     */
     public void createSignUpWindow() {
         
         // Set the positions and sizes of the labels, buttons, and TextFields, and ComboBox in this wind
@@ -37,7 +39,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         inputWeightTextField.setBounds(232,405, 150, 30);
         enterHeightText.setBounds(675,365,200,30);
         inputHeightTextField.setBounds(670,405,150,30);
-        backButton.setBounds(30,30,70,30);
+        backButton.setBounds(30,30,75,30);
         createUserAccount.setBounds(475,580,150,30);
         genderComboBox.setBounds(130,290,150,30);
         
@@ -73,8 +75,14 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         add(createUserAccount);
         add(genderComboBox);
     }
-
-    // If the user hits the back button, deletes the current window and goes to the login window
+    
+    /** 
+     * @param e The event when a button is clicked occurs
+     * 
+     * This method finds and gets the event when a button is clicked. It then disposes the current window
+     * and creates the login window again, and saves the data inside the TextFields
+     * and ComboBox depending on which button is clicked (so either the back or create account button)
+     */
     @Override
     public void actionPerformed(ActionEvent e) {     
         if (e.getSource() == backButton){
@@ -87,7 +95,6 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         // If the user presses the create account button, they need to put in valid values to create an account.
         // Then it goes back to the login window.
         else if (e.getSource() == createUserAccount){
-            // TESTING ERROR POP-UP
             String createdUsername = getCreateUsernameTextField().getText();
             String createdAge = getInputAgeTextField().getText();
             String createdWeight = getInputWeightTextField().getText();
@@ -116,8 +123,15 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Error. Invalid Username, Enter a Letter (A-Z).");
                     createUsernameTextField.setText(""); // Clears the text field after saving the values??
                 }
+            }
+            // If the username already exists, display error message
+            else{
+                JOptionPane.showMessageDialog(null, "Error. Username Is Taken!");
+                createUsernameTextField.setText(""); // Clears the text field after saving the values??
+            }
+            try{
                 // If the inputted age is not numerical, display error message
-                else if (Validate.validateAge() == false){
+                if (Validate.validateAge() == false){
                     JOptionPane.showMessageDialog(null, "Error. Invalid Age, Enter a Number (0-100).");
                     inputAgeTextField.setText(""); // Clears the text field after saving the values??
                 }
@@ -131,29 +145,11 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Error. Invalid Height, Enter a Number (1-215).");
                     inputHeightTextField.setText(""); // Clears the text field after saving the values??
                 }
-            }
-            // If the username already exists, display error message
-            else{
-                JOptionPane.showMessageDialog(null, "Error. Username Is Taken!");
-                createUsernameTextField.setText(""); // Clears the text field after saving the values??
-            }
-
-            try{
                 // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
-                // *DELETE PRINT STATEMENTS LATER
                 int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
-                System.out.println("Valid age: " + inputtedAge);
-                
-                System.out.println("username: " + createdUsername);
-                
                 String selectedGender = (String) getGenderInputComboBox().getSelectedItem();
-                System.out.println("gender: " + selectedGender);
-
                 int inputtedWeight = Integer.parseInt(getInputWeightTextField().getText());
-                System.out.println("weight: " + inputtedWeight);
-
                 int inputtedHeight = Integer.parseInt(getInputHeightTextField().getText());
-                System.out.println("height: " + inputtedHeight);
 
                 UserInfo.username = createdUsername;
                 UserInfo.age = inputtedAge;
@@ -163,14 +159,18 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 UserInfo.goal = 0; // Set default goal to 0 because we don't know user's calorie goal
     
                 UserInfo.displayInformation();
-                
                 UserInfo.storeUserInfo(); // Store the username in the file
+<<<<<<< HEAD
                 CalorieCalculator.RecCalorie();
                 FatCalculator.Recfat();
                 ProteinCalculator.RecProtein();;
                 
             } catch (IOException e1) {
                 e1.printStackTrace();
+=======
+            }
+            catch (Exception e1) {
+>>>>>>> b998c6f39b0a43e358a8dc5f227983d796e33607
             }
         }
 
@@ -180,22 +180,37 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         }
     }
 
+    /**
+     * @return the user's username from the TextField
+     */
     public JTextField getCreateUsernameTextField() {
         return createUsernameTextField;
     }
     
+    /**
+     * @return the user's age inside the TextField
+     */
     public JTextField getInputAgeTextField() {
         return inputAgeTextField;
     }
     
+    /**
+     * @return the user's weight inside the TextField
+     */
     public JTextField getInputWeightTextField() {
         return inputWeightTextField;
     }
     
+    /**
+     * @return the user's height inside the TextField
+     */
     public JTextField getInputHeightTextField() {
         return inputHeightTextField;
     }
 
+    /**
+     * @return the user's gender from items inside the ComboBox drop down list
+     */
     public JComboBox getGenderInputComboBox(){
         return genderComboBox;
     }

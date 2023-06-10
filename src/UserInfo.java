@@ -14,6 +14,10 @@ public class UserInfo {
     public static double CalorieGoal;
     public static double ProteinGoal;
     
+    
+    /** 
+     * @throws IOException
+     */
     public static void storeUserInfo() throws IOException{
         try { 
             PrintWriter writer = new PrintWriter(new FileWriter("UserInfo.csv", true));
@@ -24,7 +28,7 @@ public class UserInfo {
             e.printStackTrace();
             }
         }
-        
+    
     public static boolean isUsernameExists(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
@@ -40,6 +44,10 @@ public class UserInfo {
         return false;
     }
 
+    
+    /** 
+     * @param username
+     */
     public static void retrieveUserInfo(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
@@ -59,8 +67,6 @@ public class UserInfo {
         }
     }
 
- 
-
     public static void displayInformation() {
         System.out.println("Username: " + username);
         System.out.println("Age: " + age);
@@ -70,6 +76,7 @@ public class UserInfo {
         System.out.println("Goal: " + goal);
 
     }
+<<<<<<< HEAD
 
     public static void appendCaloriesToUserInfo(String username, double calories) {
         try {
@@ -127,4 +134,6 @@ public class UserInfo {
             e.printStackTrace();
         }
     }
+=======
+>>>>>>> b998c6f39b0a43e358a8dc5f227983d796e33607
 }

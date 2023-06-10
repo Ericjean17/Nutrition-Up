@@ -87,31 +87,37 @@ public class Validate {
         }
     }
     // method to validate calorie goal
-    public void validateCalorieGoal(String inputtedCalorieGoal){
-        if (isInt(inputtedCalorieGoal)){
-            if(Integer.parseInt(inputtedCalorieGoal)>=1500 && Integer.parseInt(inputtedCalorieGoal)<=10000){
-                System.out.println("Valid Calorie Goal: " + inputtedCalorieGoal);
+    public static boolean validateCalorieGoal(){
+        if (isInt(calorieGoal)){
+            if(Integer.parseInt(calorieGoal)>=1500 && Integer.parseInt(calorieGoal)<=10000){
+                System.out.println("Valid Calorie Goal: " + calorieGoal);
+                return true;
             }
             else{
                 System.out.println("Invalid Calorie Goal! Please input a Calorie Goal from '1500-10000'");
+                return false;
             }
         }
         else{
             System.out.println("Invalid Calorie Goal! Please Try Again.");
+            return false;
         }
     }
     // method to validate food name
-    public void validateFoodName(String inputtedFoodName){
-        if(isString(inputtedFoodName)){
-            if(inputtedFoodName.length() <= 20){
-                System.out.println("Valid Food Name: " + inputtedFoodName);
+    public static boolean validateFoodName(){
+        if(isString(foodName)){
+            if(foodName.length() <= 20){
+                System.out.println("Valid Food Name: " + foodName);
+                return true;
             }
             else{
                 System.out.println("Invalid food name. Food name cannot exceed 20 characters");
+                return false;
             }
         }
         else {
             System.out.println("Invalid food name. Please Try Again!");
+            return false;
         }
     }
 }

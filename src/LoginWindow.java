@@ -14,6 +14,10 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     private JButton signUpButton = new JButton("Sign up");
     public String inputtedUsername = "";
     
+    /** 
+     * This method creates, positions, and adds Java Swing objects into the login window
+     * along with inheriting properties from the constructor class
+     */
     public void createLoginWindow() {
         
         // Initializes the action events for the buttons & TextFields
@@ -52,14 +56,20 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         add(noAccountText);
         add(signUpButton);
     }
-
-    // This method is to create any actions or events that occurs from user input
+    
+    /** 
+     * @param e The event when a button is clicked occurs
+     * 
+     * This method finds and gets the event when a button is clicked. It then disposes the current window
+     * and creates a the food diary or sign up window depending on which button is clicked
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
         // When the user presses the login button, it gets the String from the TextField and validates the username
         if (e.getSource() == loginButton){
             String inputtedUsername = getInputUsernameTextField().getText();
+            
             // If the username is in the library, deletes the current window and changes to the food diary window
             if (UserInfo.isUsernameExists(inputtedUsername) == true){
                 System.out.println("Username inputted is : " + inputtedUsername);
@@ -71,7 +81,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             }
             else{
                 // Displays an error message if the username is not validated or not in the user info csv file
-                JOptionPane.showMessageDialog(null, "Error");
+                JOptionPane.showMessageDialog(null, "Error. Please Input An Existing Username.");
 
                 // Clears the text field after saving the values
                 inputUsernameTextField.setText("");
@@ -86,7 +96,9 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
         }
     }
 
-    // Gets the input from the username TextField
+    /*
+     * Gets the input from the username TextField
+     */
     public JTextField getInputUsernameTextField(){
         return inputUsernameTextField;
     }
