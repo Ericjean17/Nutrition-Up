@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 
 public class FoodDiaryWindow extends WindowConstructor implements ActionListener {
     
-    
     // Create the labels, buttons, and TextFields, ScrollPanes and TextArea, and assigns it to a variable
     private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
     private JLabel foodDiaryText = new JLabel("Food Diary");
@@ -27,9 +26,15 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private LocalDate currentDay;
     private LocalDate startDate;
     private JLabel dayOfWeekText = new JLabel("");
+    private JLabel dailyCalorieGoal = new JLabel("");
 
     Font font = new Font("Hervetica", Font.BOLD, 16);
+    boolean isCalorieGoalEntered = false;
 
+    /** 
+     * This method creates, positions, and adds Java Swing objects into the food diary window
+     * along with inheriting properties from the constructor class
+     */
     public void createFoodDiaryWindow() {
 
         // The layout to print the date today on this window
@@ -59,21 +64,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
         // Makes the scroll bar always appear
         diaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-        
-        /*
-        // Something we can do in the controller (refer to the UML diagram)
-        ArrayList<String> foodItems = new ArrayList<String>();
-        foodItems.add("Food item #1");
-        foodItems.add("Food item #2");
-        foodItems.add("Food item #3");
-        
-
-        // Add each food item as a separate component to the foodPanel
-        for(String foodItem: foodItems){
-            JLabel userFoodLabel = new JLabel(foodItem);
-            foodPanel.add(foodLabel);
-        }
-        */
 
         // Centers the button to the middle of the window
         goalProgressButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,6 +89,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         diaryScrollPane.setBounds(700,150,300,400);
         goalProgressButton.setBounds(460,580,180,30);
         nextDayButton.setBounds(950,580,100,30);
+        dailyCalorieGoal.setBounds(40, 590, 200, 30);
         
         // The font and size of each label and button
         header1(applicationNameText);
@@ -110,6 +101,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         header4(dayOfWeekText);
         header5(goalProgressButton);
         header5(nextDayButton);
+        header3(dailyCalorieGoal);
 
         // Adds the components to the window
         add(applicationNameText);
@@ -126,8 +118,20 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(diaryScrollPane);
         add(dateText);
         add(dayOfWeekText);
+        add(dailyCalorieGoal);
     }
 
+    /** 
+     * @param e The event when a button is clicked occurs
+     * 
+     * This method finds and gets the event when a button is clicked. If the calorie button is clicked,
+     * then it will store the int value into DailyTotals.csv file and dissapears until the next day button is clicked.
+     * When the user enters a food and clicks the enter food button, it will pop up onto the diary and record the amount of
+     * protein, fat, and calories of the food and stores it into a csv file. The goal progress button will dispose the current window
+     * and create the goal progress window.
+     * 
+     * *The docstring is to long. will change later.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == enterCalorieGoalButton){
@@ -138,12 +142,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             if (Validate.validateCalorieGoal()==true){
                 // Hides the 'enter' button so the user cannot change their calorie goal
                 enterCalorieGoalButton.setVisible(false);
-                enterCalorieInputTextField.setText(Validate.calorieGoal);
+                enterCalorieInputTextField.setText(""); // Why do we need this?
+                isCalorieGoalEntered = true;
+                dailyCalorieGoal.setText("Calorie goal : " + userCalories + "g");
             }
             // If the calorie goal is invalid, display an error message
             else{
-                JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (15000-10000).");
                 enterCalorieInputTextField.setText("");
+                JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (1500-10000).");
             }
 
             System.out.println("User wants to eat " + userCalories + "g of calories today");
@@ -157,23 +163,44 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             String food = inputFoodNameTextField.getText();
             Validate.foodName = food;
 
+            if (isCalorieGoalEntered == false){
+                JOptionPane.showMessageDialog(null, "Enter your calorie goal first!");
+                inputFoodNameTextField.setText("");
+            }
+
             // If the user doesn't write anything down / does not enter a String and presses the 'enter' button, an error message pops up
-            if (Validate.validateFoodName()==false){
+            else if (Validate.validateFoodName() == false){
                 JOptionPane.showMessageDialog(null, "Error. Please Enter a Food Name (A-Z)");
                 inputFoodNameTextField.setText("");
             }
 
             // If there is a String inside the text field, the webscraper fetches it and sees if the food is in their database
             else{
-                try {
-                    WebScraper.food = food;
+                WebScraper.food = food;
+                Boolean test = false;
+                
+                for(String element: ReadCSV.readCol(0, "FoodData.csv", "/", 4)){
+                    System.out.print(element+food);
+                    if(food.equals(element)){
+                        test = true;
+                        WebScraper.validInput = true;
+                    }
+                }
+
+                if(test == false){
+                    try {
                     WebScraper.addKeywordDelimiters();
                     WebScraper.setFoodDataPageURL();
+
+                    // consider moving these out of the try, or combining this try-catch with the if-else below?
                     WebScraper.getCalorieData();
                     WebScraper.getFatData();
                     WebScraper.getProteinData();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                    WebScraper.writeData();
+                    }
+                    catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
 
                 if(WebScraper.validInput == true){
@@ -220,6 +247,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
             diaryTextArea.setText("");
+            dailyCalorieGoal.setText("");
         }
     }
 }

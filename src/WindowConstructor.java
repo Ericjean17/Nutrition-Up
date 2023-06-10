@@ -1,13 +1,13 @@
 import java.awt.Font;
 import javax.swing.*;
 
-// Constuctor method for all of the windows
 public class WindowConstructor extends JFrame {
 
     private JLabel label;
     private JButton button;
     private JTextField textField;
 
+    // Constructor method for all of the windows
     public WindowConstructor() {
         
         // Sets the title of the all of the windows
@@ -32,10 +32,10 @@ public class WindowConstructor extends JFrame {
         ImageIcon logo = new ImageIcon("NutritionUpLogo.png"); 
         setIconImage(logo.getImage());
 
-        // Changes the backgrund of all of the windows
+        // Changes the backgrund of all of the windows to a png image
         setContentPane(new JLabel(new ImageIcon(("NutritionUpBackground.png"))));
 
-        // Initializes labels, buttons, and TextFields
+        // Initializes labels, buttons, and TextFields for all windows
         label = new JLabel();
         button = new JButton();
         textField = new JTextField(10);
@@ -44,53 +44,46 @@ public class WindowConstructor extends JFrame {
         setVisible(true);
     }
 
+    
+    /** 
+     * @param label Changes the font of the label to Helvetica and size of the label to 50
+     */
     public void header1(JLabel label){
         label.setFont(new Font("Helvetica", Font.BOLD,50));
     }
 
+    /** 
+     * @param label Changes the font of the label to Helvetica and size of the label to 30
+     */
     public void header2(JLabel label){
         label.setFont(new Font("Helvetica", Font.BOLD,30));
     }
 
+    /** 
+     * @param label Changes the font of the label to Helvetica and size of the label to 20
+     */
     public void header3(JLabel label){
         label.setFont(new Font("Helvetica", Font.BOLD,20));
     }
     
+    /** 
+     * @param label Changes the font of the label to Helvetica and size of the label to 17
+     */
     public void header4(JLabel label){
         label.setFont(new Font("Helvetica", Font.BOLD,17));
     }
 
+    /** 
+     * @param label Changes the font of the button to Helvetica and size of the button to 15
+     */
     public void header5(JButton button){
         button.setFont(new Font("Helvetica", Font.BOLD,15));
     }
 
+    /** 
+     * @param label Changes the font of the button to Helvetica and size of the button to 13
+     */
     public void header6(JButton button){
         button.setFont(new Font("Helvetica", Font.BOLD,13));
-    }
-
-    // Get and setter methods for the labels, buttons, and TextFields.
-    // Don't know if we need this.
-    public void setLabel(JLabel label) {
-        this.label = label;
-    }
-
-    public JLabel getLabel() {
-        return label;
-    }
-
-    public void setButton(JButton button) {
-        this.button = button;
-    }
-
-    public JButton getButton() {
-        return button;
-    }
-
-    public void setTextField(JTextField textField) {
-        this.textField = textField;
-    }
-
-    public JTextField getTextField() {
-        return textField;
     }
 }
