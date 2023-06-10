@@ -67,12 +67,12 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
         add(fatProgressBar);
 
         // Fills the bar with a thread/color
-        new Thread(this::fill).start();
+        new Thread(this::progressBarValue).start();
     }
 
     // Method to simulate the progress of the bar (input user calories, protein, and fat later)
     // NEED TO CHANGE THIS ACCORDING TO USER INPUT VALUES FROM CONTROLLER
-    public void fill() {
+    public void progressBarValue() {
         int counter = 0;
         while (counter <= 100) {
             final int value = counter;
@@ -96,9 +96,11 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
         fatProgressBar.setString("You reached your ____ goal! :)");
     }
     
-    
     /** 
      * @param e The event when a button is clicked occurs
+     * 
+     * This method will simply dispose the current window and create the food diary window 
+     * when the 'back' button is pressed
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -109,6 +111,4 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
             foodDiaryWindow.createFoodDiaryWindow();
         }
     }
-    // *Since there are 3 progress bars and it contains a lot of code to make, maybe resort to having a constructor 
-    // method or something for the progress bars so this class looks neater and isn't that long?
 }
