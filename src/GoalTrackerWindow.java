@@ -14,6 +14,10 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
     public JProgressBar fatProgressBar;
     public JButton returnToFoodDiaryButton = new JButton("Return to Food Diary");
 
+    /** 
+     * This method creates, positions, and adds Java Swing objects into the goal tracker window
+     * along with inheriting properties from the constructor class
+     */
     public void createGoalTrackerWindow() {
         // Initializes the action events for the buttons
         returnToFoodDiaryButton.addActionListener(this);
@@ -94,7 +98,7 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
     
     
     /** 
-     * @param e
+     * @param e The event when a button is clicked occurs
      */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -22,7 +22,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     public JComboBox genderComboBox = new JComboBox(gender);
     
     /** 
-     * This method creates, positions, and adds Java Swing objects into the login window
+     * This method creates, positions, and adds Java Swing objects into the sign up window
      * along with inheriting properties from the constructor class
      */
     public void createSignUpWindow() {
