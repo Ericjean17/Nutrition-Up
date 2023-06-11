@@ -230,7 +230,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 if(WebScraper.validInput == true){
                     System.out.println("User ate this " + food);
                     diaryTextArea.append(food + "\n");
-                    // diaryTextArea.append("apple pie" + "\n");
+                    diaryTextArea.append(WebScraper.getScrollPaneText() + "\n");
                     diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
                     WebScraper.validInput = false;

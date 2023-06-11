@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,9 +15,9 @@ class WebScraper {
     public static String foodSearchPageURL;
     public static String foodDataPageURL;
     public static Boolean validInput;
-    public static String foodCalories;
-    public static String foodFat;
-    public static String foodProtein;
+    public static String foodCalories = "";
+    public static String foodFat = "";
+    public static String foodProtein = "";
 
     // Constructor method to set initial values
     public WebScraper(){
@@ -89,7 +90,7 @@ class WebScraper {
         Document doc = Jsoup.connect(foodDataPageURL).get();
 
         Element element = doc.getElementsByAttributeValue("class", "MuiTypography-root MuiTypography-body1 css-ezyk0s").first();
-        
+                
         foodCalories = element.text();
         if(foodCalories.equals("--")){
             foodCalories = "0";
@@ -109,8 +110,8 @@ class WebScraper {
         elements.remove(0);
 
         foodFat = elements.first().text().replace("g", "");
-        if(foodCalories.equals("--")){
-            foodCalories = "0";
+        if(foodFat.equals("--")){
+            foodFat = "0";
         }
     }
 
@@ -128,9 +129,27 @@ class WebScraper {
         elements.remove(0);
         
         foodProtein = elements.first().text().replace("g", "");
-        if(foodCalories.equals("--")){
-            foodCalories = "0";
+        if(foodProtein.equals("--")){
+            foodProtein = "0";
         }
+    }
+
+    public static String getScrollPaneText(){
+        ArrayList<String> foodNames2 = ReadCSV.readCol(0, "FoodData.csv", "/", 4);
+        ArrayList<String> calorieData = ReadCSV.readCol(1, "FoodData.csv", "/", 4);
+        ArrayList<String> fatData = ReadCSV.readCol(2, "FoodData.csv", "/", 4);
+        ArrayList<String> proteinData = ReadCSV.readCol(3, "FoodData.csv", "/", 4);
+        
+        int temp = 0;
+        int i = 0;
+        for(String element: foodNames2){
+            if(element.equals(food)){
+                temp = i;
+            }
+            i++;
+        }
+
+        return "Cal: " + calorieData.get(temp) + ", Fat: " + fatData.get(temp) + ", Prot: " + proteinData.get(temp);
     }
 
     public static void writeData() throws IOException{ // TO-DO: rename method, javadoc
