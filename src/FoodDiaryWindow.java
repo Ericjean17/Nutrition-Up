@@ -16,7 +16,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private JTextField enterCalorieInputTextField = new JTextField(10);
     private JButton enterCalorieGoalButton = new JButton("Enter");
     private JLabel addFoodText = new JLabel("Add a food to your diary");
-    private JButton goalProgressButton = new JButton("See goal progress");
     private JButton nextDayButton = new JButton("Next day");
     private JScrollPane diaryScrollPane;
     private JTextField inputFoodNameTextField = new JTextField(20);
@@ -29,7 +28,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private static SimpleDateFormat dateFormat;
     private JLabel dayOfWeekText = new JLabel("");
     private JLabel dailyCalorieGoal = new JLabel("");
-
     public static String diaryText = "";
     public static String userCalories = "";
 
@@ -37,6 +35,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
     Font font = new Font("Hervetica", Font.BOLD, 16);
     boolean isCalorieGoalEntered = false;
+
+    private JButton calorieGoalProgressButton = new JButton("Calorie goal progress");
+    private JButton proteinGoalProgressButton = new JButton("Protein goal progress");
+    private JButton fatGoalProgressButton = new JButton("Fat goal progress");
 
     /** 
      * This method creates, positions, and adds Java Swing objects into the food diary window
@@ -75,12 +77,12 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         diaryScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 
         // Centers the button to the middle of the window
-        goalProgressButton.setHorizontalAlignment(SwingConstants.CENTER);
+        calorieGoalProgressButton.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Initializes the action events for the buttons
         enterCalorieGoalButton.addActionListener(this);
         enterFoodNameButton.addActionListener(this);
-        goalProgressButton.addActionListener(this);
+        calorieGoalProgressButton.addActionListener(this);
         nextDayButton.addActionListener(this);
         
         // Sets the positions and sizes of the label, button, and TextField (1100x680)
@@ -96,7 +98,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         dateText.setBounds(50,25,120,30);
         dayOfWeekText.setBounds(130,25,150,30);
         diaryScrollPane.setBounds(700,150,300,400);
-        goalProgressButton.setBounds(460,580,180,30);
+        calorieGoalProgressButton.setBounds(460,580,180,30);
         nextDayButton.setBounds(950,580,100,30);
         dailyCalorieGoal.setBounds(40, 590, 200, 30);
         
@@ -108,7 +110,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         header3(addFoodText);
         header4(dateText);
         header4(dayOfWeekText);
-        header5(goalProgressButton);
+        header5(calorieGoalProgressButton);
         header5(nextDayButton);
         header3(dailyCalorieGoal);
 
@@ -122,7 +124,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(addFoodText);
         add(inputFoodNameTextField);
         add(enterFoodNameButton);
-        add(goalProgressButton);
+        add(calorieGoalProgressButton);
         add(nextDayButton);
         add(diaryScrollPane);
         add(dateText);
@@ -237,7 +239,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         }
 
         // Goes to the goal progress window
-        else if (e.getSource() == goalProgressButton){
+        else if (e.getSource() == calorieGoalProgressButton){
             if (isCalorieGoalEntered == false){
                 JOptionPane.showMessageDialog(null, "Enter your calorie goal first!");
                 inputFoodNameTextField.setText("");
@@ -246,8 +248,8 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 diaryText = diaryTextArea.getText();
 
                 dispose();
-                GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
-                goalTrackerWindow.createGoalTrackerWindow();
+                CalorieGoalTrackerWindow goalTrackerWindow = new CalorieGoalTrackerWindow();
+                goalTrackerWindow.createCalorieGoalTrackerWindow();
             }
         }
 
