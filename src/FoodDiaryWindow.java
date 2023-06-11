@@ -236,6 +236,12 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
                     WebScraper.validInput = false;
+
+                    try {
+                        WriteCSV.writeIntake();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Invalid food name");
@@ -289,6 +295,12 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
         // When the next day button is pressed, it changes the date and day
         else if (e.getSource() == nextDayButton){
+            try {
+                WriteCSV.writeTotals();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
             // Parses the current date from the label text
             currentDate = LocalDate.parse(dateText.getText());
 
@@ -307,7 +319,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
             // The enter calorie goal button will reappear since it is the next day
             enterCalorieGoalButton.setVisible(true);
-            
+
             isCalorieGoalEntered = false;
             userCalories = "";
             dailyCalorieGoal.setText("");

@@ -12,7 +12,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
     private JButton loginButton = new JButton("Login!");
     private JTextField inputUsernameTextField = new JTextField(10);
     private JButton signUpButton = new JButton("Sign up");
-    public String inputtedUsername = "";
+    public static String inputtedUsername = "";
     
     /** 
      * This method creates, positions, and adds Java Swing objects into the login window
@@ -68,7 +68,7 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
 
         // When the user presses the login button, it gets the String from the TextField and validates the username
         if (e.getSource() == loginButton){
-            String inputtedUsername = getInputUsernameTextField().getText();
+            inputtedUsername = getInputUsernameTextField().getText();
             
             // If the username is in the library, deletes the current window and changes to the food diary window
             if (UserInfo.isUsernameExists(inputtedUsername) == true){

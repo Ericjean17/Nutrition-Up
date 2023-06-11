@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 class ReadCSV {
-        public static ArrayList<String> readCol(int col, String filepath, String delimiter, int numOfColumns){
+    public static ArrayList<String> readCol(int col, String filepath, String delimiter, int numOfColumns){
         String[] data = new String[numOfColumns];
         String currentLine;
         ArrayList<String> colData = new ArrayList<String>();
