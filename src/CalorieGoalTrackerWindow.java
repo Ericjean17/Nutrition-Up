@@ -2,7 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class GoalTrackerWindow extends WindowConstructor implements ActionListener {
+public class CalorieGoalTrackerWindow extends WindowConstructor implements ActionListener {
     
     // Creates the labels, buttons, and ProgressBar and assigns it to a variable
     private JLabel calorieGoalTrackerText = new JLabel("Weekly Calorie Data", SwingConstants.CENTER);
@@ -27,7 +27,7 @@ public class GoalTrackerWindow extends WindowConstructor implements ActionListen
      * This method creates, positions, and adds Java Swing objects into the goal tracker window
      * along with inheriting properties from the constructor class
      */
-    public void createGoalTrackerWindow() {
+    public void createCalorieGoalTrackerWindow() {
         // Initializes the action events for the buttons
         returnToFoodDiaryButton.addActionListener(this);
         
