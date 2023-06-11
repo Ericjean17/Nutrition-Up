@@ -149,6 +149,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 enterCalorieInputTextField.setText(""); // Why do we need this?
                 isCalorieGoalEntered = true;
                 dailyCalorieGoal.setText("Calorie goal : " + userCalories + "g");
+                
             }
             // If the calorie goal is invalid, display an error message
             else{
@@ -229,7 +230,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             else{
                 diaryText = diaryTextArea.getText();
 
-                
                 dispose();
                 GoalTrackerWindow goalTrackerWindow = new GoalTrackerWindow();
                 goalTrackerWindow.createGoalTrackerWindow();
