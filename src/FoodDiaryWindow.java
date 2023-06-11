@@ -23,12 +23,17 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private JButton enterFoodNameButton = new JButton("Enter");
     public JTextArea diaryTextArea = new JTextArea(); // switched to public for testing
     private JLabel dateText = new JLabel("");
-    private LocalDate currentDay;
-    private LocalDate startDate;
+    private static LocalDate currentDay;
+    private static LocalDate startDate;
+    private static LocalDate currentDate;
+    private static SimpleDateFormat dateFormat;
     private JLabel dayOfWeekText = new JLabel("");
     private JLabel dailyCalorieGoal = new JLabel("");
 
     public static String diaryText = "";
+    public static String userCalories = "";
+
+    public static String formattedDate = "";
 
     Font font = new Font("Hervetica", Font.BOLD, 16);
     boolean isCalorieGoalEntered = false;
@@ -38,22 +43,24 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
      * along with inheriting properties from the constructor class
      */
     public void createFoodDiaryWindow() {
-
         // The layout to print the date today on this window
-        startDate = LocalDate.now();
         int months = 1;
-        LocalDate currentDate = startDate;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        // Gets the day of the week today
-        currentDay = LocalDate.now();
+        if(formattedDate.equals("")){
+            startDate = LocalDate.now();
+            currentDate = startDate;
+            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            
+            // Gets the day of the week today
+            currentDay = LocalDate.now();
+        }
+        
         dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
         // Depending on the amount of days in each month, the month value goes up by 1 after 30/31 days
         for (int i = 0; i < months; i++) {
-            String formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
+            formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
             dateText.setText(formattedDate);
-            currentDate = currentDate.plusMonths(1);
+            // currentDate = currentDate.plusMonths(1); WHAT IS THIS FOR???
         }
 
         diaryTextArea.setEditable(false);
@@ -123,6 +130,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(dailyCalorieGoal);
 
         diaryTextArea.append(diaryText);
+
+        // System.out.println(userCalories);
+
+        if(userCalories != ""){
+            enterCalorieGoalButton.setVisible(false);
+            isCalorieGoalEntered = true;
+            dailyCalorieGoal.setText("Calorie goal : " + userCalories + "g");
+        }
     }
 
     /** 
@@ -140,7 +155,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == enterCalorieGoalButton){
             // Gets the text inside the calorie text field when the use presses the 'enter' button
-            String userCalories = enterCalorieInputTextField.getText();
+            userCalories = enterCalorieInputTextField.getText();
             Validate.calorieGoal = userCalories;
             // If the calorie goal is valid display the users calorie goal
             if (Validate.validateCalorieGoal()==true){
@@ -149,7 +164,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 enterCalorieInputTextField.setText(""); // Why do we need this?
                 isCalorieGoalEntered = true;
                 dailyCalorieGoal.setText("Calorie goal : " + userCalories + "g");
-                
+                System.out.println(userCalories);
             }
             // If the calorie goal is invalid, display an error message
             else{
@@ -238,15 +253,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
         // When the next day button is pressed, it changes the date and day
         else if (e.getSource() == nextDayButton){
-            
             // Parses the current date from the label text
-            LocalDate currentDate = LocalDate.parse(dateText.getText());
+            currentDate = LocalDate.parse(dateText.getText());
 
             // Increments the current date by 1 day when the next day button is pressed
             currentDate = currentDate.plusDays(1); 
 
              // Convert the updated date back to a string since labels only accept a String as text
-            String formattedDate = currentDate.toString();
+            formattedDate = currentDate.toString();
 
             // Set the updated date as the text of the label
             dateText.setText(formattedDate); 
