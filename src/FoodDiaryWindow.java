@@ -30,7 +30,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private JLabel dailyCalorieGoal = new JLabel("");
     public static String diaryText = "";
     public static String userCalories = "";
-
     public static String formattedDate = "";
 
     Font font = new Font("Hervetica", Font.BOLD, 16);
@@ -44,7 +43,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
      * This method creates, positions, and adds Java Swing objects into the food diary window
      * along with inheriting properties from the constructor class
      */
-    public void createFoodDiaryWindow() {
+ public void createFoodDiaryWindow() {
         // The layout to print the date today on this window
         int months = 1;
         if(formattedDate.equals("")){
@@ -62,7 +61,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         for (int i = 0; i < months; i++) {
             formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
             dateText.setText(formattedDate);
-            // currentDate = currentDate.plusMonths(1); WHAT IS THIS FOR???
+            currentDate = currentDate.plusMonths(1); //WHAT IS THIS FOR???
         }
 
         diaryTextArea.setEditable(false);
@@ -140,7 +139,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         add(fatGoalProgressButton);
 
         diaryTextArea.append(diaryText);
-        
         if(userCalories != ""){
             enterCalorieGoalButton.setVisible(false);
             isCalorieGoalEntered = true;

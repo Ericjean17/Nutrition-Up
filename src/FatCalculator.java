@@ -1,10 +1,11 @@
 import java.io.*;
+import java.text.DecimalFormat;
 
 public class FatCalculator {
 
-    public static void Recfat(){
+    public static void Recfat() {
 
-        String username =  UserInfo.username;;
+        String username = UserInfo.username;
         try {
             BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"));
             StringBuilder fileContent = new StringBuilder();
@@ -19,12 +20,17 @@ public class FatCalculator {
                 if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
                     UserInfo.retrieveUsercalorie(username);
                     UserInfo.displayInformation();
-                    // Set the protein goal as 30% of the calorie result
+                    // Set the fat goal as 30% of the calorie result
                     double FatGoal = UserInfo.CalorieGoal;
                     System.out.println(UserInfo.CalorieGoal);
                     FatGoal = FatGoal * 0.3;
-                    // Append the protein goal to the line
-                    line += "/" + FatGoal;
+
+                    // Round the fat goal to 2 decimal places
+                    DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                    String roundedFatGoal = decimalFormat.format(FatGoal);
+
+                    // Append the rounded fat goal to the line
+                    line += "/" + roundedFatGoal;
                 }
 
                 // Append the line to the file content
