@@ -5,7 +5,7 @@ import javax.swing.*;
 public class FatGoalTrackerWindow extends WindowConstructor implements ActionListener {
     
     // Creates the labels, buttons, and ProgressBar and assigns it to a variable
-    private JLabel fatGoalTrackerText = new JLabel("Weekly fat Data", SwingConstants.CENTER);
+    private JLabel fatGoalTrackerText = new JLabel("Weekly Fat Data", SwingConstants.CENTER);
     private JProgressBar userFatsDay1 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userFatsDay2 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userFatsDay3 = new JProgressBar(SwingConstants.VERTICAL);

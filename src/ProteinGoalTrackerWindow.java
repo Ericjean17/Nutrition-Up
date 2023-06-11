@@ -5,7 +5,7 @@ import javax.swing.*;
 public class ProteinGoalTrackerWindow extends WindowConstructor implements ActionListener {
     
     // Creates the labels, buttons, and ProgressBar and assigns it to a variable
-    private JLabel proteinGoalTrackerText = new JLabel("Weekly Calorie Data", SwingConstants.CENTER);
+    private JLabel proteinGoalTrackerText = new JLabel("Weekly Protein Data", SwingConstants.CENTER);
     private JProgressBar userProteinDay1 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userProteinDay2 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userProteinDay3 = new JProgressBar(SwingConstants.VERTICAL);
