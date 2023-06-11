@@ -1,8 +1,9 @@
 import java.io.*;
+import java.text.DecimalFormat;
 
 public class ProteinCalculator {
-    
-     public static void RecProtein(){
+
+    public static void RecProtein() {
         String username = UserInfo.username;
         try {
             BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"));
@@ -22,8 +23,13 @@ public class ProteinCalculator {
                     double proteinGoal = UserInfo.CalorieGoal;
                     System.out.println(UserInfo.CalorieGoal);
                     proteinGoal = proteinGoal * 0.25;
-                    // Append the protein goal to the line
-                    line += "/" + proteinGoal;
+
+                    // Round the protein goal to 2 decimal places
+                    DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                    String roundedProteinGoal = decimalFormat.format(proteinGoal);
+
+                    // Append the rounded protein goal to the line
+                    line += "/" + roundedProteinGoal;
                 }
 
                 // Append the line to the file content
