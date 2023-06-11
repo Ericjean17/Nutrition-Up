@@ -20,7 +20,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private JScrollPane diaryScrollPane;
     private JTextField inputFoodNameTextField = new JTextField(20);
     private JButton enterFoodNameButton = new JButton("Enter");
-    public JTextArea diaryTextArea = new JTextArea(); // switched to public for testing
+    public JTextArea diaryTextArea = new JTextArea();
     private JLabel dateText = new JLabel("");
     private static LocalDate currentDay;
     private static LocalDate startDate;
@@ -213,7 +213,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     WebScraper.addKeywordDelimiters();
                     WebScraper.setFoodDataPageURL();
 
-                    // consider moving these out of the try, or combining this try-catch with the if-else below?
                     WebScraper.getCalorieData();
                     WebScraper.getFatData();
                     WebScraper.getProteinData();
