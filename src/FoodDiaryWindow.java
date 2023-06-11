@@ -273,6 +273,9 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             // The enter calorie goal button will reappear since it is the next day
             enterCalorieGoalButton.setVisible(true);
             
+            isCalorieGoalEntered = false;
+            userCalories = "";
+            dailyCalorieGoal.setText("");
             enterCalorieInputTextField.setText("");
             inputFoodNameTextField.setText("");
             diaryTextArea.setText("");

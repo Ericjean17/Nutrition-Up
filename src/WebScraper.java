@@ -91,6 +91,9 @@ class WebScraper {
         Element element = doc.getElementsByAttributeValue("class", "MuiTypography-root MuiTypography-body1 css-ezyk0s").first();
         
         foodCalories = element.text();
+        if(foodCalories.equals("--")){
+            foodCalories = "0";
+        }
     }
 
     /**
@@ -106,6 +109,9 @@ class WebScraper {
         elements.remove(0);
 
         foodFat = elements.first().text().replace("g", "");
+        if(foodCalories.equals("--")){
+            foodCalories = "0";
+        }
     }
 
     /**
@@ -122,6 +128,9 @@ class WebScraper {
         elements.remove(0);
         
         foodProtein = elements.first().text().replace("g", "");
+        if(foodCalories.equals("--")){
+            foodCalories = "0";
+        }
     }
 
     public static void writeData() throws IOException{ // TO-DO: rename method, javadoc
