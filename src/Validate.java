@@ -15,9 +15,6 @@ public class Validate {
         return input!= null && !input.isEmpty() && input.matches("^-?\\d+$");
     }
 
-    // IMPLEMENT THESE METHODS WITH THE OTHER CLASSES
-    // ie. validateUsername --> if the username is invalid, shouldn't be able to advance to next window
-
     // method to validate username
     public static boolean validateUsername(){
         if(isString(username)){
