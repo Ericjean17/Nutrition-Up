@@ -124,6 +124,7 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
     // This is for USER'S ACTUAL Protein INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
     public void calorieActualGoalProgressBarValue() {
+<<<<<<< HEAD
         int counter = 0;
         while (counter <= 100) {
             final int value = counter;     
@@ -148,17 +149,29 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
                 e.printStackTrace();
             }
             counter++;
+=======
+        ProgressCalc.getTotal();
+        ProgressCalc.getGoal();
+        ProgressCalc.findProgress();
+        double proProgress = ProgressCalc.proProgress;
+        double proGoal = ProgressCalc.proGoal;
+        System.out.println(proProgress);
+>>>>>>> 782e476d97e4414dee8f1dae9d55c5d2e5995f9b
 
-            // Updates the text inside the progress bar after the user reaches their goal
-            // Change ___ into user inputted calorie goal
-            userProteinDay1.setString("You reached your ____ goal! :)");
-            userProteinDay2.setString("You reached your ____ goal! :)");
-            userProteinDay3.setString("You reached your ____ goal! :)");
-            userProteinDay4.setString("You reached your ____ goal! :)");
-            userProteinDay5.setString("You reached your ____ goal! :)");
-            userProteinDay6.setString("You reached your ____ goal! :)");
-            userProteinDay7.setString("You reached your ____ goal! :)");
+        if (proProgress < 100) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userProteinDay2.setValue((int) proProgress);
+            userProteinDay2.setString("Your Progress: " + (int) proProgress + "%");
         }
+        // If the user has reached their protein goal for the day
+        else if (proProgress >= 100) {
+            userProteinDay1.setString("You reached your " + proGoal + "g protein goal! :)");
+        }
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }   
     }
     
     /** 

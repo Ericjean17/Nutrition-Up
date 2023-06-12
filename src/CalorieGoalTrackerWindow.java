@@ -1,11 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class CalorieGoalTrackerWindow extends WindowConstructor implements ActionListener {
     
@@ -18,13 +15,23 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
     private JProgressBar userCaloriesDay5 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userCaloriesDay6 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userCaloriesDay7 = new JProgressBar(SwingConstants.VERTICAL);
-    private JLabel day1 = new JLabel("6/11/2023");
-    private JLabel day2 = new JLabel("6/12/2023");
-    private JLabel day3 = new JLabel("6/13/2023");
-    private JLabel day4 = new JLabel("6/14/2023");
-    private JLabel day5 = new JLabel("6/15/2023");
-    private JLabel day6 = new JLabel("6/16/2023");
-    private JLabel day7 = new JLabel("6/17/2023");
+    String formattedDate = FoodDiaryWindow.formattedDate;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate currentDate = LocalDate.parse(formattedDate, formatter);
+    String d1 = currentDate.minusDays(1).toString();
+    String d2 = currentDate.toString();
+    String d3 = currentDate.plusDays(1).toString();
+    String d4 = currentDate.plusDays(2).toString();
+    String d5 = currentDate.plusDays(3).toString();
+    String d6 = currentDate.plusDays(4).toString();
+    String d7 = currentDate.plusDays(5).toString();
+    private JLabel day1 = new JLabel(d1);
+    private JLabel day2 = new JLabel(d2);
+    private JLabel day3 = new JLabel(d3);
+    private JLabel day4 = new JLabel(d4);
+    private JLabel day5 = new JLabel(d5);
+    private JLabel day6 = new JLabel(d6);
+    private JLabel day7 = new JLabel(d7);
         
     private JButton returnToFoodDiaryButton = new JButton("Return to Food Diary");
     
@@ -128,10 +135,8 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
 
     // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
-    // **It can now retrieve the data from the "DailyTotals.csv"
-    // **Still need to figure out for the other days of the week
-    // **Still need to figure out how to match it so that it is only "value" is all the total calories of the correct person
     public void calorieActualGoalProgressBarValue() {
+        System.out.println(FoodDiaryWindow.formattedDate);
         ProgressCalc.getTotal();
         ProgressCalc.getGoal();
         ProgressCalc.findProgress();
@@ -139,46 +144,75 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
         double calGoal = ProgressCalc.calGoal;
         System.out.println(calProgress);
 
-        if (calProgress < 100) {
+        if (calProgress < 100 && formattedDate.equals(d1)) {
             // Use the 'progress' value for updating the progress bars and strings
             userCaloriesDay1.setValue((int) calProgress);
             userCaloriesDay1.setString("Your Progress: " + (int) calProgress + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100) {
+        else if (calProgress >= 100 && formattedDate.equals(d1)) {
             userCaloriesDay1.setString("You reached your " + calGoal + " calorie goal! :)");
         }
+        else if (calProgress < 100 && formattedDate.equals(d2)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay2.setValue((int) calProgress);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(d2)) {
+            userCaloriesDay2.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(d3)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay3.setValue((int) calProgress);
+            userCaloriesDay3.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(d3)) {
+            userCaloriesDay3.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(d4)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay4.setValue((int) calProgress);
+            userCaloriesDay4.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(d4)) {
+            userCaloriesDay4.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(d5)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay5.setValue((int) calProgress);
+            userCaloriesDay5.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(d5)) {
+            userCaloriesDay5.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(d6)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay6.setValue((int) calProgress);
+            userCaloriesDay6.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(d6)) {
+            userCaloriesDay6.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(d7)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay7.setValue((int) calProgress);
+            userCaloriesDay7.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(d7)) {
+            userCaloriesDay7.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        
         try {
             Thread.sleep(15);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-        /*
-         // If the user hasn't reached their calorie goal for the day
-                    if (value < goal) {
-                        // Use the 'progress' value for updating the progress bars and strings
-                        userCaloriesDay1.setValue((int) progress);
-                        userCaloriesDay1.setString("Your Progress: " + (int) progress + "%");
-                        // Update the remaining progress bars and strings in a similar manner   
-                    } 
-                    // If the user has reached their calorie goal for the day
-                    else if (value >= goal) {
-                        userCaloriesDay1.setString("You reached your " + goal + " calorie goal! :)");
-                    }
-                }
-
-                try {
-                    Thread.sleep(15);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-         */
-
-                    
+        }            
     }
     
     /** 

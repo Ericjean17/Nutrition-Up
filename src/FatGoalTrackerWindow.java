@@ -124,40 +124,26 @@ public class FatGoalTrackerWindow extends WindowConstructor implements ActionLis
     // This is for USER'S ACTUAL Fats INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
     public void fatActualGoalProgressBarValue() {
-        int counter = 0;
-        while (counter <= 100) {
-            final int value = counter;
-                userFatsDay1.setValue(value);
-                userFatsDay1.setString("Your Progress: " + value + "%");
-                userFatsDay2.setValue(value);
-                userFatsDay2.setString("Your Progress: " + value + "%");
-                userFatsDay3.setValue(value);
-                userFatsDay3.setString("Your Progress: " + value + "%");
-                userFatsDay4.setValue(value);
-                userFatsDay4.setString("Your Progress: " + value + "%");
-                userFatsDay5.setValue(value);
-                userFatsDay5.setString("Your Progress: " + value + "%");
-                userFatsDay6.setValue(value);
-                userFatsDay6.setString("Your Progress: " + value + "%");
-                userFatsDay7.setValue(value);
-                userFatsDay7.setString("Your Progress: " + value + "%");
-                
-            try {
-                Thread.sleep(15);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            counter++;
+        ProgressCalc.getTotal();
+        ProgressCalc.getGoal();
+        ProgressCalc.findProgress();
+        double fatProgress = ProgressCalc.fatProgress;
+        double fatGoal = ProgressCalc.fatGoal;
+        System.out.println(fatProgress);
 
-            // Updates the text inside the progress bar after the user reaches their goal
-            // Change ___ into user inputted fat goal
-            userFatsDay1.setString("You reached your ____ goal! :)");
-            userFatsDay2.setString("You reached your ____ goal! :)");
-            userFatsDay3.setString("You reached your ____ goal! :)");
-            userFatsDay4.setString("You reached your ____ goal! :)");
-            userFatsDay5.setString("You reached your ____ goal! :)");
-            userFatsDay6.setString("You reached your ____ goal! :)");
-            userFatsDay7.setString("You reached your ____ goal! :)");
+        if (fatProgress < 100) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userFatsDay2.setValue((int) fatProgress);
+            userFatsDay2.setString("Your Progress: " + (int) fatProgress + "%");
+        }
+        // If the user has reached their fat goal for the day
+        else if (fatProgress >= 100) {
+            userFatsDay1.setString("You reached your " + fatGoal + "g fat goal! :)");
+        }
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
     
