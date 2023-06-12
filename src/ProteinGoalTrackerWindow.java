@@ -124,41 +124,27 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
     // This is for USER'S ACTUAL Protein INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
     public void calorieActualGoalProgressBarValue() {
-        int counter = 0;
-        while (counter <= 100) {
-            final int value = counter;
-                userProteinDay1.setValue(value);
-                userProteinDay1.setString("Your Progress: " + value + "%");
-                userProteinDay2.setValue(value);
-                userProteinDay2.setString("Your Progress: " + value + "%");
-                userProteinDay3.setValue(value);
-                userProteinDay3.setString("Your Progress: " + value + "%");
-                userProteinDay4.setValue(value);
-                userProteinDay4.setString("Your Progress: " + value + "%");
-                userProteinDay5.setValue(value);
-                userProteinDay5.setString("Your Progress: " + value + "%");
-                userProteinDay6.setValue(value);
-                userProteinDay6.setString("Your Progress: " + value + "%");
-                userProteinDay7.setValue(value);
-                userProteinDay7.setString("Your Progress: " + value + "%");
-                
-            try {
-                Thread.sleep(15);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            counter++;
+        ProgressCalc.getTotal();
+        ProgressCalc.getGoal();
+        ProgressCalc.findProgress();
+        double proProgress = ProgressCalc.proProgress;
+        double proGoal = ProgressCalc.proGoal;
+        System.out.println(proProgress);
 
-            // Updates the text inside the progress bar after the user reaches their goal
-            // Change ___ into user inputted calorie goal
-            userProteinDay1.setString("You reached your ____ goal! :)");
-            userProteinDay2.setString("You reached your ____ goal! :)");
-            userProteinDay3.setString("You reached your ____ goal! :)");
-            userProteinDay4.setString("You reached your ____ goal! :)");
-            userProteinDay5.setString("You reached your ____ goal! :)");
-            userProteinDay6.setString("You reached your ____ goal! :)");
-            userProteinDay7.setString("You reached your ____ goal! :)");
+        if (proProgress < 100) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userProteinDay2.setValue((int) proProgress);
+            userProteinDay2.setString("Your Progress: " + (int) proProgress + "%");
         }
+        // If the user has reached their protein goal for the day
+        else if (proProgress >= 100) {
+            userProteinDay1.setString("You reached your " + proGoal + "g protein goal! :)");
+        }
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }   
     }
     
     /** 

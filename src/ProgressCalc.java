@@ -1,6 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javax.swing.JLabel;
 
 public class ProgressCalc {
     public static double proTotal = 0;
@@ -13,10 +17,11 @@ public class ProgressCalc {
     public static double fatProgress = 0;
     public static double calProgress = 0;
 
-    public static String date = FoodDiaryWindow.formattedDate;
+    
     
 
     public static void getTotal(){
+        String date = FoodDiaryWindow.formattedDate;
         String username = LoginWindow.inputtedUsername;
         try (BufferedReader reader = new BufferedReader(new FileReader("DailyTotals.csv"))) {
             String line;
