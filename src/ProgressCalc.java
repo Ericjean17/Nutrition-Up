@@ -46,16 +46,16 @@ public static void getGoal(){
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split("/");
-                if (fields.length > 4 && fields[0].equalsIgnoreCase(username) && fields[1].equalsIgnoreCase(date)) {
+                if (fields.length > 4 && fields[0].equalsIgnoreCase(username)) {
                     proGoal = Double.parseDouble(fields[7]);
                     fatGoal = Double.parseDouble(fields[6]);
                     
                     break;
                 }
             }
-            System.out.println(proTotal);
-            System.out.println(fatTotal);
-            System.out.println(calTotal);
+            System.out.println(proGoal);
+            System.out.println(fatGoal);
+           // System.out.println(calGoal);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,9 +64,9 @@ public static void getGoal(){
 
 
 public static void findProgress(){
-   calProgress = calTotal / calGoal;
-   proProgress = proTotal / proGoal;
-   fatProgress = fatTotal / fatGoal;
+   calProgress = calTotal / calGoal * 100;
+   proProgress = proTotal / proGoal * 100;
+   fatProgress = fatTotal / fatGoal * 100;
 }
 
  
@@ -75,8 +75,8 @@ getTotal();
 getGoal();
 findProgress();
 //System.out.println(calProgress);
-System.out.println(fatProgress);
-System.out.println(proProgress);
+System.out.println("fat progress: " + fatProgress);
+System.out.println("Protein prgress: " + proProgress);
 
 }
 }
