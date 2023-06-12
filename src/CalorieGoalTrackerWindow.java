@@ -1,6 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class CalorieGoalTrackerWindow extends WindowConstructor implements ActionListener {
     
@@ -123,41 +126,46 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
 
     // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
+    // **It can now retrieve the data from the "DailyTotals.csv"
+    // **Still need to figure out for the other days of the week
+    // **Still need to figure out how to match it so that it is only "value" is all the total calories of the correct person
     public void calorieActualGoalProgressBarValue() {
         int counter = 0;
-        while (counter <= 100) {
-            final int value = counter;
-                userCaloriesDay1.setValue(value);
-                userCaloriesDay1.setString("Your Progress: " + value + "%");
-                userCaloriesDay2.setValue(value);
-                userCaloriesDay2.setString("Your Progress: " + value + "%");
-                userCaloriesDay3.setValue(value);
-                userCaloriesDay3.setString("Your Progress: " + value + "%");
-                userCaloriesDay4.setValue(value);
-                userCaloriesDay4.setString("Your Progress: " + value + "%");
-                userCaloriesDay5.setValue(value);
-                userCaloriesDay5.setString("Your Progress: " + value + "%");
-                userCaloriesDay6.setValue(value);
-                userCaloriesDay6.setString("Your Progress: " + value + "%");
-                userCaloriesDay7.setValue(value);
-                userCaloriesDay7.setString("Your Progress: " + value + "%");
-                
-            try {
-                Thread.sleep(15);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            counter++;
+        String filePath = "DailyTotals.csv"; // Path to your CSV file
+        int goal = Integer.parseInt(Validate.calorieGoal); // Assuming 'calorieGoal' is a valid integer value
 
-            // Updates the text inside the progress bar after the user reaches their goal
-            // Change ___ into user inputted calorie goal
-            userCaloriesDay1.setString("You reached your ____ goal! :)");
-            userCaloriesDay2.setString("You reached your ____ goal! :)");
-            userCaloriesDay3.setString("You reached your ____ goal! :)");
-            userCaloriesDay4.setString("You reached your ____ goal! :)");
-            userCaloriesDay5.setString("You reached your ____ goal! :)");
-            userCaloriesDay6.setString("You reached your ____ goal! :)");
-            userCaloriesDay7.setString("You reached your ____ goal! :)");
+        File file = new File(filePath);
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] columns = line.split("/");
+
+                if (columns.length >= 3) { // columns[0].equals(Validate.username) <-- somehow use this?
+                    double value = Double.parseDouble(columns[2]);
+                    double progress = (value / goal) * 100;
+
+                    // If the user hasn't reached their calorie goal for the day
+                    if (value<goal){
+                        // Use the 'progress' value for updating the progress bars and strings
+                        userCaloriesDay1.setValue((int) progress);
+                        userCaloriesDay1.setString("Your Progress: " + (int) progress + "%");
+                        // Update the remaining progress bars and strings in a similar manner   
+                    } 
+                    // If the user has reached their calorie goal for the day
+                    else if (value>=goal){
+                        userCaloriesDay1.setString("You reached your " + goal + " calorie goal! :)");
+                    }
+                }
+
+                try {
+                    Thread.sleep(15);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                counter++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
     
