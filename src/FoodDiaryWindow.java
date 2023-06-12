@@ -61,7 +61,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         for (int i = 0; i < months; i++) {
             formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
             dateText.setText(formattedDate);
-            currentDate = currentDate.plusMonths(1); //WHAT IS THIS FOR???
+            //currentDate = currentDate.plusMonths(1); //WHAT IS THIS FOR???
         }
 
         diaryTextArea.setEditable(false);
@@ -294,6 +294,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         // When the next day button is pressed, it changes the date and day
         else if (e.getSource() == nextDayButton){
             try {
+                System.out.println("Testing");
                 WriteCSV.writeTotals();
             } catch (IOException e1) {
                 e1.printStackTrace();
