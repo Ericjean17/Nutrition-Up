@@ -141,8 +141,8 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
 
         if (calProgress < 100) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay1.setValue((int) calProgress);
-            userCaloriesDay1.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay2.setValue((int) calProgress);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress + "%");
         }
         // If the user has reached their calorie goal for the day
         else if (calProgress >= 100) {
@@ -152,33 +152,7 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
             Thread.sleep(15);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-        /*
-         // If the user hasn't reached their calorie goal for the day
-                    if (value < goal) {
-                        // Use the 'progress' value for updating the progress bars and strings
-                        userCaloriesDay1.setValue((int) progress);
-                        userCaloriesDay1.setString("Your Progress: " + (int) progress + "%");
-                        // Update the remaining progress bars and strings in a similar manner   
-                    } 
-                    // If the user has reached their calorie goal for the day
-                    else if (value >= goal) {
-                        userCaloriesDay1.setString("You reached your " + goal + " calorie goal! :)");
-                    }
-                }
-
-                try {
-                    Thread.sleep(15);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-         */
-
-                    
+        }            
     }
     
     /** 
