@@ -132,28 +132,29 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
     // **Still need to figure out for the other days of the week
     // **Still need to figure out how to match it so that it is only "value" is all the total calories of the correct person
     public void calorieActualGoalProgressBarValue() {
-        String filePath = "DailyTotals.csv"; // Path to your CSV file
-        int goal = Integer.parseInt(Validate.calorieGoal); // Assuming 'calorieGoal' is a valid integer value
-        String username = Validate.username;
+        ProgressCalc.getTotal();
+        ProgressCalc.getGoal();
+        ProgressCalc.findProgress();
+        double calProgress = ProgressCalc.calProgress;
+        double calGoal = ProgressCalc.calGoal;
+        System.out.println(calProgress);
 
-        File file = new File(filePath);
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                // Change this so that we have an array for each row
-                // Check the first column of each of those rows
-                // If the first column of the row is equal to the current username
-                // Then take the 3rd column of that row
-                ArrayList<String> columns = new ArrayList<>(Arrays.asList(line.split("/")));
-                for (String column : columns){
-                    System.out.println(column);
-                }
-
-                if (columns.size() >= 3) {
-                    double value = Double.parseDouble(columns.get(2));
-                    double progress = (value / goal) * 100;
-
-                    // If the user hasn't reached their calorie goal for the day
+        if (calProgress < 100) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay1.setValue((int) calProgress);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100) {
+            userCaloriesDay1.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        /*
+         // If the user hasn't reached their calorie goal for the day
                     if (value < goal) {
                         // Use the 'progress' value for updating the progress bars and strings
                         userCaloriesDay1.setValue((int) progress);
@@ -175,6 +176,9 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+         */
+
+                    
     }
     
     /** 

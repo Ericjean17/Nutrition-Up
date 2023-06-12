@@ -13,11 +13,11 @@ public class ProgressCalc {
     public static double fatProgress = 0;
     public static double calProgress = 0;
 
-    public static String date = "2023-06-12";
+    public static String date = FoodDiaryWindow.formattedDate;
     
 
     public static void getTotal(){
-        String username = "orion";
+        String username = LoginWindow.inputtedUsername;
         try (BufferedReader reader = new BufferedReader(new FileReader("DailyTotals.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -40,7 +40,7 @@ public class ProgressCalc {
 
 
     public static void getGoal(){
-        String username = "orion";
+        String username = LoginWindow.inputtedUsername;
         calGoal = Double.parseDouble(Validate.calorieGoal);
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
@@ -64,19 +64,8 @@ public class ProgressCalc {
 
 
     public static void findProgress(){
-        calProgress = calTotal / calGoal;
-        proProgress = proTotal / proGoal;
-        fatProgress = fatTotal / fatGoal;
-    }
-
- 
-    public static void main(String[] args) throws Exception {
-        getTotal();
-        getGoal();
-        findProgress();
-        System.out.println(calProgress);
-        System.out.println(fatProgress);
-        System.out.println(proProgress);
-
+        calProgress = calTotal / calGoal * 100;
+        proProgress = proTotal / proGoal * 100;
+        fatProgress = fatTotal / fatGoal * 100;
     }
 }
