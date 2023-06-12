@@ -16,7 +16,7 @@ public class ProgressCalc {
     public static String date = "2023-06-12";
     
 
-   public static void getTotal(){
+    public static void getTotal(){
         String username = "orion";
         try (BufferedReader reader = new BufferedReader(new FileReader("DailyTotals.csv"))) {
             String line;
@@ -39,44 +39,44 @@ public class ProgressCalc {
     }
 
 
-public static void getGoal(){
-    String username = "orion";
-   // calGoal = Double.parseDouble(Validate.calorieGoal);
+    public static void getGoal(){
+        String username = "orion";
+        calGoal = Double.parseDouble(Validate.calorieGoal);
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split("/");
-                if (fields.length > 4 && fields[0].equalsIgnoreCase(username) && fields[1].equalsIgnoreCase(date)) {
+                if (fields.length > 4 && fields[0].equalsIgnoreCase(username)) {
                     proGoal = Double.parseDouble(fields[7]);
                     fatGoal = Double.parseDouble(fields[6]);
                     
                     break;
                 }
             }
-            System.out.println(proTotal);
-            System.out.println(fatTotal);
-            System.out.println(calTotal);
+            System.out.println(proGoal);
+            System.out.println(fatGoal);
+            System.out.println(calGoal);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
+    }
 
 
-public static void findProgress(){
-   calProgress = calTotal / calGoal;
-   proProgress = proTotal / proGoal;
-   fatProgress = fatTotal / fatGoal;
-}
+    public static void findProgress(){
+        calProgress = calTotal / calGoal;
+        proProgress = proTotal / proGoal;
+        fatProgress = fatTotal / fatGoal;
+    }
 
  
-public static void main(String[] args) throws Exception {
-getTotal();
-getGoal();
-findProgress();
-//System.out.println(calProgress);
-System.out.println(fatProgress);
-System.out.println(proProgress);
+    public static void main(String[] args) throws Exception {
+        getTotal();
+        getGoal();
+        findProgress();
+        System.out.println(calProgress);
+        System.out.println(fatProgress);
+        System.out.println(proProgress);
 
-}
+    }
 }
