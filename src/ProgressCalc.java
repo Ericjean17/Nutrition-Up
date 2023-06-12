@@ -16,7 +16,7 @@ public class ProgressCalc {
     public static String date = "2023-06-12";
     
 
-   public static void getTotal(){
+    public static void getTotal(){
         String username = "orion";
         try (BufferedReader reader = new BufferedReader(new FileReader("DailyTotals.csv"))) {
             String line;
@@ -39,9 +39,9 @@ public class ProgressCalc {
     }
 
 
-public static void getGoal(){
-    String username = "orion";
-   // calGoal = Double.parseDouble(Validate.calorieGoal);
+    public static void getGoal(){
+        String username = "orion";
+        calGoal = Double.parseDouble(Validate.calorieGoal);
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -55,28 +55,28 @@ public static void getGoal(){
             }
             System.out.println(proGoal);
             System.out.println(fatGoal);
-           // System.out.println(calGoal);
+            System.out.println(calGoal);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
+    }
 
 
-public static void findProgress(){
-   calProgress = calTotal / calGoal * 100;
-   proProgress = proTotal / proGoal * 100;
-   fatProgress = fatTotal / fatGoal * 100;
-}
+    public static void findProgress(){
+        calProgress = calTotal / calGoal;
+        proProgress = proTotal / proGoal;
+        fatProgress = fatTotal / fatGoal;
+    }
 
  
-public static void main(String[] args) throws Exception {
-getTotal();
-getGoal();
-findProgress();
-//System.out.println(calProgress);
-System.out.println("fat progress: " + fatProgress);
-System.out.println("Protein prgress: " + proProgress);
+    public static void main(String[] args) throws Exception {
+        getTotal();
+        getGoal();
+        findProgress();
+        System.out.println(calProgress);
+        System.out.println(fatProgress);
+        System.out.println(proProgress);
 
-}
+    }
 }
