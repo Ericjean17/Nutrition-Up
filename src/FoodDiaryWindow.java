@@ -12,7 +12,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     private JLabel applicationNameText = new JLabel("Nutrition Up!", SwingConstants.CENTER);
     private JLabel foodDiaryText = new JLabel("Food Diary");
     private JLabel enterCalorieGoalText = new JLabel("Enter your calorie goal for the day.");
-    private JLabel recommendedCalorieGoalText = new JLabel("Recommended goal:");
+    private JLabel recommendedCalorieGoalText = new JLabel("Recommended goal: ");
     private JTextField enterCalorieInputTextField = new JTextField(10);
     private JButton enterCalorieGoalButton = new JButton("Enter");
     private JLabel addFoodText = new JLabel("Add a food to your diary");
@@ -85,7 +85,8 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         enterCalorieGoalButton.addActionListener(this);
         proteinGoalProgressButton.addActionListener(this);
         fatGoalProgressButton.addActionListener(this);
-        
+
+
         // Sets the positions and sizes of the label, button, and TextField (1100x680)
         applicationNameText.setBounds(375, 55, 350, 60);
         foodDiaryText.setBounds(800, 110, 200, 30);

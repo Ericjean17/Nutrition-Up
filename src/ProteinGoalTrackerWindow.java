@@ -124,12 +124,39 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
     // This is for USER'S ACTUAL Protein INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
     public void calorieActualGoalProgressBarValue() {
+<<<<<<< HEAD
+        int counter = 0;
+        while (counter <= 100) {
+            final int value = counter;     
+                userProteinDay1.setValue(value);
+                userProteinDay1.setString("Your Progress: " + value + "%");
+                userProteinDay2.setValue(value);
+                userProteinDay2.setString("Your Progress: " + value + "%");
+                userProteinDay3.setValue(value);
+                userProteinDay3.setString("Your Progress: " + value + "%");
+                userProteinDay4.setValue(value);
+                userProteinDay4.setString("Your Progress: " + value + "%");
+                userProteinDay5.setValue(value);
+                userProteinDay5.setString("Your Progress: " + value + "%");
+                userProteinDay6.setValue(value);
+                userProteinDay6.setString("Your Progress: " + value + "%");
+                userProteinDay7.setValue(value);
+                userProteinDay7.setString("Your Progress: " + value + "%");
+                
+            try {
+                Thread.sleep(15);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            counter++;
+=======
         ProgressCalc.getTotal();
         ProgressCalc.getGoal();
         ProgressCalc.findProgress();
         double proProgress = ProgressCalc.proProgress;
         double proGoal = ProgressCalc.proGoal;
         System.out.println(proProgress);
+>>>>>>> 782e476d97e4414dee8f1dae9d55c5d2e5995f9b
 
         if (proProgress < 100) {
             // Use the 'progress' value for updating the progress bars and strings
