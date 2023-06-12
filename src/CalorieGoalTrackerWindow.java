@@ -144,10 +144,9 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
                 // Check the first column of each of those rows
                 // If the first column of the row is equal to the current username
                 // Then take the 3rd column of that row
-                ArrayList<String> usernames = ReadCSV.readCol(0, "DailyTotals.csv", "/", 5);
                 ArrayList<String> columns = new ArrayList<>(Arrays.asList(line.split("/")));
-                for (String i : usernames){
-                    System.out.println(i);
+                for (String column : columns){
+                    System.out.println(column);
                 }
 
                 if (columns.size() >= 3) {
