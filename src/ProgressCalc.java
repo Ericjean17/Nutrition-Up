@@ -8,6 +8,10 @@ public class ProgressCalc {
     public static double calTotal = 0;
     public static double proGoal = 0;
     public static double fatGoal = 0;
+    public static double calGoal = 0;
+    public static double proProgress = 0;
+    public static double fatProgress = 0;
+    public static double calProgress = 0;
 
     public static String date = "2023-06-12";
     
@@ -37,6 +41,7 @@ public class ProgressCalc {
 
 public static void getGoal(){
     String username = "orion";
+   // calGoal = Double.parseDouble(Validate.calorieGoal);
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -56,7 +61,22 @@ public static void getGoal(){
             e.printStackTrace();
         }
 }
+
+
+public static void findProgress(){
+   calProgress = calTotal / calGoal;
+   proProgress = proTotal / proGoal;
+   fatProgress = fatTotal / fatGoal;
 }
 
+ 
+public static void main(String[] args) throws Exception {
+getTotal();
+getGoal();
+findProgress();
+//System.out.println(calProgress);
+System.out.println(fatProgress);
+System.out.println(proProgress);
 
-
+}
+}
