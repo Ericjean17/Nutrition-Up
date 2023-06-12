@@ -65,6 +65,8 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        
 
         // When the user presses the login button, it gets the String from the TextField and validates the username
         if (e.getSource() == loginButton){

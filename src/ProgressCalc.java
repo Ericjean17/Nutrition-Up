@@ -12,6 +12,7 @@ public class ProgressCalc {
     public static double proProgress = 0;
     public static double fatProgress = 0;
     public static double calProgress = 0;
+    
 
     public static String date = FoodDiaryWindow.formattedDate;
     
@@ -49,6 +50,7 @@ public class ProgressCalc {
                 if (fields.length > 4 && fields[0].equalsIgnoreCase(username)) {
                     proGoal = Double.parseDouble(fields[7]);
                     fatGoal = Double.parseDouble(fields[6]);
+                    
                     
                     break;
                 }

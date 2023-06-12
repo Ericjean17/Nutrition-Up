@@ -126,7 +126,7 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
     public void calorieActualGoalProgressBarValue() {
         int counter = 0;
         while (counter <= 100) {
-            final int value = counter;
+            final int value = counter;     
                 userProteinDay1.setValue(value);
                 userProteinDay1.setString("Your Progress: " + value + "%");
                 userProteinDay2.setValue(value);
