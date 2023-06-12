@@ -3,6 +3,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class CalorieGoalTrackerWindow extends WindowConstructor implements ActionListener {
@@ -130,29 +132,37 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
     // **Still need to figure out for the other days of the week
     // **Still need to figure out how to match it so that it is only "value" is all the total calories of the correct person
     public void calorieActualGoalProgressBarValue() {
-        int counter = 0;
         String filePath = "DailyTotals.csv"; // Path to your CSV file
         int goal = Integer.parseInt(Validate.calorieGoal); // Assuming 'calorieGoal' is a valid integer value
+        String username = Validate.username;
 
         File file = new File(filePath);
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] columns = line.split("/");
+                // Change this so that we have an array for each row
+                // Check the first column of each of those rows
+                // If the first column of the row is equal to the current username
+                // Then take the 3rd column of that row
+                ArrayList<String> usernames = ReadCSV.readCol(0, "DailyTotals.csv", "/", 5);
+                ArrayList<String> columns = new ArrayList<>(Arrays.asList(line.split("/")));
+                for (String i : usernames){
+                    System.out.println(i);
+                }
 
-                if (columns.length >= 3) { // columns[0].equals(Validate.username) <-- somehow use this?
-                    double value = Double.parseDouble(columns[2]);
+                if (columns.size() >= 3) {
+                    double value = Double.parseDouble(columns.get(2));
                     double progress = (value / goal) * 100;
 
                     // If the user hasn't reached their calorie goal for the day
-                    if (value<goal){
+                    if (value < goal) {
                         // Use the 'progress' value for updating the progress bars and strings
                         userCaloriesDay1.setValue((int) progress);
                         userCaloriesDay1.setString("Your Progress: " + (int) progress + "%");
                         // Update the remaining progress bars and strings in a similar manner   
                     } 
                     // If the user has reached their calorie goal for the day
-                    else if (value>=goal){
+                    else if (value >= goal) {
                         userCaloriesDay1.setString("You reached your " + goal + " calorie goal! :)");
                     }
                 }
@@ -162,7 +172,6 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                counter++;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
