@@ -268,7 +268,7 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
             e.printStackTrace();
         }            
     }
-    
+
     /** 
      * @param e The event when a button is clicked occurs
      * 
