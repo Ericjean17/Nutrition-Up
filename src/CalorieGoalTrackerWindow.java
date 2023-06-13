@@ -134,14 +134,14 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
         new Thread(this::calorieActualGoalProgressBarValue).start();
     }
 
-    // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/WEEK
-    // *Tweak this so it keeps on updating depending on user inputted food
+    // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/ THROUGHOUT THE WEEK
     public void calorieActualGoalProgressBarValue() {
         ProgressCalc.progressDates();
         System.out.println(FoodDiaryWindow.formattedDate);
         String formattedDate = FoodDiaryWindow.formattedDate;
         ProgressCalc.getTotal();
         ProgressCalc.getGoal();
+        double calGoal = ProgressCalc.calGoal;
         ProgressCalc.findProgress();
         ArrayList<Double> calProgressList = ProgressCalc.calProgressList;
         ProgressCalc.baseArrays();
@@ -154,7 +154,6 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
         double calProgress5 = calProgressList.get(4);
         double calProgress6 = calProgressList.get(5);
         double calProgress7 = calProgressList.get(6);
-        double calGoal = ProgressCalc.calGoal;
 
         if (calProgress1 < 100 && formattedDate.equals(ProgressCalc.d1)) {
             // Use the 'progress' value for updating the progress bars and strings
