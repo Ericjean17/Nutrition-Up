@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class CalorieGoalTrackerWindow extends WindowConstructor implements ActionListener {
@@ -29,15 +31,15 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
      */
     public void createCalorieGoalTrackerWindow() {
         // To set the dates
-        Dates.progressDates();
+        ProgressCalc.progressDates();
 
-        day1 = new JLabel(Dates.d1);
-        day2 = new JLabel(Dates.d2);
-        day3 = new JLabel(Dates.d3);
-        day4 = new JLabel(Dates.d4);
-        day5 = new JLabel(Dates.d5);
-        day6 = new JLabel(Dates.d6);
-        day7 = new JLabel(Dates.d7);
+        day1 = new JLabel(ProgressCalc.d1);
+        day2 = new JLabel(ProgressCalc.d2);
+        day3 = new JLabel(ProgressCalc.d3);
+        day4 = new JLabel(ProgressCalc.d4);
+        day5 = new JLabel(ProgressCalc.d5);
+        day6 = new JLabel(ProgressCalc.d6);
+        day7 = new JLabel(ProgressCalc.d7);
 
         // Initializes the action events for the buttons
         returnToFoodDiaryButton.addActionListener(this);
@@ -134,78 +136,129 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
 
     // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
-    public void calorieActualGoalProgressBarValue() { 
-        Dates.progressDates();
+    public void calorieActualGoalProgressBarValue() {
+        ProgressCalc.progressDates();
         System.out.println(FoodDiaryWindow.formattedDate);
         String formattedDate = FoodDiaryWindow.formattedDate;
         ProgressCalc.getTotal();
         ProgressCalc.getGoal();
         ProgressCalc.findProgress();
-        double calProgress = ProgressCalc.calProgress;
+        ArrayList<Double> calProgressList = ProgressCalc.calProgressList;
+        ProgressCalc.baseArrays();
+        ProgressCalc.addArray();
+        System.out.println(calProgressList);
+        double calProgress1 = calProgressList.get(0);
+        double calProgress2 = calProgressList.get(1);
+        double calProgress3 = calProgressList.get(2);
+        double calProgress4 = calProgressList.get(3);
+        double calProgress5 = calProgressList.get(4);
+        double calProgress6 = calProgressList.get(5);
+        double calProgress7 = calProgressList.get(6);
         double calGoal = ProgressCalc.calGoal;
-        System.out.println(calProgress);
-        
-        if (calProgress < 100 && formattedDate.equals(Dates.d1)) {
+
+        if (calProgress1 < 100 && formattedDate.equals(ProgressCalc.d1)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay1.setValue((int) calProgress);
-            userCaloriesDay1.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay1.setValue((int) calProgress1);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress1 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100 && formattedDate.equals(Dates.d1)) {
+        else if (calProgress1 >= 100 && formattedDate.equals(ProgressCalc.d1)) {
             userCaloriesDay1.setString("You reached your " + calGoal + " calorie goal! :)");
         }
-        else if (calProgress < 100 && formattedDate.equals(Dates.d2)) {
+        else if (calProgress2 < 100 && formattedDate.equals(ProgressCalc.d2)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay2.setValue((int) calProgress);
-            userCaloriesDay2.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay1.setValue((int) calProgress1);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress1 + "%");
+            userCaloriesDay2.setValue((int) calProgress2);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress2 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100 && formattedDate.equals(Dates.d2)) {
+        else if (calProgress2 >= 100 && formattedDate.equals(ProgressCalc.d2)) {
             userCaloriesDay2.setString("You reached your " + calGoal + " calorie goal! :)");
         }
-        else if (calProgress < 100 && formattedDate.equals(Dates.d3)) {
+        else if (calProgress3 < 100 && formattedDate.equals(ProgressCalc.d3)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay3.setValue((int) calProgress);
-            userCaloriesDay3.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay1.setValue((int) calProgress1);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress1 + "%");
+            userCaloriesDay2.setValue((int) calProgress2);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress2 + "%");
+            userCaloriesDay3.setValue((int) calProgress3);
+            userCaloriesDay3.setString("Your Progress: " + (int) calProgress3 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100 && formattedDate.equals(Dates.d3)) {
+        else if (calProgress3 >= 100 && formattedDate.equals(ProgressCalc.d3)) {
             userCaloriesDay3.setString("You reached your " + calGoal + " calorie goal! :)");
         }
-        else if (calProgress < 100 && formattedDate.equals(Dates.d4)) {
+        else if (calProgress4 < 100 && formattedDate.equals(ProgressCalc.d4)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay4.setValue((int) calProgress);
-            userCaloriesDay4.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay1.setValue((int) calProgress1);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress1 + "%");
+            userCaloriesDay2.setValue((int) calProgress2);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress2 + "%");
+            userCaloriesDay3.setValue((int) calProgress3);
+            userCaloriesDay3.setString("Your Progress: " + (int) calProgress3 + "%");
+            userCaloriesDay4.setValue((int) calProgress4);
+            userCaloriesDay4.setString("Your Progress: " + (int) calProgress4 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100 && formattedDate.equals(Dates.d4)) {
+        else if (calProgress4 >= 100 && formattedDate.equals(ProgressCalc.d4)) {
             userCaloriesDay4.setString("You reached your " + calGoal + " calorie goal! :)");
         }
-        else if (calProgress < 100 && formattedDate.equals(Dates.d5)) {
+        else if (calProgress5 < 100 && formattedDate.equals(ProgressCalc.d5)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay5.setValue((int) calProgress);
-            userCaloriesDay5.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay1.setValue((int) calProgress1);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress1 + "%");
+            userCaloriesDay2.setValue((int) calProgress2);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress2 + "%");
+            userCaloriesDay3.setValue((int) calProgress3);
+            userCaloriesDay3.setString("Your Progress: " + (int) calProgress3 + "%");
+            userCaloriesDay4.setValue((int) calProgress4);
+            userCaloriesDay4.setString("Your Progress: " + (int) calProgress4 + "%");
+            userCaloriesDay5.setValue((int) calProgress5);
+            userCaloriesDay5.setString("Your Progress: " + (int) calProgress5 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100 && formattedDate.equals(Dates.d5)) {
+        else if (calProgress5 >= 100 && formattedDate.equals(ProgressCalc.d5)) {
             userCaloriesDay5.setString("You reached your " + calGoal + " calorie goal! :)");
         }
-        else if (calProgress < 100 && formattedDate.equals(Dates.d6)) {
+        else if (calProgress6 < 100 && formattedDate.equals(ProgressCalc.d6)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay6.setValue((int) calProgress);
-            userCaloriesDay6.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay1.setValue((int) calProgress1);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress1 + "%");
+            userCaloriesDay2.setValue((int) calProgress2);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress2 + "%");
+            userCaloriesDay3.setValue((int) calProgress3);
+            userCaloriesDay3.setString("Your Progress: " + (int) calProgress3 + "%");
+            userCaloriesDay4.setValue((int) calProgress4);
+            userCaloriesDay4.setString("Your Progress: " + (int) calProgress4 + "%");
+            userCaloriesDay5.setValue((int) calProgress5);
+            userCaloriesDay5.setString("Your Progress: " + (int) calProgress5 + "%");
+            userCaloriesDay6.setValue((int) calProgress6);
+            userCaloriesDay6.setString("Your Progress: " + (int) calProgress6 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100 && formattedDate.equals(Dates.d6)) {
+        else if (calProgress6 >= 100 && formattedDate.equals(ProgressCalc.d6)) {
             userCaloriesDay6.setString("You reached your " + calGoal + " calorie goal! :)");
         }
-        else if (calProgress < 100 && formattedDate.equals(Dates.d7)) {
+        else if (calProgress7 < 100 && formattedDate.equals(ProgressCalc.d7)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userCaloriesDay7.setValue((int) calProgress);
-            userCaloriesDay7.setString("Your Progress: " + (int) calProgress + "%");
+            userCaloriesDay1.setValue((int) calProgress1);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress1 + "%");
+            userCaloriesDay2.setValue((int) calProgress2);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress2 + "%");
+            userCaloriesDay3.setValue((int) calProgress3);
+            userCaloriesDay3.setString("Your Progress: " + (int) calProgress3 + "%");
+            userCaloriesDay4.setValue((int) calProgress4);
+            userCaloriesDay4.setString("Your Progress: " + (int) calProgress4 + "%");
+            userCaloriesDay5.setValue((int) calProgress5);
+            userCaloriesDay5.setString("Your Progress: " + (int) calProgress5 + "%");
+            userCaloriesDay6.setValue((int) calProgress6);
+            userCaloriesDay6.setString("Your Progress: " + (int) calProgress6 + "%");
+            userCaloriesDay7.setValue((int) calProgress7);
+            userCaloriesDay7.setString("Your Progress: " + (int) calProgress7 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (calProgress >= 100 && formattedDate.equals(Dates.d7)) {
+        else if (calProgress7 >= 100 && formattedDate.equals(ProgressCalc.d7)) {
             userCaloriesDay7.setString("You reached your " + calGoal + " calorie goal! :)");
         }
         
