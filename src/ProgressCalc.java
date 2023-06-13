@@ -76,6 +76,7 @@ public class ProgressCalc {
         fatProgress = fatTotal / fatGoal * 100;
     }
 
+    // Set the array to have six indexes all equal to 0
     public static void baseArrays(){
         for (int i = 0; i < 7; i++) {
             calProgressList.add(0.0);
@@ -84,6 +85,7 @@ public class ProgressCalc {
         }
     }
 
+    // Find the current date and day
     public static void progressDates() {
         String formattedDate = FoodDiaryWindow.formattedDate;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -155,6 +157,8 @@ public class ProgressCalc {
             d1 = currentDate.minusDays(6).toString();
         }
     }
+
+    // Add the progress to the corresponding day of the week
     public static void addArray(){
         String formattedDate = FoodDiaryWindow.formattedDate;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

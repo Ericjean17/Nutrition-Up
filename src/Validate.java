@@ -18,6 +18,7 @@ public class Validate {
     }
 
     // method to validate username
+    // check if it is alphabetical and if it is less than or equal to 15 characters
     public static boolean validateUsername(){
         if(isString(username)){
             if(username.length() <= 15){
@@ -33,6 +34,7 @@ public class Validate {
     }
     
     // method to validate age
+    // check if it is a number and if it is between 1 and 100
     public static boolean validateAge(){
         if (isInt(age)){
             if(Integer.parseInt(age)>=0 && Integer.parseInt(age)<=100){
@@ -48,6 +50,7 @@ public class Validate {
     }
 
     // method to validate weight
+    // check if it is a number and if it is between 2 and 500
     public static boolean validateWeight(){
         if (isInt(weight)){
             if(Integer.parseInt(weight)>=2 && Integer.parseInt(weight)<=500){
@@ -63,6 +66,7 @@ public class Validate {
     }
 
     // method to validate height
+    // check if it is a number and if it is between 1 and 215
     public static boolean validateHeight(){
         if (isInt(height)){
             if(Integer.parseInt(height)>=1 && Integer.parseInt(height)<=215){
@@ -78,6 +82,7 @@ public class Validate {
     }
 
     // method to validate calorie goal
+    // check if it is a number and if it is between 1500 and 10000
     public static boolean validateCalorieGoal(){
         if (isInt(calorieGoal)){
             if(Integer.parseInt(calorieGoal)>=1500 && Integer.parseInt(calorieGoal)<=10000){
@@ -93,6 +98,7 @@ public class Validate {
     }
     
     // method to validate food name
+    // check if it is alphabetical and if it is less than or equal to 20
     public static boolean validateFoodName(){
         if(isString(foodName)){
             if(foodName.length() <= 20){
