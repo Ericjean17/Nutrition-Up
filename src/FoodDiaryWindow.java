@@ -299,7 +299,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 WriteCSV.writeTotals();
             } catch (IOException e1) {
                 e1.printStackTrace();
-            }
+            } 
 
             // Parses the current date from the label text
             currentDate = LocalDate.parse(dateText.getText());

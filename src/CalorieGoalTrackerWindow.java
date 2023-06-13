@@ -134,7 +134,7 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
 
     // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
-    public void calorieActualGoalProgressBarValue() {
+    public void calorieActualGoalProgressBarValue() { 
         Dates.progressDates();
         System.out.println(FoodDiaryWindow.formattedDate);
         String formattedDate = FoodDiaryWindow.formattedDate;
@@ -144,7 +144,7 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
         double calProgress = ProgressCalc.calProgress;
         double calGoal = ProgressCalc.calGoal;
         System.out.println(calProgress);
-
+        
         if (calProgress < 100 && formattedDate.equals(Dates.d1)) {
             // Use the 'progress' value for updating the progress bars and strings
             userCaloriesDay1.setValue((int) calProgress);
@@ -215,7 +215,7 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
             e.printStackTrace();
         }            
     }
-    
+
     /** 
      * @param e The event when a button is clicked occurs
      * 
