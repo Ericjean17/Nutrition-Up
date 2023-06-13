@@ -10,11 +10,11 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
     private JLabel createUsernameText = new JLabel("Enter a username", SwingConstants.CENTER);
     private JTextField createUsernameTextField = new JTextField(10);
     private JLabel enterGenderText = new JLabel("Enter your gender");
-    private JLabel enterAgeText = new JLabel("Enter your age");
+    private JLabel enterAgeText = new JLabel("Enter your age (yrs)");
     private JTextField inputAgeTextField = new JTextField(10);
-    private JLabel enterWeightText = new JLabel("Enter your weight");
+    private JLabel enterWeightText = new JLabel("Enter your weight (kg)");
     private JTextField inputWeightTextField = new JTextField(10);
-    private JLabel enterHeightText = new JLabel("Enter your height");
+    private JLabel enterHeightText = new JLabel("Enter your height (cm)");
     private JTextField inputHeightTextField = new JTextField(10);
     private JButton backButton = new JButton("Back");
     private JButton createUserAccount = new JButton("Create Account");
@@ -33,11 +33,11 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
         enterGenderText.setBounds(135,250,150,30);
         createUsernameText.setBounds(475,250,150,30);
         createUsernameTextField.setBounds(475,290,150,30);
-        enterAgeText.setBounds(795,250,150,30);
+        enterAgeText.setBounds(795,250,200,30);
         inputAgeTextField.setBounds(780,290,150,30);
-        enterWeightText.setBounds(237,365,150,30);
+        enterWeightText.setBounds(237,365,270,30);
         inputWeightTextField.setBounds(232,405, 150, 30);
-        enterHeightText.setBounds(675,365,200,30);
+        enterHeightText.setBounds(675,365,270,30);
         inputHeightTextField.setBounds(670,405,150,30);
         backButton.setBounds(30,30,75,30);
         createUserAccount.setBounds(475,580,150,30);
@@ -111,7 +111,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 // If conditions are met, deletes the sign up window and opens login window
                 if (Validate.validateUsername() == true && Validate.validateAge() == true && Validate.validateWeight() == true && Validate.validateHeight() == true){
                     JOptionPane.showMessageDialog(null, "Hello! " + createdUsername);
-                    createUsernameTextField.setText(""); // Clears the text field after saving the values??
+                    createUsernameTextField.setText("");
                     dispose();
                     createUsernameTextField.setText("");
                     LoginWindow loginWindow = new LoginWindow();
@@ -121,29 +121,29 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 // If the inputted username is not alphabetical, display error message
                 else if (Validate.validateUsername() == false){
                     JOptionPane.showMessageDialog(null, "Error. Invalid Username, Enter a Letter (A-Z).");
-                    createUsernameTextField.setText(""); // Clears the text field after saving the values??
+                    createUsernameTextField.setText("");
                 }
             }
             // If the username already exists, display error message
             else{
                 JOptionPane.showMessageDialog(null, "Error. Username Is Taken!");
-                createUsernameTextField.setText(""); // Clears the text field after saving the values??
+                createUsernameTextField.setText("");
             }
             try{
                 // If the inputted age is not numerical, display error message
                 if (Validate.validateAge() == false){
                     JOptionPane.showMessageDialog(null, "Error. Invalid Age, Enter a Number (0-100).");
-                    inputAgeTextField.setText(""); // Clears the text field after saving the values??
+                    inputAgeTextField.setText("");
                 }
                 // If the inputted weight is not numerical, display error message
                 else if (Validate.validateWeight() == false){
                     JOptionPane.showMessageDialog(null, "Error. Invalid Weight, Enter a Number (2-500).");
-                    inputWeightTextField.setText(""); // Clears the text field after saving the values??
+                    inputWeightTextField.setText("");
                 }
                 // If the inputted height is not numerical, display error message
                 else if (Validate.validateHeight() == false){
                     JOptionPane.showMessageDialog(null, "Error. Invalid Height, Enter a Number (1-215).");
-                    inputHeightTextField.setText(""); // Clears the text field after saving the values??
+                    inputHeightTextField.setText("");
                 }
                 // Prints out all of the data in the variables into the terminal to check if it is storing the value correctly
                 int inputtedAge = Integer.parseInt(getInputAgeTextField().getText());
@@ -158,7 +158,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 UserInfo.height = inputtedHeight;
                 UserInfo.goal = 0; // Set default goal to 0 because we don't know user's calorie goal
     
-                UserInfo.displayInformation();
+                
                 UserInfo.storeUserInfo(); // Store the username in the file
                 CalorieCalculator.RecCalorie();
                 FatCalculator.Recfat();

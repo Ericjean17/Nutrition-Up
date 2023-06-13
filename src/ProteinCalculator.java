@@ -18,11 +18,10 @@ public class ProteinCalculator {
                 // Check if the current line matches the username
                 if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
                     UserInfo.retrieveUsercalorie(username);
-                    UserInfo.displayInformation();
                     // Set the protein goal as 25% of the calorie result
-                    double proteinGoal = UserInfo.CalorieGoal;
-                    System.out.println(UserInfo.CalorieGoal);
-                    proteinGoal = proteinGoal * 0.25;
+                    double proteinGoal = UserInfo.weight;
+                    
+                    proteinGoal = proteinGoal * 0.8;
 
                     // Round the protein goal to 2 decimal places
                     DecimalFormat decimalFormat = new DecimalFormat("#.00");
@@ -43,7 +42,7 @@ public class ProteinCalculator {
             writer.print(fileContent.toString());
             writer.close();
 
-            System.out.println("Protein goal appended to UserInfo.csv");
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

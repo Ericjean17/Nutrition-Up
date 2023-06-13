@@ -65,14 +65,12 @@ class WebScraper {
             validInput = false;
             
             Document doc2 = Jsoup.connect(foodSearchPageURL).get();
-            System.out.println(foodSearchPageURL); // TO-DO: remove when done
 
             Elements elements = doc2.getElementsByAttributeValue("class", "MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1k8z5lp");
             
             elements.remove(0);
 
             foodDataPageURL = "https://www.myfitnesspal.com" + elements.first().attr("href");        
-            System.out.println(foodDataPageURL); // TO-DO: remove when done
             
             validInput = true;
         } 
@@ -92,6 +90,7 @@ class WebScraper {
         Element element = doc.getElementsByAttributeValue("class", "MuiTypography-root MuiTypography-body1 css-ezyk0s").first();
                 
         foodCalories = element.text();
+
         if(foodCalories.equals("--")){
             foodCalories = "0";
         }
@@ -110,6 +109,7 @@ class WebScraper {
         elements.remove(0);
 
         foodFat = elements.first().text().replace("g", "");
+
         if(foodFat.equals("--")){
             foodFat = "0";
         }
@@ -129,17 +129,25 @@ class WebScraper {
         elements.remove(0);
         
         foodProtein = elements.first().text().replace("g", "");
+
         if(foodProtein.equals("--")){
             foodProtein = "0";
         }
     }
 
-    public static String getScrollPaneText(){
+    /**
+     * Reads an inputted food's data and displays it in the FoodDiaryWindow ScrollPane
+     * 
+     * @return a String of the nutrient data to be placed in the ScrollPane
+     */
+    public static String displayScrollPaneText(){
+        // Stores columns of FoodData.csv into ArrayLists 
         ArrayList<String> foodNames2 = ReadCSV.readCol(0, "FoodData.csv", "/", 4);
         ArrayList<String> calorieData = ReadCSV.readCol(1, "FoodData.csv", "/", 4);
         ArrayList<String> fatData = ReadCSV.readCol(2, "FoodData.csv", "/", 4);
         ArrayList<String> proteinData = ReadCSV.readCol(3, "FoodData.csv", "/", 4);
         
+        // Searches for the location of the food in FoodData.csv
         int temp = 0;
         int i = 0;
         for(String element: foodNames2){
@@ -152,14 +160,20 @@ class WebScraper {
         return "Cal: " + calorieData.get(temp) + ", Fat: " + fatData.get(temp) + ", Prot: " + proteinData.get(temp);
     }
 
-    public static void writeData() throws IOException{ // TO-DO: rename method, javadoc
+    /**
+     * Uses PrintWriter to write nutrient data to FoodData.csv
+     * 
+     * @throws IOException
+     */
+    public static void writeData() throws IOException{
+        // Checks if nutrient data for the food is already present in FoodData.csv
         for(String element: ReadCSV.readCol(0, "FoodData.csv", "/", 4)){
-            System.out.print(element+food);
             if(food.equals(element)){
                 return;
             }
         }
 
+        // Writes the nutrient data
         try { 
             PrintWriter writer = new PrintWriter(new FileWriter("FoodData.csv", true));
             writer.println(food + "/" + foodCalories + "/" + foodFat + "/" + foodProtein);
@@ -169,6 +183,4 @@ class WebScraper {
             e.printStackTrace();
         }
     }
-
-    // TO-DO: ADD COMMENTS & RENAME VARIABLES
 }

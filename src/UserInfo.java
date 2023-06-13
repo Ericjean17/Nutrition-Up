@@ -67,15 +67,7 @@ public class UserInfo {
         }
     }
 
-    public static void displayInformation() {
-        System.out.println("Username: " + username);
-        System.out.println("Age: " + age);
-        System.out.println("Gender: " + gender);
-        System.out.println("weight: " + weight);
-        System.out.println("height: " + height);
-        System.out.println("Goal: " + goal);
-
-    }
+    
         public static void retrieveUsercalorie(String username) {
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
@@ -127,7 +119,7 @@ public class UserInfo {
             writer.print(fileContent.toString());
             writer.close();
     
-            System.out.println("Calories appended to UserInfo.csv");
+           
         } catch (IOException e) {
             e.printStackTrace();
         }

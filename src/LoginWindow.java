@@ -65,6 +65,8 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        
 
         // When the user presses the login button, it gets the String from the TextField and validates the username
         if (e.getSource() == loginButton){
@@ -72,7 +74,6 @@ public class LoginWindow extends WindowConstructor implements ActionListener {
             
             // If the username is in the library, deletes the current window and changes to the food diary window
             if (UserInfo.isUsernameExists(inputtedUsername) == true){
-                System.out.println("Username inputted is : " + inputtedUsername);
                 JOptionPane.showMessageDialog(null, "Hello! " + inputtedUsername);
                 inputUsernameTextField.setText(""); // Clears the text field after saving the values??
                 dispose();
