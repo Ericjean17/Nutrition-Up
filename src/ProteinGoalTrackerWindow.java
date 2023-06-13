@@ -131,14 +131,14 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
         add(day7);
 
         // Fills the bar with a thread/color
-        new Thread(this::calorieActualGoalProgressBarValue).start();
+        new Thread(this::protienActualGoalProgressBarValue).start();
     }
 
     // This is for USER'S ACTUAL Protein INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
-    public void calorieActualGoalProgressBarValue() {
+    public void protienActualGoalProgressBarValue() {
         ProgressCalc.progressDates();
-        System.out.println(FoodDiaryWindow.formattedDate);
+        
         String formattedDate = FoodDiaryWindow.formattedDate;
         ProgressCalc.getTotal();
         ProgressCalc.getGoal();
@@ -146,7 +146,7 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
         ArrayList<Double> proProgressList = ProgressCalc.proProgressList;
         ProgressCalc.baseArrays();
         ProgressCalc.addArray();
-        System.out.println(proProgressList);
+        
         double proProgress1 = proProgressList.get(0);
         double proProgress2 = proProgressList.get(1);
         double proProgress3 = proProgressList.get(2);
@@ -161,9 +161,9 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
             userProteinDay1.setValue((int) proProgress1);
             userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
         }
-        // If the user has reached their calorie goal for the day
+        // If the user has reached their protien goal for the day
         else if (proProgress1 >= 100 && formattedDate.equals(ProgressCalc.d1)) {
-            userProteinDay1.setString("You reached your " + proGoal + " calorie goal! :)");
+            userProteinDay1.setString("You reached your " + proGoal + " protien goal! :)");
         }
         else if (proProgress2 < 100 && formattedDate.equals(ProgressCalc.d2)) {
             // Use the 'progress' value for updating the progress bars and strings
@@ -172,9 +172,9 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
             userProteinDay2.setValue((int) proProgress2);
             userProteinDay2.setString("Your Progress: " + (int) proProgress2 + "%");
         }
-        // If the user has reached their calorie goal for the day
+        // If the user has reached their protien goal for the day
         else if (proProgress2 >= 100 && formattedDate.equals(ProgressCalc.d2)) {
-            userProteinDay2.setString("You reached your " + proGoal + " calorie goal! :)");
+            userProteinDay2.setString("You reached your " + proGoal + " protien goal! :)");
         }
         else if (proProgress3 < 100 && formattedDate.equals(ProgressCalc.d3)) {
             // Use the 'progress' value for updating the progress bars and strings
@@ -185,9 +185,9 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
             userProteinDay3.setValue((int) proProgress3);
             userProteinDay3.setString("Your Progress: " + (int) proProgress3 + "%");
         }
-        // If the user has reached their calorie goal for the day
+        // If the user has reached their protien goal for the day
         else if (proProgress3 >= 100 && formattedDate.equals(ProgressCalc.d3)) {
-            userProteinDay3.setString("You reached your " + proGoal + " calorie goal! :)");
+            userProteinDay3.setString("You reached your " + proGoal + " protien goal! :)");
         }
         else if (proProgress4 < 100 && formattedDate.equals(ProgressCalc.d4)) {
             // Use the 'progress' value for updating the progress bars and strings
@@ -200,9 +200,9 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
             userProteinDay4.setValue((int) proProgress4);
             userProteinDay4.setString("Your Progress: " + (int) proProgress4 + "%");
         }
-        // If the user has reached their calorie goal for the day
+        // If the user has reached their protien goal for the day
         else if (proProgress4 >= 100 && formattedDate.equals(ProgressCalc.d4)) {
-            userProteinDay4.setString("You reached your " + proGoal + " calorie goal! :)");
+            userProteinDay4.setString("You reached your " + proGoal + " protien goal! :)");
         }
         else if (proProgress5 < 100 && formattedDate.equals(ProgressCalc.d5)) {
             // Use the 'progress' value for updating the progress bars and strings
@@ -217,9 +217,9 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
             userProteinDay5.setValue((int) proProgress5);
             userProteinDay5.setString("Your Progress: " + (int) proProgress5 + "%");
         }
-        // If the user has reached their calorie goal for the day
+        // If the user has reached their protien goal for the day
         else if (proProgress5 >= 100 && formattedDate.equals(ProgressCalc.d5)) {
-            userProteinDay5.setString("You reached your " + proGoal + " calorie goal! :)");
+            userProteinDay5.setString("You reached your " + proGoal + " protien goal! :)");
         }
         else if (proProgress6 < 100 && formattedDate.equals(ProgressCalc.d6)) {
             // Use the 'progress' value for updating the progress bars and strings
@@ -236,9 +236,9 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
             userProteinDay6.setValue((int) proProgress6);
             userProteinDay6.setString("Your Progress: " + (int) proProgress6 + "%");
         }
-        // If the user has reached their calorie goal for the day
+        // If the user has reached their protien goal for the day
         else if (proProgress6 >= 100 && formattedDate.equals(ProgressCalc.d6)) {
-            userProteinDay6.setString("You reached your " + proGoal + " calorie goal! :)");
+            userProteinDay6.setString("You reached your " + proGoal + " protien goal! :)");
         }
         else if (proProgress7 < 100 && formattedDate.equals(ProgressCalc.d7)) {
             // Use the 'progress' value for updating the progress bars and strings
@@ -257,9 +257,9 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
             userProteinDay7.setValue((int) proProgress7);
             userProteinDay7.setString("Your Progress: " + (int) proProgress7 + "%");
         }
-        // If the user has reached their calorie goal for the day
+        // If the user has reached their protien goal for the day
         else if (proProgress7 >= 100 && formattedDate.equals(ProgressCalc.d7)) {
-            userProteinDay7.setString("You reached your " + proGoal + " calorie goal! :)");
+            userProteinDay7.setString("You reached your " + proGoal + " protien goal! :)");
         }
     }
     /** 

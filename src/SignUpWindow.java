@@ -158,7 +158,7 @@ public class SignUpWindow extends WindowConstructor implements ActionListener{
                 UserInfo.height = inputtedHeight;
                 UserInfo.goal = 0; // Set default goal to 0 because we don't know user's calorie goal
     
-                UserInfo.displayInformation();
+                
                 UserInfo.storeUserInfo(); // Store the username in the file
                 CalorieCalculator.RecCalorie();
                 FatCalculator.Recfat();

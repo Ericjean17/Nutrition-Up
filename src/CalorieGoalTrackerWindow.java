@@ -137,7 +137,7 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
     // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/ THROUGHOUT THE WEEK
     public void calorieActualGoalProgressBarValue() {
         ProgressCalc.progressDates();
-        System.out.println(FoodDiaryWindow.formattedDate);
+        
         String formattedDate = FoodDiaryWindow.formattedDate;
         ProgressCalc.getTotal();
         ProgressCalc.getGoal();
@@ -146,7 +146,7 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
         ArrayList<Double> calProgressList = ProgressCalc.calProgressList;
         ProgressCalc.baseArrays();
         ProgressCalc.addArray();
-        System.out.println(calProgressList);
+        
         double calProgress1 = calProgressList.get(0);
         double calProgress2 = calProgressList.get(1);
         double calProgress3 = calProgressList.get(2);

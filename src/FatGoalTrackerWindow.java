@@ -8,13 +8,13 @@ public class FatGoalTrackerWindow extends WindowConstructor implements ActionLis
     
     // Creates the labels, buttons, and ProgressBar and assigns it to a variable
     private JLabel fatGoalTrackerText = new JLabel("Weekly Fat Data", SwingConstants.CENTER);
-    private JProgressBar userFatsDay1 = new JProgressBar(SwingConstants.VERTICAL);
-    private JProgressBar userFatsDay2 = new JProgressBar(SwingConstants.VERTICAL);
-    private JProgressBar userFatsDay3 = new JProgressBar(SwingConstants.VERTICAL);
-    private JProgressBar userFatsDay4 = new JProgressBar(SwingConstants.VERTICAL);
-    private JProgressBar userFatsDay5 = new JProgressBar(SwingConstants.VERTICAL);
-    private JProgressBar userFatsDay6 = new JProgressBar(SwingConstants.VERTICAL);
-    private JProgressBar userFatsDay7 = new JProgressBar(SwingConstants.VERTICAL);
+    private JProgressBar userFatDay1 = new JProgressBar(SwingConstants.VERTICAL);
+    private JProgressBar userFatDay2 = new JProgressBar(SwingConstants.VERTICAL);
+    private JProgressBar userFatDay3 = new JProgressBar(SwingConstants.VERTICAL);
+    private JProgressBar userFatDay4 = new JProgressBar(SwingConstants.VERTICAL);
+    private JProgressBar userFatDay5 = new JProgressBar(SwingConstants.VERTICAL);
+    private JProgressBar userFatDay6 = new JProgressBar(SwingConstants.VERTICAL);
+    private JProgressBar userFatDay7 = new JProgressBar(SwingConstants.VERTICAL);
     private JLabel day1;
     private JLabel day2;
     private JLabel day3;
@@ -65,62 +65,62 @@ public class FatGoalTrackerWindow extends WindowConstructor implements ActionLis
         
         // Sets the default value of progress bars to 0
 
-        userFatsDay1.setValue(0);
-        userFatsDay1.setStringPainted(true);
+        userFatDay1.setValue(0);
+        userFatDay1.setStringPainted(true);
 
-        userFatsDay2.setValue(0);
-        userFatsDay2.setStringPainted(true);
+        userFatDay2.setValue(0);
+        userFatDay2.setStringPainted(true);
 
-        userFatsDay3.setValue(0);
-        userFatsDay3.setStringPainted(true);
+        userFatDay3.setValue(0);
+        userFatDay3.setStringPainted(true);
 
-        userFatsDay3.setValue(0);
-        userFatsDay3.setStringPainted(true);
+        userFatDay3.setValue(0);
+        userFatDay3.setStringPainted(true);
 
-        userFatsDay4.setValue(0);
-        userFatsDay4.setStringPainted(true);
+        userFatDay4.setValue(0);
+        userFatDay4.setStringPainted(true);
 
-        userFatsDay5.setValue(0);
-        userFatsDay5.setStringPainted(true);
+        userFatDay5.setValue(0);
+        userFatDay5.setStringPainted(true);
 
-        userFatsDay6.setValue(0);
-        userFatsDay6.setStringPainted(true);
+        userFatDay6.setValue(0);
+        userFatDay6.setStringPainted(true);
 
-        userFatsDay7.setValue(0);
-        userFatsDay7.setStringPainted(true);
+        userFatDay7.setValue(0);
+        userFatDay7.setStringPainted(true);
         
         // *CHANGE HEIGHT OF USER Fats BAR DEPENDING ON THEIR PROGRESS WITH CALCULATIONS
         // Set the positions and sizes of the progress bars
 
-        userFatsDay1.setBounds(150,200,50,300);
+        userFatDay1.setBounds(150,200,50,300);
 
-        userFatsDay2.setBounds(270,200,50,300);
+        userFatDay2.setBounds(270,200,50,300);
 ;
-        userFatsDay3.setBounds(390,200,50,300);
+        userFatDay3.setBounds(390,200,50,300);
 
-        userFatsDay4.setBounds(510,200,50,300);
+        userFatDay4.setBounds(510,200,50,300);
 
-        userFatsDay5.setBounds(630,200,50,300);
+        userFatDay5.setBounds(630,200,50,300);
 
-        userFatsDay6.setBounds(750,200,50,300);
+        userFatDay6.setBounds(750,200,50,300);
 
-        userFatsDay7.setBounds(870,200,50,300);
+        userFatDay7.setBounds(870,200,50,300);
         
         // Add the progress bars to the window
 
-        add(userFatsDay1);
+        add(userFatDay1);
 
-        add(userFatsDay2);
+        add(userFatDay2);
 
-        add(userFatsDay3);
+        add(userFatDay3);
 
-        add(userFatsDay4);
+        add(userFatDay4);
 
-        add(userFatsDay5);
+        add(userFatDay5);
 
-        add(userFatsDay6);
+        add(userFatDay6);
 
-        add(userFatsDay7);
+        add(userFatDay7);
 
         add(day1);
         add(day2);
@@ -138,129 +138,131 @@ public class FatGoalTrackerWindow extends WindowConstructor implements ActionLis
     // *Tweak this so it keeps on updating depending on user inputted food
     public void fatActualGoalProgressBarValue() {
         ProgressCalc.progressDates();
-        System.out.println(FoodDiaryWindow.formattedDate);
+        
         String formattedDate = FoodDiaryWindow.formattedDate;
         ProgressCalc.getTotal();
         ProgressCalc.getGoal();
         ProgressCalc.findProgress();
-        ArrayList<Double> proProgressList = ProgressCalc.proProgressList;
+        ArrayList<Double> fatProgressList = ProgressCalc.fatProgressList;
         ProgressCalc.baseArrays();
         ProgressCalc.addArray();
-        System.out.println(proProgressList);
-        double proProgress1 = proProgressList.get(0);
-        double proProgress2 = proProgressList.get(1);
-        double proProgress3 = proProgressList.get(2);
-        double proProgress4 = proProgressList.get(3);
-        double proProgress5 = proProgressList.get(4);
-        double proProgress6 = proProgressList.get(5);
-        double proProgress7 = proProgressList.get(6);
-        double proGoal = ProgressCalc.proGoal;
+       
+        double fatProgress1 = fatProgressList.get(0);
+        double fatProgress2 = fatProgressList.get(1);
+        double fatProgress3 = fatProgressList.get(2);
+        double fatProgress4 = fatProgressList.get(3);
+        double fatProgress5 = fatProgressList.get(4);
+        double fatProgress6 = fatProgressList.get(5);
+        double fatProgress7 = fatProgressList.get(6);
+        double fatGoal = ProgressCalc.fatGoal;
 
-        if (proProgress1 < 100 && formattedDate.equals(ProgressCalc.d1)) {
+        if (fatProgress1 < 100 && formattedDate.equals(ProgressCalc.d1)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userProteinDay1.setValue((int) proProgress1);
-            userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
+            userFatDay1.setValue((int) fatProgress1);
+            userFatDay1.setString("Your Progress: " + (int) fatProgress1 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (proProgress1 >= 100 && formattedDate.equals(ProgressCalc.d1)) {
-            userProteinDay1.setString("You reached your " + proGoal + " calorie goal! :)");
+        else if (fatProgress1 >= 100 && formattedDate.equals(ProgressCalc.d1)) {
+            userFatDay1.setString("You reached your " + fatGoal + " calorie goal! :)");
         }
-        else if (proProgress2 < 100 && formattedDate.equals(ProgressCalc.d2)) {
+        else if (fatProgress2 < 100 && formattedDate.equals(ProgressCalc.d2)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userProteinDay1.setValue((int) proProgress1);
-            userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
-            userProteinDay2.setValue((int) proProgress2);
-            userProteinDay2.setString("Your Progress: " + (int) proProgress2 + "%");
+            userFatDay1.setValue((int) fatProgress1);
+            userFatDay1.setString("Your Progress: " + (int) fatProgress1 + "%");
+            userFatDay2.setValue((int) fatProgress2);
+            userFatDay2.setString("Your Progress: " + (int) fatProgress2 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (proProgress2 >= 100 && formattedDate.equals(ProgressCalc.d2)) {
-            userProteinDay2.setString("You reached your " + proGoal + " calorie goal! :)");
+        else if (fatProgress2 >= 100 && formattedDate.equals(ProgressCalc.d2)) {
+            userFatDay2.setString("You reached your " + fatGoal + " calorie goal! :)");
         }
-        else if (proProgress3 < 100 && formattedDate.equals(ProgressCalc.d3)) {
+        else if (fatProgress3 < 100 && formattedDate.equals(ProgressCalc.d3)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userProteinDay1.setValue((int) proProgress1);
-            userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
-            userProteinDay2.setValue((int) proProgress2);
-            userProteinDay2.setString("Your Progress: " + (int) proProgress2 + "%");
-            userProteinDay3.setValue((int) proProgress3);
-            userProteinDay3.setString("Your Progress: " + (int) proProgress3 + "%");
+            userFatDay1.setValue((int) fatProgress1);
+            userFatDay1.setString("Your Progress: " + (int) fatProgress1 + "%");
+            userFatDay2.setValue((int) fatProgress2);
+            userFatDay2.setString("Your Progress: " + (int) fatProgress2 + "%");
+            userFatDay3.setValue((int) fatProgress3);
+            userFatDay3.setString("Your Progress: " + (int) fatProgress3 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (proProgress3 >= 100 && formattedDate.equals(ProgressCalc.d3)) {
-            userProteinDay3.setString("You reached your " + proGoal + " calorie goal! :)");
+        else if (fatProgress3 >= 100 && formattedDate.equals(ProgressCalc.d3)) {
+            userFatDay3.setString("You reached your " + fatGoal + " calorie goal! :)");
         }
-        else if (proProgress4 < 100 && formattedDate.equals(ProgressCalc.d4)) {
+        else if (fatProgress4 < 100 && formattedDate.equals(ProgressCalc.d4)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userProteinDay1.setValue((int) proProgress1);
-            userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
-            userProteinDay2.setValue((int) proProgress2);
-            userProteinDay2.setString("Your Progress: " + (int) proProgress2 + "%");
-            userProteinDay3.setValue((int) proProgress3);
-            userProteinDay3.setString("Your Progress: " + (int) proProgress3 + "%");
-            userProteinDay4.setValue((int) proProgress4);
-            userProteinDay4.setString("Your Progress: " + (int) proProgress4 + "%");
+            userFatDay1.setValue((int) fatProgress1);
+            userFatDay1.setString("Your Progress: " + (int) fatProgress1 + "%");
+            userFatDay2.setValue((int) fatProgress2);
+            userFatDay2.setString("Your Progress: " + (int) fatProgress2 + "%");
+            userFatDay3.setValue((int) fatProgress3);
+            userFatDay3.setString("Your Progress: " + (int) fatProgress3 + "%");
+            userFatDay4.setValue((int) fatProgress4);
+            userFatDay4.setString("Your Progress: " + (int) fatProgress4 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (proProgress4 >= 100 && formattedDate.equals(ProgressCalc.d4)) {
-            userProteinDay4.setString("You reached your " + proGoal + " calorie goal! :)");
+        else if (fatProgress4 >= 100 && formattedDate.equals(ProgressCalc.d4)) {
+            userFatDay4.setString("You reached your " + fatGoal + " calorie goal! :)");
         }
-        else if (proProgress5 < 100 && formattedDate.equals(ProgressCalc.d5)) {
+        else if (fatProgress5 < 100 && formattedDate.equals(ProgressCalc.d5)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userProteinDay1.setValue((int) proProgress1);
-            userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
-            userProteinDay2.setValue((int) proProgress2);
-            userProteinDay2.setString("Your Progress: " + (int) proProgress2 + "%");
-            userProteinDay3.setValue((int) proProgress3);
-            userProteinDay3.setString("Your Progress: " + (int) proProgress3 + "%");
-            userProteinDay4.setValue((int) proProgress4);
-            userProteinDay4.setString("Your Progress: " + (int) proProgress4 + "%");
-            userProteinDay5.setValue((int) proProgress5);
-            userProteinDay5.setString("Your Progress: " + (int) proProgress5 + "%");
+            userFatDay1.setValue((int) fatProgress1);
+            userFatDay1.setString("Your Progress: " + (int) fatProgress1 + "%");
+            userFatDay2.setValue((int) fatProgress2);
+            userFatDay2.setString("Your Progress: " + (int) fatProgress2 + "%");
+            userFatDay3.setValue((int) fatProgress3);
+            userFatDay3.setString("Your Progress: " + (int) fatProgress3 + "%");
+            userFatDay4.setValue((int) fatProgress4);
+            userFatDay4.setString("Your Progress: " + (int) fatProgress4 + "%");
+            userFatDay5.setValue((int) fatProgress5);
+            userFatDay5.setString("Your Progress: " + (int) fatProgress5 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (proProgress5 >= 100 && formattedDate.equals(ProgressCalc.d5)) {
-            userProteinDay5.setString("You reached your " + proGoal + " calorie goal! :)");
+        else if (fatProgress5 >= 100 && formattedDate.equals(ProgressCalc.d5)) {
+            userFatDay5.setString("You reached your " + fatGoal + " calorie goal! :)");
         }
-        else if (proProgress6 < 100 && formattedDate.equals(ProgressCalc.d6)) {
+        else if (fatProgress6 < 100 && formattedDate.equals(ProgressCalc.d6)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userProteinDay1.setValue((int) proProgress1);
-            userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
-            userProteinDay2.setValue((int) proProgress2);
-            userProteinDay2.setString("Your Progress: " + (int) proProgress2 + "%");
-            userProteinDay3.setValue((int) proProgress3);
-            userProteinDay3.setString("Your Progress: " + (int) proProgress3 + "%");
-            userProteinDay4.setValue((int) proProgress4);
-            userProteinDay4.setString("Your Progress: " + (int) proProgress4 + "%");
-            userProteinDay5.setValue((int) proProgress5);
-            userProteinDay5.setString("Your Progress: " + (int) proProgress5 + "%");
-            userProteinDay6.setValue((int) proProgress6);
-            userProteinDay6.setString("Your Progress: " + (int) proProgress6 + "%");
+            userFatDay1.setValue((int) fatProgress1);
+            userFatDay1.setString("Your Progress: " + (int) fatProgress1 + "%");
+            userFatDay2.setValue((int) fatProgress2);
+            userFatDay2.setString("Your Progress: " + (int) fatProgress2 + "%");
+            userFatDay3.setValue((int) fatProgress3);
+            userFatDay3.setString("Your Progress: " + (int) fatProgress3 + "%");
+            userFatDay4.setValue((int) fatProgress4);
+            userFatDay4.setString("Your Progress: " + (int) fatProgress4 + "%");
+            userFatDay5.setValue((int) fatProgress5);
+            userFatDay5.setString("Your Progress: " + (int) fatProgress5 + "%");
+            userFatDay6.setValue((int) fatProgress6);
+            userFatDay6.setString("Your Progress: " + (int) fatProgress6 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (proProgress6 >= 100 && formattedDate.equals(ProgressCalc.d6)) {
-            userProteinDay6.setString("You reached your " + proGoal + " calorie goal! :)");
+        else if (fatProgress6 >= 100 && formattedDate.equals(ProgressCalc.d6)) {
+            userFatDay6.setString("You reached your " + fatGoal + " calorie goal! :)");
         }
-        else if (proProgress7 < 100 && formattedDate.equals(ProgressCalc.d7)) {
+        else if (fatProgress7 < 100 && formattedDate.equals(ProgressCalc.d7)) {
             // Use the 'progress' value for updating the progress bars and strings
-            userProteinDay1.setValue((int) proProgress1);
-            userProteinDay1.setString("Your Progress: " + (int) proProgress1 + "%");
-            userProteinDay2.setValue((int) proProgress2);
-            userProteinDay2.setString("Your Progress: " + (int) proProgress2 + "%");
-            userProteinDay3.setValue((int) proProgress3);
-            userProteinDay3.setString("Your Progress: " + (int) proProgress3 + "%");
-            userProteinDay4.setValue((int) proProgress4);
-            userProteinDay4.setString("Your Progress: " + (int) proProgress4 + "%");
-            userProteinDay5.setValue((int) proProgress5);
-            userProteinDay5.setString("Your Progress: " + (int) proProgress5 + "%");
-            userProteinDay6.setValue((int) proProgress6);
-            userProteinDay6.setString("Your Progress: " + (int) proProgress6 + "%");
-            userProteinDay7.setValue((int) proProgress7);
-            userProteinDay7.setString("Your Progress: " + (int) proProgress7 + "%");
+            userFatDay1.setValue((int) fatProgress1);
+            userFatDay1.setString("Your Progress: " + (int) fatProgress1 + "%");
+            userFatDay2.setValue((int) fatProgress2);
+            userFatDay2.setString("Your Progress: " + (int) fatProgress2 + "%");
+            userFatDay3.setValue((int) fatProgress3);
+            userFatDay3.setString("Your Progress: " + (int) fatProgress3 + "%");
+            userFatDay4.setValue((int) fatProgress4);
+            userFatDay4.setString("Your Progress: " + (int) fatProgress4 + "%");
+            userFatDay5.setValue((int) fatProgress5);
+            userFatDay5.setString("Your Progress: " + (int) fatProgress5 + "%");
+            userFatDay6.setValue((int) fatProgress6);
+            userFatDay6.setString("Your Progress: " + (int) fatProgress6 + "%");
+            userFatDay7.setValue((int) fatProgress7);
+            userFatDay7.setString("Your Progress: " + (int) fatProgress7 + "%");
         }
         // If the user has reached their calorie goal for the day
-        else if (proProgress7 >= 100 && formattedDate.equals(ProgressCalc.d7)) {
-            userProteinDay7.setString("You reached your " + proGoal + " calorie goal! :)");
+        else if (fatProgress7 >= 100 && formattedDate.equals(ProgressCalc.d7)) {
+            userFatDay7.setString("You reached your " + fatGoal + " calorie goal! :)");
         }
+    }
+    
     
     /** 
      * @param e The event when a button is clicked occurs

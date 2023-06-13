@@ -22,7 +22,7 @@ public class FatCalculator {
                     UserInfo.displayInformation();
                     // Set the fat goal as 30% of the calorie result
                     double FatGoal = UserInfo.CalorieGoal;
-                    System.out.println(UserInfo.CalorieGoal);
+                    
                     FatGoal = FatGoal * 0.3 / 9;
 
                     // Round the fat goal to 2 decimal places
@@ -44,7 +44,7 @@ public class FatCalculator {
             writer.print(fileContent.toString());
             writer.close();
 
-            System.out.println("Fat goal appended to UserInfo.csv");
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,23 +7,34 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ProgressCalc {
+    // Variables to store total and goal values for protein, fat, and calories
     public static double proTotal = 0;
     public static double fatTotal = 0;
     public static double calTotal = 0;
     public static double proGoal = 0;
     public static double fatGoal = 0;
     public static double calGoal = 0;
+    
+    // Variables to store progress percentages for protein, fat, and calories
     public static double proProgress = 0;
     public static double fatProgress = 0;
     public static double calProgress = 0;
+    
+    // Variables to store daily values for each day of the week
     public static String d1, d2, d3, d4, d5, d6, d7;
+    
+    // Lists to store progress values for each day of the week
     public static ArrayList<Double> calProgressList = new ArrayList<>();
     public static ArrayList<Double> proProgressList = new ArrayList<>();
     public static ArrayList<Double> fatProgressList = new ArrayList<>();
     
-    public static void getTotal(){
+    /**
+     * This method retrieves the total protein, fat, and calorie values for a specific date and username from the "DailyTotals.csv" file.
+     */
+    public static void getTotal() {
         String date = FoodDiaryWindow.formattedDate;
         String username = LoginWindow.inputtedUsername;
+        
         try (BufferedReader reader = new BufferedReader(new FileReader("DailyTotals.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -35,19 +46,22 @@ public class ProgressCalc {
                     break;
                 }
             }
+            
             System.out.println(proTotal);
             System.out.println(fatTotal);
             System.out.println(calTotal);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    public static void getGoal(){
+    /**
+     * This method retrieves the protein and fat goal values for a specific username from the "UserInfo.csv" file.
+     */
+    public static void getGoal() {
         String username = LoginWindow.inputtedUsername;
         calGoal = Double.parseDouble(Validate.calorieGoal);
+        
         try (BufferedReader reader = new BufferedReader(new FileReader("UserInfo.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -55,26 +69,27 @@ public class ProgressCalc {
                 if (fields.length > 4 && fields[0].equalsIgnoreCase(username)) {
                     proGoal = Double.parseDouble(fields[7]);
                     fatGoal = Double.parseDouble(fields[6]);
-                    
-                    
                     break;
                 }
             }
+            
             System.out.println(proGoal);
             System.out.println(fatGoal);
             System.out.println(calGoal);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    public static void findProgress(){
+    /**
+     * This method calculates the progress percentages for protein, fat, and calories based on the total and goal values.
+     */
+    public static void findProgress() {
         calProgress = calTotal / calGoal * 100;
         proProgress = proTotal / proGoal * 100;
         fatProgress = fatTotal / fatGoal * 100;
     }
+
 
     // Set the array to have six indexes all equal to 0
     public static void baseArrays(){
