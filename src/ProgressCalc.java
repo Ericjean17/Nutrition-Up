@@ -163,18 +163,32 @@ public class ProgressCalc {
 
         if (currentDayOfWeek == DayOfWeek.SUNDAY) {
             calProgressList.add(0, calProgress);
+            proProgressList.add(0, proProgress);
+            fatProgressList.add(0, fatProgress);
         } else if (currentDayOfWeek == DayOfWeek.MONDAY) {
             calProgressList.add(1, calProgress);
+            proProgressList.add(1, proProgress);
+            fatProgressList.add(1, fatProgress);
         } else if (currentDayOfWeek == DayOfWeek.TUESDAY) {
             calProgressList.add(2, calProgress);
+            proProgressList.add(2, proProgress);
+            fatProgressList.add(2, fatProgress);
         } else if (currentDayOfWeek == DayOfWeek.WEDNESDAY) {
             calProgressList.add(3, calProgress);
+            proProgressList.add(3, proProgress);
+            fatProgressList.add(3, fatProgress);
         } else if (currentDayOfWeek == DayOfWeek.THURSDAY) {
             calProgressList.add(4, calProgress);
+            proProgressList.add(4, proProgress);
+            fatProgressList.add(4, fatProgress);
         } else if (currentDayOfWeek == DayOfWeek.FRIDAY) {
             calProgressList.add(5, calProgress);
+            proProgressList.add(5, proProgress);
+            fatProgressList.add(5, fatProgress);
         } else {
             calProgressList.add(6, calProgress);
+            proProgressList.add(6, proProgress);
+            fatProgressList.add(6, fatProgress);
         }
     }
 }

@@ -13,13 +13,13 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
     private JProgressBar userProteinDay5 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userProteinDay6 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userProteinDay7 = new JProgressBar(SwingConstants.VERTICAL);
-    private JLabel day1 = new JLabel("6/11/2023");
-    private JLabel day2 = new JLabel("6/12/2023");
-    private JLabel day3 = new JLabel("6/13/2023");
-    private JLabel day4 = new JLabel("6/14/2023");
-    private JLabel day5 = new JLabel("6/15/2023");
-    private JLabel day6 = new JLabel("6/16/2023");
-    private JLabel day7 = new JLabel("6/17/2023");
+    private JLabel day1;
+    private JLabel day2;
+    private JLabel day3;
+    private JLabel day4;
+    private JLabel day5;
+    private JLabel day6;
+    private JLabel day7;
         
     private JButton returnToFoodDiaryButton = new JButton("Return to Food Diary");
     
@@ -28,6 +28,17 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
      * along with inheriting properties from the constructor class
      */
     public void createProteinGoalTrackerWindow() {
+        // To set the dates
+        ProgressCalc.progressDates();
+
+        day1 = new JLabel(ProgressCalc.d1);
+        day2 = new JLabel(ProgressCalc.d2);
+        day3 = new JLabel(ProgressCalc.d3);
+        day4 = new JLabel(ProgressCalc.d4);
+        day5 = new JLabel(ProgressCalc.d5);
+        day6 = new JLabel(ProgressCalc.d6);
+        day7 = new JLabel(ProgressCalc.d7);
+        
         // Initializes the action events for the buttons
         returnToFoodDiaryButton.addActionListener(this);
         
