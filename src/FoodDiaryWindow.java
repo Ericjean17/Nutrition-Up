@@ -57,11 +57,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         
         dayOfWeekText.setText("  - " + currentDate.getDayOfWeek().toString());
 
-        // Depending on the amount of days in each month, the month value goes up by 1 after 30/31 days
+        // Sets the dateText Label
         for (int i = 0; i < months; i++) {
             formattedDate = dateFormat.format(java.sql.Date.valueOf(currentDate));
             dateText.setText(formattedDate);
-            //currentDate = currentDate.plusMonths(1); //WHAT IS THIS FOR???
         }
 
         diaryTextArea.setEditable(false);
@@ -148,6 +147,8 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
     }
 
     /** 
+     * Dictates what happens when each button is pressed
+     * 
      * @param e The event when a button is clicked occurs
      * 
      * This method finds and gets the event when a button is clicked. If the calorie button is clicked,
@@ -156,7 +157,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
      * protein, fat, and calories of the food and stores it into a csv file. The goal progress button will dispose the current window
      * and create the goal progress window.
      * 
-     * *The docstring is to long. will change later.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -183,10 +183,10 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
              
         }
         else if (e.getSource() == enterFoodNameButton){
-            // Gets the text from the food text field
             String food = inputFoodNameTextField.getText();
             Validate.foodName = food;
 
+            // Displays error message if calorie goal is not entered
             if (isCalorieGoalEntered == false){
                 JOptionPane.showMessageDialog(null, "Enter your calorie goal first!");
                 inputFoodNameTextField.setText("");
@@ -198,19 +198,21 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 inputFoodNameTextField.setText("");
             }
 
-            // If there is a String inside the text field, the webscraper fetches it and sees if the food is in their database
+            // If there is a valid String inside the text field, the webscraper fetches it and sees if the food is in their database
             else{
                 WebScraper.food = food;
-                Boolean test = false;
+                Boolean foodExists = false;
                 
+                // Checks if food data already exists in FoodData.csv before web scraping
                 for(String element: ReadCSV.readCol(0, "FoodData.csv", "/", 4)){
                     if(food.equals(element)){
-                        test = true;
+                        foodExists = true;
                         WebScraper.validInput = true;
                     }
                 }
 
-                if(test == false){
+                // If food data doesn't exist, runs web scraper
+                if(foodExists == false){
                     try {
                     WebScraper.addKeywordDelimiters();
                     WebScraper.setFoodDataPageURL();
@@ -218,6 +220,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     WebScraper.getCalorieData();
                     WebScraper.getFatData();
                     WebScraper.getProteinData();
+
                     WebScraper.writeData();
                     }
                     catch (Exception e2) {
@@ -225,11 +228,14 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                     }
                 }
 
+                // It the web scraper found a valid food item (did not return "Page Not Found" error), display in food diary
                 if(WebScraper.validInput == true){
                     diaryTextArea.append(food + "\n");
                     diaryTextArea.append(WebScraper.displayScrollPaneText() + "\n");
                     diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
+
+                    // Reset validInput to false default to prevent next inputted food from skipping validation
                     WebScraper.validInput = false;
 
                     try {
@@ -290,6 +296,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
 
         // When the next day button is pressed, it changes the date and day
         else if (e.getSource() == nextDayButton){
+            // Writes the daily totals to DailyTotals.csv
             try {
                 WriteCSV.writeTotals();
             } catch (IOException e1) {
@@ -315,6 +322,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             // The enter calorie goal button will reappear since it is the next day
             enterCalorieGoalButton.setVisible(true);
 
+            // Resets values related to the previous day
             isCalorieGoalEntered = false;
             userCalories = "";
             dailyCalorieGoal.setText("");
