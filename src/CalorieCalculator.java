@@ -5,12 +5,11 @@ public class CalorieCalculator {
      * This method calculates the daily calorie requirement for a user.
      */
     public static void RecCalorie() {
-        String username = UserInfo.username;  // Replace with the desired username
+        String username = UserInfo.username;
         
         if (UserInfo.isUsernameExists(username)) {
             // Username exists, perform login action
             UserInfo.retrieveUserInfo(username);
-            UserInfo.displayInformation();
             
             double weightKg = UserInfo.weight;
             int hoursPerDay = 24;

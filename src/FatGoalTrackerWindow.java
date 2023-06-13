@@ -89,7 +89,6 @@ public class FatGoalTrackerWindow extends WindowConstructor implements ActionLis
         userFatDay7.setValue(0);
         userFatDay7.setStringPainted(true);
         
-        // *CHANGE HEIGHT OF USER Fats BAR DEPENDING ON THEIR PROGRESS WITH CALCULATIONS
         // Set the positions and sizes of the progress bars
 
         userFatDay1.setBounds(150,200,50,300);
@@ -135,7 +134,6 @@ public class FatGoalTrackerWindow extends WindowConstructor implements ActionLis
     }
 
     // This is for USER'S ACTUAL Fats INTAKE FOR EACH DAY/WEEK
-    // *Tweak this so it keeps on updating depending on user inputted food
     public void fatActualGoalProgressBarValue() {
         ProgressCalc.progressDates();
         

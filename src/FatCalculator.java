@@ -19,7 +19,6 @@ public class FatCalculator {
                 // Check if the current line matches the username
                 if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
                     UserInfo.retrieveUsercalorie(username);
-                    UserInfo.displayInformation();
                     // Set the fat goal as 30% of the calorie result
                     double FatGoal = UserInfo.CalorieGoal;
                     

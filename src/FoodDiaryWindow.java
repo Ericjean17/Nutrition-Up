@@ -176,11 +176,7 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
             else{
                 enterCalorieInputTextField.setText("");
                 JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (1500-10000).");
-            }
-
-             // *Also, whenever we press the progress bar button, it becomes visible again. Need to somehow make it still invisible
-             // Until the user pressed the next day button.
-             
+            }             
         }
         else if (e.getSource() == enterFoodNameButton){
             String food = inputFoodNameTextField.getText();

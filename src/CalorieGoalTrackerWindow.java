@@ -89,7 +89,6 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
         userCaloriesDay7.setValue(0);
         userCaloriesDay7.setStringPainted(true);
         
-        // *CHANGE HEIGHT OF USER CALORIES BAR DEPENDING ON THEIR PROGRESS WITH CALCULATIONS
         // Set the positions and sizes of the progress bars
 
         userCaloriesDay1.setBounds(150,200,50,300);
