@@ -1,14 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-<<<<<<< HEAD
-
-=======
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
->>>>>>> d6601cc10ab043999fd04f4cd441e833c5da76b8
 
 public class ProgressCalc {
     public static double proTotal = 0;
