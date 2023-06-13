@@ -1,7 +1,10 @@
 public class CalorieCalculator {
+    public static double CalorieResult = 0;
+    
 
     public static void RecCalorie(){
         String username = UserInfo.username;  // Replace with the desired username
+        
         
         if (UserInfo.isUsernameExists(username)) {
             // Username exists, perform login action
@@ -52,7 +55,8 @@ public class CalorieCalculator {
         
             
             // Calculate the result
-            double CalorieResult = weightKg * genderFactor * hoursPerDay * bodyFatPercentage;
+            CalorieResult = weightKg * genderFactor * hoursPerDay * bodyFatPercentage;
+            
     
             
             // Append the calories to the same line in the UserInfo.csv file

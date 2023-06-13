@@ -20,9 +20,9 @@ public class ProteinCalculator {
                     UserInfo.retrieveUsercalorie(username);
                     UserInfo.displayInformation();
                     // Set the protein goal as 25% of the calorie result
-                    double proteinGoal = UserInfo.CalorieGoal;
+                    double proteinGoal = UserInfo.weight;
                     System.out.println(UserInfo.CalorieGoal);
-                    proteinGoal = proteinGoal * 0.25;
+                    proteinGoal = proteinGoal * 0.8;
 
                     // Round the protein goal to 2 decimal places
                     DecimalFormat decimalFormat = new DecimalFormat("#.00");

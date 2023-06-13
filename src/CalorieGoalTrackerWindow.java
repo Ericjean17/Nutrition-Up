@@ -13,13 +13,13 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
     private JProgressBar userCaloriesDay5 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userCaloriesDay6 = new JProgressBar(SwingConstants.VERTICAL);
     private JProgressBar userCaloriesDay7 = new JProgressBar(SwingConstants.VERTICAL);
-    private JLabel day1 = new JLabel("6/11/2023");
-    private JLabel day2 = new JLabel("6/12/2023");
-    private JLabel day3 = new JLabel("6/13/2023");
-    private JLabel day4 = new JLabel("6/14/2023");
-    private JLabel day5 = new JLabel("6/15/2023");
-    private JLabel day6 = new JLabel("6/16/2023");
-    private JLabel day7 = new JLabel("6/17/2023");
+    private JLabel day1;
+    private JLabel day2;
+    private JLabel day3;
+    private JLabel day4;
+    private JLabel day5;
+    private JLabel day6;
+    private JLabel day7;
         
     private JButton returnToFoodDiaryButton = new JButton("Return to Food Diary");
     
@@ -28,6 +28,17 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
      * along with inheriting properties from the constructor class
      */
     public void createCalorieGoalTrackerWindow() {
+        // To set the dates
+        Dates.progressDates();
+
+        day1 = new JLabel(Dates.d1);
+        day2 = new JLabel(Dates.d2);
+        day3 = new JLabel(Dates.d3);
+        day4 = new JLabel(Dates.d4);
+        day5 = new JLabel(Dates.d5);
+        day6 = new JLabel(Dates.d6);
+        day7 = new JLabel(Dates.d7);
+
         // Initializes the action events for the buttons
         returnToFoodDiaryButton.addActionListener(this);
         
@@ -124,41 +135,85 @@ public class CalorieGoalTrackerWindow extends WindowConstructor implements Actio
     // This is for USER'S ACTUAL CALORIES INTAKE FOR EACH DAY/WEEK
     // *Tweak this so it keeps on updating depending on user inputted food
     public void calorieActualGoalProgressBarValue() {
-        int counter = 0;
-        while (counter <= 100) {
-            final int value = counter;
-                userCaloriesDay1.setValue(value);
-                userCaloriesDay1.setString("Your Progress: " + value + "%");
-                userCaloriesDay2.setValue(value);
-                userCaloriesDay2.setString("Your Progress: " + value + "%");
-                userCaloriesDay3.setValue(value);
-                userCaloriesDay3.setString("Your Progress: " + value + "%");
-                userCaloriesDay4.setValue(value);
-                userCaloriesDay4.setString("Your Progress: " + value + "%");
-                userCaloriesDay5.setValue(value);
-                userCaloriesDay5.setString("Your Progress: " + value + "%");
-                userCaloriesDay6.setValue(value);
-                userCaloriesDay6.setString("Your Progress: " + value + "%");
-                userCaloriesDay7.setValue(value);
-                userCaloriesDay7.setString("Your Progress: " + value + "%");
-                
-            try {
-                Thread.sleep(15);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            counter++;
+        Dates.progressDates();
+        System.out.println(FoodDiaryWindow.formattedDate);
+        String formattedDate = FoodDiaryWindow.formattedDate;
+        ProgressCalc.getTotal();
+        ProgressCalc.getGoal();
+        ProgressCalc.findProgress();
+        double calProgress = ProgressCalc.calProgress;
+        double calGoal = ProgressCalc.calGoal;
+        System.out.println(calProgress);
 
-            // Updates the text inside the progress bar after the user reaches their goal
-            // Change ___ into user inputted calorie goal
-            userCaloriesDay1.setString("You reached your ____ goal! :)");
-            userCaloriesDay2.setString("You reached your ____ goal! :)");
-            userCaloriesDay3.setString("You reached your ____ goal! :)");
-            userCaloriesDay4.setString("You reached your ____ goal! :)");
-            userCaloriesDay5.setString("You reached your ____ goal! :)");
-            userCaloriesDay6.setString("You reached your ____ goal! :)");
-            userCaloriesDay7.setString("You reached your ____ goal! :)");
+        if (calProgress < 100 && formattedDate.equals(Dates.d1)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay1.setValue((int) calProgress);
+            userCaloriesDay1.setString("Your Progress: " + (int) calProgress + "%");
         }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(Dates.d1)) {
+            userCaloriesDay1.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(Dates.d2)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay2.setValue((int) calProgress);
+            userCaloriesDay2.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(Dates.d2)) {
+            userCaloriesDay2.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(Dates.d3)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay3.setValue((int) calProgress);
+            userCaloriesDay3.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(Dates.d3)) {
+            userCaloriesDay3.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(Dates.d4)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay4.setValue((int) calProgress);
+            userCaloriesDay4.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(Dates.d4)) {
+            userCaloriesDay4.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(Dates.d5)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay5.setValue((int) calProgress);
+            userCaloriesDay5.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(Dates.d5)) {
+            userCaloriesDay5.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(Dates.d6)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay6.setValue((int) calProgress);
+            userCaloriesDay6.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(Dates.d6)) {
+            userCaloriesDay6.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        else if (calProgress < 100 && formattedDate.equals(Dates.d7)) {
+            // Use the 'progress' value for updating the progress bars and strings
+            userCaloriesDay7.setValue((int) calProgress);
+            userCaloriesDay7.setString("Your Progress: " + (int) calProgress + "%");
+        }
+        // If the user has reached their calorie goal for the day
+        else if (calProgress >= 100 && formattedDate.equals(Dates.d7)) {
+            userCaloriesDay7.setString("You reached your " + calGoal + " calorie goal! :)");
+        }
+        
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }            
     }
     
     /** 
