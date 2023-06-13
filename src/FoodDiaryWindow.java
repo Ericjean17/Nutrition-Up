@@ -171,15 +171,12 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 enterCalorieInputTextField.setText(""); // Why do we need this?
                 isCalorieGoalEntered = true;
                 dailyCalorieGoal.setText("Calorie goal : " + userCalories + "g");
-                System.out.println(userCalories);
             }
             // If the calorie goal is invalid, display an error message
             else{
                 enterCalorieInputTextField.setText("");
                 JOptionPane.showMessageDialog(null, "Error. Invalid Calorie Goal, Enter a Number (1500-10000).");
             }
-
-            System.out.println("User wants to eat " + userCalories + "g of calories today");
 
              // *Also, whenever we press the progress bar button, it becomes visible again. Need to somehow make it still invisible
              // Until the user pressed the next day button.
@@ -229,9 +226,8 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
                 }
 
                 if(WebScraper.validInput == true){
-                    System.out.println("User ate this " + food);
                     diaryTextArea.append(food + "\n");
-                    diaryTextArea.append(WebScraper.getScrollPaneText() + "\n");
+                    diaryTextArea.append(WebScraper.displayScrollPaneText() + "\n");
                     diaryTextArea.append("_______________________________\n");
                     inputFoodNameTextField.setText("");
                     WebScraper.validInput = false;
@@ -295,7 +291,6 @@ public class FoodDiaryWindow extends WindowConstructor implements ActionListener
         // When the next day button is pressed, it changes the date and day
         else if (e.getSource() == nextDayButton){
             try {
-                System.out.println("Testing");
                 WriteCSV.writeTotals();
             } catch (IOException e1) {
                 e1.printStackTrace();
