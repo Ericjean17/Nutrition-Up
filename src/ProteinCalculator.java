@@ -18,7 +18,6 @@ public class ProteinCalculator {
                 // Check if the current line matches the username
                 if (fields.length > 0 && fields[0].equalsIgnoreCase(username)) {
                     UserInfo.retrieveUsercalorie(username);
-                    UserInfo.displayInformation();
                     // Set the protein goal as 25% of the calorie result
                     double proteinGoal = UserInfo.weight;
                     

@@ -89,7 +89,6 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
         userProteinDay7.setValue(0);
         userProteinDay7.setStringPainted(true);
         
-        // *CHANGE HEIGHT OF USER Protein BAR DEPENDING ON THEIR PROGRESS WITH CALCULATIONS
         // Set the positions and sizes of the progress bars
 
         userProteinDay1.setBounds(150,200,50,300);
@@ -135,7 +134,6 @@ public class ProteinGoalTrackerWindow extends WindowConstructor implements Actio
     }
 
     // This is for USER'S ACTUAL Protein INTAKE FOR EACH DAY/WEEK
-    // *Tweak this so it keeps on updating depending on user inputted food
     public void protienActualGoalProgressBarValue() {
         ProgressCalc.progressDates();
         
